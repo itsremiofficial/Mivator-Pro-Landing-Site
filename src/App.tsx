@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { PropsWithChildren, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "./store";
+import {
+  toggleTheme,
+  toggleLocale,
+  toggleLayout,
+  toggleAnimation,
+  toggleColorScheme,
+} from "./store/themeConfigSlice";
 
-function App() {
-  const [count, setCount] = useState(0)
+function App({ children }: PropsWithChildren) {
+  const themeConfig = useSelector((state: IRootState) => state.themeConfig);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(toggleTheme(localStorage.getItem("theme") || themeConfig.theme));
+    dispatch(
+      toggleColorScheme(
+        localStorage.getItem("colorScheme") || themeConfig.colorScheme
+      )
+    );
+    dispatch(
+      toggleLayout(localStorage.getItem("layout") || themeConfig.layout)
+    );
+    dispatch(
+      toggleAnimation(
+        localStorage.getItem("animation") || themeConfig.animation
+      )
+    );
+    dispatch(
+      toggleLocale(localStorage.getItem("i18nextLng") || themeConfig.locale)
+    );
+  }, [
+    dispatch,
+    themeConfig.theme,
+    themeConfig.colorScheme,
+    themeConfig.layout,
+    themeConfig.animation,
+    themeConfig.locale,
+  ]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div
+      className={`${themeConfig.layout} main-section antialiased relative font-nunito text-sm font-normal`}
+    >
+      {children}
+    </div>
+  );
 }
 
-export default App
+export default App;
