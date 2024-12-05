@@ -767,7 +767,7 @@
   .background-grid li {
     margin: 0;
     padding: 0;
-    border-right: 1px solid rgb(255, 255, 255, 0.04);
+    border-right: 1px solid oklch(100% 0 0/0.05);
     width: 16.66%;
     list-style: none;
     position: relative;
@@ -812,24 +812,20 @@
     transition: all 0.25s ease;
     background: radial-gradient(
         65.28% 65.28% at 50% 100%,
-        var(--mivatorsilver-pro) 0%,
+        var(--color-pro) 0%,
         rgba(223, 113, 255, 0) 100%
       ),
-      linear-gradient(
-        0deg,
-        var(--mivatorsilver-pro3),
-        var(--mivatorsilver-pro3)
-      );
+      linear-gradient(0deg, var(--color-pro2), var(--color-pro2));
     border-radius: var(--round);
     @apply py-3 px-6 font-nippo border-none outline-none;
   }
   .dark .ProButton {
     background: radial-gradient(
         65.28% 65.28% at 50% 100%,
-        var(--pro) 0%,
+        var(--color-pro) 0%,
         rgba(223, 113, 255, 0) 100%
       ),
-      linear-gradient(0deg, var(--pro3), var(--pro3));
+      linear-gradient(0deg, var(--color-pro3), var(--color-pro3));
     border-radius: var(--round);
   }
 
@@ -850,7 +846,7 @@
     width: 2px;
     height: 2px;
     border-radius: 9999px;
-    @apply bg-[var(--color12)];
+    @apply bg-secondary;
   }
   @keyframes floating-points {
     0% {
@@ -935,7 +931,7 @@
     font-weight: 500;
     line-height: 1.5;
     transition: color 0.2s ease-in-out;
-    @apply font-normal tracking-wide text-secondary dark:text-[var(--color13)];
+    @apply font-normal tracking-wide text-secondary;
   }
 
   .ProButtoninner svg.icon {
@@ -945,7 +941,7 @@
   }
 
   .ProButton:focus svg.icon {
-    @apply dark:fill-[var(--color12)] fill-secondary;
+    @apply fill-secondary;
   }
   .ProButton:hover svg.icon {
     fill: transparent;
