@@ -59,25 +59,6 @@ const BackgroundLines = () => {
           },
         }
       );
-
-      //   opacityKeyframes.forEach((frame, i, arr) => {
-      //     const nextFrame = arr[i + 1];
-      //     if (nextFrame) {
-      //       timeline.fromTo(
-      //         li,
-      //         { "--before-opacity": frame.opacity.toString() },
-      //         {
-      //           "--before-opacity": nextFrame.opacity.toString(),
-      //           duration:
-      //             (duration *
-      //               (parseFloat(nextFrame.top) - parseFloat(frame.top))) /
-      //             100,
-      //           ease: "linear",
-      //         },
-      //         (duration * parseFloat(frame.top)) / 100
-      //       );
-      //     }
-      //   });
     });
   }, []);
 
