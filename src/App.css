@@ -774,13 +774,10 @@
   .background-grid li {
     margin: 0;
     padding: 0;
-    border-right: 1px solid oklch(100% 0 0/0.05);
     width: 16.66%;
     list-style: none;
     position: relative;
-  }
-  .dark .background-grid li {
-    border-color: oklch(100% 0 0/1);
+    @apply border-r border-r-secondary/10 dark:border-r-primary/5;
   }
 
   .background-grid li:nth-last-of-type() {
