@@ -124,7 +124,7 @@ const Hero = () => {
                 Icon={IconArrowRight}
                 iconProps={{
                   className:
-                    "border !rounded-lg group-hover:ml-3 !transition-all duration-300 border-light-800 group-hover:border-light-1000 group-hover:bg-light-1000 dark:border-primary-900 dark:group-hover:bg-primary-800 text-primary-700 group-hover:dark:text-primary-200 p-1 ml-2 size-7",
+                    "border !rounded-lg group-hover:ml-3 !transition-all duration-300 border-light-800 group-hover:border-light-100/5 group-hover:bg-light-100/15 dark:border-primary-900 dark:group-hover:bg-primary-800  dark:text-primary-700 dark:group-hover:text-primary-200 dark:group-hover:border-primary-800 p-1 ml-2 size-7",
                   fill: true,
                   duotone: false,
                   width: "2",
@@ -144,7 +144,7 @@ const Hero = () => {
                 className="btn-secondary px-6 py-5 z-[1000]"
                 Icon={IconDashboard}
                 iconProps={{
-                  className: "ml-2 size-7",
+                  className: "ml-2 size-5",
                   fill: true,
                 }}
               />

@@ -777,7 +777,7 @@
     width: 16.66%;
     list-style: none;
     position: relative;
-    @apply border-r border-r-secondary/10 dark:border-r-primary/5;
+    @apply border-r border-r-secondary/5 dark:border-r-white/5;
   }
 
   .background-grid li:nth-last-of-type() {
@@ -795,9 +795,20 @@
     height: 100px;
     list-style: none;
     border-right-width: 0.5px;
+    border-radius: 2rem;
+    border-image: linear-gradient(
+        to bottom,
+        transparent,
+        var(--color-secondary)
+      )
+      1;
+    opacity: var(--before-opacity, 0.5);
+  }
+
+  .dark .background-grid li::before {
     border-image: linear-gradient(to bottom, transparent, var(--color-primary))
       1;
-    opacity: 0.5;
+    opacity: var(--before-opacity, 0.5);
   }
 
   .background-grid li::before:nth-last-of-type() {
@@ -981,7 +992,7 @@
   }
 
   .btn {
-    @apply relative flex items-center justify-center rounded-2xl border-none px-5 py-2 text-lg outline-none active:translate-y-[1px] cursor-pointer h-fit font-nippo tracking-wider !transition-colors !duration-300 whitespace-nowrap overflow-hidden;
+    @apply relative flex items-center justify-center rounded-2xl border-none px-5 py-2 text-base outline-none active:translate-y-[1px] cursor-pointer h-fit font-nippo tracking-wider !transition-colors !duration-300 whitespace-nowrap overflow-hidden;
   }
   .btn-primary {
     @apply bg-light-900 text-white hover:bg-secondary border-light-900 hover:border-secondary

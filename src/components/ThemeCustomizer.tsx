@@ -139,7 +139,7 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({ className }) => {
         </div>
         <div
           className="bg-light-300 dark:bg-primary-1100 border-light-400
-          dark:border-white/10 relative perfect-scrollbar !size-full p-4 mt-6 py-12 shadow-[-23px_0_25px_0_rgba(0,0,0,0.07)] dark:shadow-[-23px_0_25px_0_rgba(255,255,255,0.07)] rounded-3xl border-2"
+          dark:border-white/10 relative perfect-scrollbar !size-full p-4 mt-6 py-12 shadow-[-23px_0_25px_0_rgba(0,0,0,0.1)] dark:shadow-[-43px_0_45px_0_rgba(0,0,0,0.6)] rounded-3xl border-2"
         >
           <div className="flex flex-col gap-4 items-center">
             {Object.keys(colorSchemes).map((themeKey) => {
