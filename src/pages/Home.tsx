@@ -1,6 +1,7 @@
 import useLocoScroll from "../hooks/useLocoScroll.js";
 import BackgroundLines from "../components/BackgroundLines";
 import Hero from "./sections/Hero.js";
+import MarqueeText from "../components/MarqueeText.js";
 const Home = () => {
   useLocoScroll(true, "[data-scroll-container]");
 
@@ -11,7 +12,7 @@ const Home = () => {
       <main data-scroll-container className="background">
         <BackgroundLines />
         <Hero />
-        {/* <MarqueeText /> */}
+        <MarqueeText />
         {/* <ConnectedIcons /> */}
         {/* <FeaturesSection /> */}
         {/* <Bento /> */}

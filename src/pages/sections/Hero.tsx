@@ -77,7 +77,7 @@ const Hero = () => {
           <div
             className="
                         text-[2.5rem] lg:text-7xl xl:text-8xl md:text-5xl
-                        leading-tight font-chaney font-bold relative text-secondary dark:text-primary-500 flex flex-col whitespace-nowrap"
+                        leading-tight font-syne font-extrabold relative text-secondary dark:text-primary-500 flex flex-col whitespace-nowrap"
           >
             <span className="hero-title">Take Full</span>
             <span className="hero-title">Control with</span>
@@ -89,11 +89,11 @@ const Hero = () => {
         <div
           className="
                     text-sm lg:text-lg
-                    text-neu-700 dark:text-primary-700/60
-                    font-chaney whitespace-nowrap"
+                    text-neu-700 dark:text-slate-400
+                    font-syne w-[70%]"
         >
-          Bring your vision to life with a custom Mivator Pro. <br /> From name
-          to colors to complete ownership, it’s all yours.
+          Bring your vision to life with a custom Mivator Pro. From name to
+          colors to complete ownership, it’s all yours.
         </div>
         <div
           className="
@@ -120,13 +120,14 @@ const Hero = () => {
             >
               <AnimatedButton
                 linkText1="Get Started"
-                className="btn-primary px-4 py-3 z-[1000]"
+                className="btn-primary px-6 py-5 z-[1000]"
                 Icon={IconArrowRight}
                 iconProps={{
                   className:
-                    "border !rounded-lg group-hover:ml-3 !transition-all duration-300 border-light-800 group-hover:border-light-900 group-hover:bg-light-900 dark:border-primary-900 dark:group-hover:bg-primary-800 text-primary-700 group-hover:dark:text-primary-400 p-1 ml-2 size-7",
+                    "border !rounded-lg group-hover:ml-3 !transition-all duration-300 border-light-800 group-hover:border-light-1000 group-hover:bg-light-1000 dark:border-primary-900 dark:group-hover:bg-primary-800 text-primary-700 group-hover:dark:text-primary-200 p-1 ml-2 size-7",
                   fill: true,
                   duotone: false,
+                  width: "2",
                 }}
               />
             </a>
@@ -140,10 +141,10 @@ const Hero = () => {
             >
               <AnimatedButton
                 linkText1="Dashboard"
-                className="btn-secondary px-4 py-3 z-[1000]"
+                className="btn-secondary px-6 py-5 z-[1000]"
                 Icon={IconDashboard}
                 iconProps={{
-                  className: "ml-2 size-7 p-1",
+                  className: "ml-2 size-7",
                   fill: true,
                 }}
               />
@@ -165,7 +166,7 @@ const Hero = () => {
       >
         <motion.img
           ref={imageRef}
-          src="/pro.png"
+          src="/pro.avif"
           alt="Magnetic"
           style={{
             objectFit: "cover",

@@ -1,13 +1,21 @@
 import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 import SplitType from "split-type";
-import { gsap } from "gsap";
+
+// Define types for the icon props
+interface IconProps {
+  className?: string;
+  fill?: string | boolean;
+  duotone?: boolean;
+  width?: string | number;
+}
 
 interface AnimatedButtonProps {
   linkText1?: string;
   linkText2?: string;
   className?: string;
-  Icon?: React.FC<any>; // Icon component
-  iconProps?: React.ComponentProps<any>; // Additional props for the icon
+  Icon?: React.ComponentType<IconProps>;
+  iconProps?: IconProps;
 }
 
 const AnimatedButton: React.FC<AnimatedButtonProps> = ({
@@ -15,80 +23,68 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
   linkText2,
   className,
   Icon,
-  iconProps, // Accepting icon props
+  iconProps,
 }) => {
   const linkRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    if (linkRef.current) {
-      const textElements = linkRef.current.querySelectorAll(
-        "[hoverstagger='text']"
-      );
+    const linkElement = linkRef.current;
 
-      // Apply SplitType to the text elements
-      textElements.forEach((el) => {
-        new SplitType(el as HTMLElement, {
-          types: "words,chars",
-          tagName: "span",
-        });
+    if (!linkElement) return;
+
+    const textElements = linkElement.querySelectorAll("[hoverstagger='text']");
+
+    textElements.forEach((el) => {
+      new SplitType(el as HTMLElement, {
+        types: "words,chars",
+        tagName: "span",
       });
+    });
 
-      // Initialize GSAP timeline
-      const tl = gsap.timeline({ paused: true });
+    const tl = gsap.timeline({ paused: true });
 
-      const text1 = textElements[0];
-      const text2 = textElements[1];
-
-      if (text1 && text2) {
-        tl.to(text1.querySelectorAll(".char"), {
-          yPercent: -120,
+    const [text1, text2] = textElements;
+    if (text1 && text2) {
+      tl.to(text1.querySelectorAll(".char"), {
+        yPercent: -120,
+        duration: 0.3,
+        stagger: { amount: 0.2 },
+      }).from(
+        text2.querySelectorAll(".char"),
+        {
+          yPercent: 200,
           duration: 0.3,
           stagger: { amount: 0.2 },
-        });
-
-        tl.from(
-          text2.querySelectorAll(".char"),
-          {
-            yPercent: 200,
-            duration: 0.3,
-            stagger: { amount: 0.2 },
-          },
-          0
-        );
-      }
-
-      // Mouse enter event to trigger animation
-      const handleMouseEnter = () => {
-        tl.restart();
-      };
-      const handleMouseLeave = () => {
-        tl.reverse();
-      };
-
-      linkRef.current.addEventListener("mouseenter", handleMouseEnter);
-      linkRef.current.addEventListener("mouseleave", handleMouseLeave);
-
-      // Cleanup function
-      return () => {
-        linkRef.current?.removeEventListener("mouseenter", handleMouseEnter);
-        linkRef.current?.addEventListener("mouseleave", handleMouseLeave);
-      };
+        },
+        0
+      );
     }
-  }, [linkRef]);
+
+    const handleMouseEnter = () => tl.restart();
+    const handleMouseLeave = () => tl.reverse();
+
+    linkElement.addEventListener("mouseenter", handleMouseEnter);
+    linkElement.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      linkElement.removeEventListener("mouseenter", handleMouseEnter);
+      linkElement.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
 
   return (
-    <button className={`btn ${className}`} ref={linkRef}>
+    <button className={`btn ${className}`} ref={linkRef} name={linkText1}>
       <div hoverstagger="link" className="flex">
         <div className="relative overflow-hidden z-[1]">
-          <div hoverstagger="text" className={`relative inline-block`}>
+          <div hoverstagger="text" className="relative inline-block">
             {linkText1}
           </div>
-          <div hoverstagger="text" className={`absolute inset-y-0`}>
-            {linkText2 ? linkText2 : linkText1}
+          <div hoverstagger="text" className="absolute inset-y-0">
+            {linkText2 || linkText1}
           </div>
         </div>
       </div>
-      {Icon && <Icon {...iconProps} />}
+      {Icon && <Icon {...iconProps} />} {/* Corrected usage of iconProps */}
     </button>
   );
 };

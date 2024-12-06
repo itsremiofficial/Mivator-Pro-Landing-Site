@@ -2,16 +2,23 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Chaney";
-  src: url("/fonts/chaney.ttf") format("woff2");
-}
-@font-face {
   font-family: "Nippo";
   src: url("/fonts/Nippo-Variable.woff2") format("woff2");
+  font-style: normal;
+  font-optical-sizing: auto;
 }
 @font-face {
   font-family: "Porlane";
   src: url("/fonts/Porlane.woff") format("woff");
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "Syne";
+  src: url("/fonts/syne.ttf") format("woff"),
+    url("/fonts/syne.ttf") format("woff2");
+  font-style: normal;
+  font-optical-sizing: auto;
 }
 
 @variant dark (&:where(.dark, .dark *));
@@ -605,7 +612,7 @@
 }
 
 @theme inline {
-  --font-chaney: "Chaney", "sans-serif";
+  --font-syne: "Syne", "serif";
   --font-nippo: "Nippo", "sans-serif";
   --font-counter: "Porlane", "sans-serif";
 
@@ -771,6 +778,9 @@
     width: 16.66%;
     list-style: none;
     position: relative;
+  }
+  .dark .background-grid li {
+    border-color: oklch(100% 0 0/1);
   }
 
   .background-grid li:nth-last-of-type() {
@@ -974,7 +984,7 @@
   }
 
   .btn {
-    @apply relative flex items-center justify-center rounded-2xl border-none px-5 py-2 text-sm font-medium outline-none active:translate-y-[1px] cursor-pointer h-fit font-nippo tracking-wider !transition-colors !duration-300 whitespace-nowrap overflow-hidden;
+    @apply relative flex items-center justify-center rounded-2xl border-none px-5 py-2 text-lg outline-none active:translate-y-[1px] cursor-pointer h-fit font-nippo tracking-wider !transition-colors !duration-300 whitespace-nowrap overflow-hidden;
   }
   .btn-primary {
     @apply bg-light-900 text-white hover:bg-secondary border-light-900 hover:border-secondary
@@ -983,7 +993,7 @@
   }
   .btn-secondary {
     @apply dark:text-primary-600 dark:hover:bg-primary-600 dark:hover:text-secondary dark:!border-primary-600
-    bg-transparent !border-light-800 hover:!border-light-800 hover:bg-light-800 text-light-800 hover:text-white
+    bg-transparent !border-light-800 hover:!border-light-600 hover:bg-light-800 text-light-800 hover:text-white
     !transition-colors !duration-600 !border !border-solid;
   }
 
@@ -1099,7 +1109,6 @@
     stroke-linejoin: round;
     stroke-miterlimit: 10;
     fill: none;
-    @apply !stroke-light-primary dark:!stroke-primary;
   }
   .enable-background {
     enable-background: new 0 0 324.5 348;

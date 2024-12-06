@@ -1,5 +1,5 @@
 "use client";
-const people = [
+const items = [
   {
     id: 1,
     username: "Envo",
@@ -41,14 +41,12 @@ const people = [
 const RecentBots = () => {
   return (
     <div className="flex flex-row items-center justify-center relative z-10">
-      <span></span>
-      <AnimatedTooltip items={people} />
+      <AnimatedTooltip deta={items} />
     </div>
   );
 };
 export default RecentBots;
 
-("use client");
 import React, { useState } from "react";
 import {
   motion,
@@ -59,9 +57,9 @@ import {
 } from "framer-motion";
 
 export const AnimatedTooltip = ({
-  items,
+  deta,
 }: {
-  items: {
+  deta: {
     id: number;
     username: string;
     discordServer: string;
@@ -83,7 +81,7 @@ export const AnimatedTooltip = ({
 
   return (
     <>
-      {items.map((item, idx) => (
+      {deta.map((item, idx) => (
         <div
           className="-mr-4  relative group"
           key={item.username}
@@ -130,7 +128,7 @@ export const AnimatedTooltip = ({
             width={100}
             src={item.image}
             alt={item.username}
-            className="object-cover !m-0 !p-0 object-top rounded-full h-14 w-14 border-2 group-hover:scale-105 group-hover:z-30 border-light-200 dark:border-primary-1200 relative transition duration-500"
+            className="object-cover !m-0 !p-0 object-top rounded-full size-18 border-2 group-hover:scale-105 group-hover:z-30 border-light-200 dark:border-primary-1200 relative transition duration-500"
           />
         </div>
       ))}
