@@ -157,7 +157,14 @@ export const FeaturesSection: React.FC = () => {
             </div>
 
             {/* Fully Optimized for Tokens Studio */}
-            <div className=" bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center text-center ">
+            <div className=" bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center text-center overflow-hidden relative feature-card">
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 feature_card_mousetracker mix-blend-overlay z-[2]"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1 * 0.1 }}
+                ref={linkRef}
+              />
               <div className="flex flex-col relative">
                 <div className="flex">
                   <svg className="h-72" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 2466 3136">
