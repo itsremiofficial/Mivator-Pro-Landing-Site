@@ -1,9 +1,11 @@
-import useLocoScroll from "../hooks/useLocoScroll.js";
-import BackgroundLines from "../components/BackgroundLines";
-import Hero from "./sections/Hero.js";
-import MarqueeText from "../components/MarqueeText.js";
+import useLocoScroll from '../hooks/useLocoScroll.js';
+import BackgroundLines from '../components/BackgroundLines';
+import Hero from './sections/Hero.js';
+import MarqueeText from '../components/MarqueeText.js';
+import ConnectedIcons from '../components/ConnectedIcons.js';
+import { FeaturesSection } from './sections/Features/FeaturesSection.js';
 const Home = () => {
-  useLocoScroll(true, "[data-scroll-container]");
+  useLocoScroll(true, '[data-scroll-container]');
 
   return (
     <div>
@@ -13,8 +15,8 @@ const Home = () => {
         <BackgroundLines />
         <Hero />
         <MarqueeText />
-        {/* <ConnectedIcons /> */}
-        {/* <FeaturesSection /> */}
+        <ConnectedIcons />
+        <FeaturesSection />
         {/* <Bento /> */}
         <div className="h-screen"></div>
         <div className="h-screen"></div>

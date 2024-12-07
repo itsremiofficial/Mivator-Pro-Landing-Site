@@ -11,7 +11,7 @@ interface IconProps {
 }
 
 interface AnimatedButtonProps {
-  linkText1?: string;
+  linkText1: string;
   linkText2?: string;
   className?: string;
   Icon?: React.ComponentType<IconProps>;

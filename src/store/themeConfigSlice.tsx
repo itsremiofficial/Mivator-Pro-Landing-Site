@@ -8,7 +8,7 @@ const initialState = {
   layout: localStorage.getItem("layout") || themeConfig.layout,
   animation: localStorage.getItem("animation") || themeConfig.animation,
   locale: localStorage.getItem("i18nextLng") || themeConfig.locale,
-  isDarkMode: false,
+  isDarkMode: true,
   languageList: [
     { code: "zh", name: "Chinese" },
     { code: "da", name: "Danish" },

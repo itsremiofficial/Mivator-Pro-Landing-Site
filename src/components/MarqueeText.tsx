@@ -1,9 +1,9 @@
-import { useRef } from "react";
-import gsap from "gsap";
-import { Observer } from "gsap/Observer";
-import { useGSAP } from "@gsap/react";
-import horizontalLoop from "../hooks/horizontalLoop";
-import IconFeatureFast from "./Icon/IconFeatureFast";
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { Observer } from 'gsap/Observer';
+import { useGSAP } from '@gsap/react';
+import horizontalLoop from '../hooks/horizontalLoop';
+import IconFeatureFast from './Icon/IconFeatureFast';
 gsap.registerPlugin(Observer, useGSAP);
 const MarqueeText = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -11,7 +11,7 @@ const MarqueeText = () => {
     () => {
       const speed = 3;
       document.fonts.ready.then(() => {
-        const loop = horizontalLoop(".marqueeword", {
+        const loop = horizontalLoop('.marqueeword', {
           repeat: -1,
           speed: 1.5,
           paddingRight: 10,
@@ -19,7 +19,7 @@ const MarqueeText = () => {
         let tl: GSAPTimeline | null = null;
         Observer.create({
           target: window,
-          type: "wheel",
+          type: 'wheel',
           onChangeY: (self) => {
             tl?.kill();
             const factor = self.deltaY > 0 ? 1 : -1;
@@ -40,7 +40,7 @@ const MarqueeText = () => {
       className="
                     pt-10 md:pt-14 xl:pt-48
                     pb-8 md:pb-10 xl:pb-32
-                    "
+                    select-none"
     >
       <div
         className="

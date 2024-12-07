@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import IconPremium from "../../components/Icon/IconPremium";
-import AnimatedButton from "../../components/AnimatedButton";
-import { IconArrowRight, IconDashboard } from "../../components/Icon";
-import RecentBots from "../../components/RecentBots";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import IconPremium from '../../components/Icon/IconPremium';
+import AnimatedButton from '../../components/AnimatedButton';
+import { IconArrowRight, IconDashboard } from '../../components/Icon';
+import RecentBots from '../../components/RecentBots';
 
 const Hero = () => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -37,9 +37,9 @@ const Hero = () => {
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
 
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
@@ -92,8 +92,7 @@ const Hero = () => {
                     text-neu-700 dark:text-slate-400
                     font-syne w-[70%]"
         >
-          Bring your vision to life with a custom Mivator Pro. From name to
-          colors to complete ownership, it’s all yours.
+          Bring your vision to life with a custom Mivator Pro. From name to colors to complete ownership, it’s all yours.
         </div>
         <div
           className="
@@ -111,40 +110,28 @@ const Hero = () => {
                         gap-4
                         justify-center md:justify-start"
           >
-            <a
-              href="/Icons"
-              data-scroll-speed="4"
-              data-scroll-position="top"
-              data-scroll
-              className="group"
-            >
+            <a href="/Icons" data-scroll-speed="4" data-scroll-position="top" data-scroll className="group">
               <AnimatedButton
                 linkText1="Get Started"
                 className="btn-primary px-6 py-5 z-[1000]"
                 Icon={IconArrowRight}
                 iconProps={{
                   className:
-                    "border !rounded-lg group-hover:ml-3 !transition-all duration-300 border-light-800 group-hover:border-light-100/5 group-hover:bg-light-100/15 dark:border-primary-900 dark:group-hover:bg-primary-800  dark:text-primary-700 dark:group-hover:text-primary-200 dark:group-hover:border-primary-800 p-1 ml-2 size-7",
+                    'border !rounded-lg group-hover:ml-3 !transition-all duration-300 border-light-800 group-hover:border-light-100/5 group-hover:bg-light-100/15 dark:border-primary-900 dark:group-hover:bg-primary-800  dark:text-primary-700 dark:group-hover:text-primary-200 dark:group-hover:border-primary-800 p-1 ml-2 size-7',
                   fill: true,
                   duotone: false,
-                  width: "2",
+                  width: '2',
                 }}
               />
             </a>
 
-            <a
-              href="/color"
-              data-scroll-speed="1.5"
-              data-scroll-position="top"
-              data-scroll-delay="0.1"
-              data-scroll
-            >
+            <a href="/color" data-scroll-speed="1.5" data-scroll-position="top" data-scroll-delay="0.1" data-scroll>
               <AnimatedButton
                 linkText1="Dashboard"
                 className="btn-secondary px-6 py-5 z-[1000]"
                 Icon={IconDashboard}
                 iconProps={{
-                  className: "ml-2 size-5",
+                  className: 'ml-2 size-5',
                   fill: true,
                 }}
               />
@@ -164,30 +151,36 @@ const Hero = () => {
                 select-none
                 "
       >
-        <motion.img
-          ref={imageRef}
-          src="/pro.avif"
-          alt="Magnetic"
-          style={{
-            objectFit: "cover",
-          }}
-          className="hero-image w-1/2 md:w-full"
-          animate={{
-            x: imagePosition.x,
-            y: imagePosition.y,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 20,
-          }}
-          whileHover={{
-            y: -20,
-          }}
-          whileTap={{
-            y: 0,
-          }}
-        />
+        <motion.picture>
+          <source srcSet="/pro.avif" type="image/avif" />
+          <source srcSet="/pro.webp" type="image/webp" />
+          <motion.img
+            ref={imageRef}
+            src="/pro.avif"
+            alt="Magnetic"
+            style={{
+              objectFit: 'cover',
+            }}
+            className="hero-image w-1/2 md:w-full"
+            animate={{
+              x: imagePosition.x,
+              y: imagePosition.y,
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 300,
+              damping: 20,
+            }}
+            whileHover={{
+              y: -20,
+            }}
+            whileTap={{
+              y: 0,
+            }}
+            width={1090}
+            height={1308}
+          />
+        </motion.picture>
       </div>
     </div>
   );
