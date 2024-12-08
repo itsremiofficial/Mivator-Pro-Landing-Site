@@ -1,5 +1,5 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
 
 const PreLoader = () => {
   const loaderRef = useRef<SVGPathElement>(null);
@@ -10,7 +10,7 @@ const PreLoader = () => {
   // LOGO ANIMATION
   useEffect(() => {
     const loader = loaderRef.current;
-    const fadeUp = document.querySelectorAll(".fadeUpPath");
+    const fadeUp = document.querySelectorAll('.fadeUpPath');
 
     if (loader && fadeUp.length > 0) {
       const windowLoadTime = performance.now() / 1000;
@@ -22,17 +22,10 @@ const PreLoader = () => {
       gsap.to(loader, {
         duration: windowLoadTime,
         strokeDashoffset: minStrokeValue,
-        ease: "power2.out",
+        ease: 'power2.out',
         onUpdate: function () {
-          console.log(windowLoadTime);
-          const currentDashoffset = parseFloat(
-            loader.style.strokeDashoffset || "0"
-          );
-          const progressValue = Math.round(
-            ((maxStrokeValue - currentDashoffset) /
-              (maxStrokeValue - minStrokeValue)) *
-              100
-          );
+          const currentDashoffset = parseFloat(loader.style.strokeDashoffset || '0');
+          const progressValue = Math.round(((maxStrokeValue - currentDashoffset) / (maxStrokeValue - minStrokeValue)) * 100);
         },
         onStart: function () {
           setStartAnimation(true);
@@ -41,14 +34,13 @@ const PreLoader = () => {
           gsap.to(fadeUp, {
             duration: 0.5,
             opacity: 1,
-            display: "block",
+            display: 'block',
             y: 0,
-            ease: "power2.in",
+            ease: 'power2.in',
           });
           setTimeout(() => {
-            if (loader) loader.style.opacity = "0";
-            if (loaderContainerRef.current)
-              loaderContainerRef.current.style.display = "none";
+            if (loader) loader.style.opacity = '0';
+            if (loaderContainerRef.current) loaderContainerRef.current.style.display = 'none';
           }, 3000);
         },
       });
@@ -57,8 +49,7 @@ const PreLoader = () => {
 
   // COUNTER ANIMATION
 
-  const customEase =
-    "M0,0,C0.25,0,0.294,0.023,0.335,0.05,0.428,0.11,0.466,0.292,0.498,0.502,0.532,0.73,0.586,0.88,0.64,0.928,0.679,0.962,0.698,1,1,1";
+  const customEase = 'M0,0,C0.25,0,0.294,0.023,0.335,0.05,0.428,0.11,0.466,0.292,0.498,0.502,0.532,0.73,0.586,0.88,0.64,0.928,0.679,0.962,0.698,1,1,1';
   useLayoutEffect(() => {
     const windowLoadTime = performance.now() / 1000;
     if (!startAnimation) return;
@@ -66,9 +57,9 @@ const PreLoader = () => {
     const loaderTimeline = gsap.timeline();
 
     loaderTimeline.to(
-      ".counter-span.is--hundreds",
+      '.counter-span.is--hundreds',
       {
-        y: "-102.5%",
+        y: '-102.5%',
         delay: windowLoadTime / 1.8,
         duration: windowLoadTime / windowLoadTime,
         ease: customEase,
@@ -76,18 +67,18 @@ const PreLoader = () => {
       1.6
     );
     loaderTimeline.to(
-      ".counter-span.is--tens",
+      '.counter-span.is--tens',
       {
-        y: "-1062%",
+        y: '-1062%',
         duration: windowLoadTime,
         ease: customEase,
       },
       0.2
     );
     loaderTimeline.to(
-      ".counter-span.is--ones",
+      '.counter-span.is--ones',
       {
-        y: "-10661.5%",
+        y: '-10661.5%',
         duration: windowLoadTime,
         ease: customEase,
       },
@@ -96,21 +87,9 @@ const PreLoader = () => {
   }, [startAnimation]);
 
   return (
-    <div
-      ref={loaderContainerRef}
-      className="screen_loader fixed inset-0 bg-light-200 dark:bg-[var(--color12)] z-[60] grid place-content-center animate__animated"
-    >
+    <div ref={loaderContainerRef} className="screen_loader fixed inset-0 bg-light-200 dark:bg-primary-1200 z-[60] grid place-content-center animate__animated">
       <div className="flex flex-col items-center">
-        <svg
-          id="mivator_logo"
-          x="0px"
-          y="0px"
-          viewBox="0 0 324.5 348"
-          className="enable-background loader"
-          fill="none"
-          width={250}
-          height={250}
-        >
+        <svg id="mivator_logo" x="0px" y="0px" viewBox="0 0 324.5 348" className="enable-background loader" fill="none" width={250} height={250}>
           <path
             id="shadow"
             className="fill-white dark:fill-primary blur-3xl absolute top-0 bottom-0 left-0 right-0 w-full z-[-2]"
@@ -145,18 +124,18 @@ const PreLoader = () => {
               />
             </defs>
             <clipPath id="m_clip">
-              <use xlinkHref="#m_outer_clip" style={{ overflow: "visible" }} />
+              <use xlinkHref="#m_outer_clip" style={{ overflow: 'visible' }} />
             </clipPath>
             <path
               // id="m_path"
               className="dark:stroke-primary-1200 stroke-light-700"
               style={{
-                clipPath: "url(#m_clip)",
-                strokeWidth: "76px",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                strokeMiterlimit: "10",
-                fill: "none",
+                clipPath: 'url(#m_clip)',
+                strokeWidth: '76px',
+                strokeLinecap: 'round',
+                strokeLinejoin: 'round',
+                strokeMiterlimit: '10',
+                fill: 'none',
               }}
               d="
                M74.5,288.6L61,234.8c-7.6-30.1-12.1-61-13.6-92l-2.7-58.7c-0.2-3.4,4.1-5.1,6.2-2.4l16.9,26.2c16.7,21.7,38.9,48,59.3,67.4
@@ -168,12 +147,12 @@ const PreLoader = () => {
               // id="m_path"
               className="dark:stroke-primary stroke-light-700"
               style={{
-                clipPath: "url(#m_clip)",
-                strokeWidth: "76px",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                strokeMiterlimit: "10",
-                fill: "none",
+                clipPath: 'url(#m_clip)',
+                strokeWidth: '76px',
+                strokeLinecap: 'round',
+                strokeLinejoin: 'round',
+                strokeMiterlimit: '10',
+                fill: 'none',
               }}
               d="
                M74.5,288.6L61,234.8c-7.6-30.1-12.1-61-13.6-92l-2.7-58.7c-0.2-3.4,4.1-5.1,6.2-2.4l16.9,26.2c16.7,21.7,38.9,48,59.3,67.4
@@ -184,8 +163,8 @@ const PreLoader = () => {
           <path
             style={{
               opacity: 0,
-              display: "none",
-              transform: "translateY(3px)",
+              display: 'none',
+              transform: 'translateY(3px)',
             }}
             className="fadeUpPath fill-light-800 dark:fill-primary-800"
             d="M162.3,180.1l-0.8,43.6c0,0-3.4-1.8-9-5.1C123.3,201.4,97.7,178.8,77,152l-3.1-4c0,0-4,29.2-2.1,57.2
@@ -214,8 +193,8 @@ const PreLoader = () => {
           <path
             style={{
               opacity: 0,
-              display: "none",
-              transform: "translateY(5px)",
+              display: 'none',
+              transform: 'translateY(5px)',
             }}
             id="cap_overlay"
             className="fill-light-900 dark:fill-primary-1000 fadeUpPath"
@@ -404,14 +383,7 @@ const PreLoader = () => {
                 </div>
               </div>
               <div className="counter-span is--percent grid gap-0 absolute bottom-4 -right-8">
-                <svg
-                  className="w-12"
-                  viewBox="0 0 1514 2107.3"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  x="0px"
-                  y="0px"
-                >
+                <svg className="w-12" viewBox="0 0 1514 2107.3" fill="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px">
                   <path
                     id="bg"
                     className="fill-light-200 dark:fill-primary-1100"

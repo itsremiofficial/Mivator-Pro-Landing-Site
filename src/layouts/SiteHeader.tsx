@@ -1,53 +1,51 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import ThemeCustomizer from "../components/ThemeCustomizer";
-import { cn } from "../utils/utils";
-import ProButton from "../components/ProButton";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+'use client';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import ThemeCustomizer from '../components/ThemeCustomizer';
+import { cn } from '../utils/utils';
+import ProButton from '../components/ProButton';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function SiteHeader({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
-  const [currentTheme, setCurrentTheme] = useState<string>(
-    localStorage.getItem("currentTheme") || "mivatorBlurple"
-  );
+  const [currentTheme, setCurrentTheme] = useState<string>(localStorage.getItem('currentTheme') || 'mivatorBlurple');
 
   useEffect(() => {
-    setCurrentTheme(localStorage.getItem("currentTheme") || "mivatorBlurple");
+    setCurrentTheme(localStorage.getItem('currentTheme') || 'mivatorBlurple');
   }, []);
 
   const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const header = headerRef.current;
-    const main = document.querySelector("main");
+    const main = document.querySelector('main');
 
     if (!header || !main) return;
 
     const headerScrollTrigger = ScrollTrigger.create({
       trigger: main,
-      start: "top+=150 top",
-      end: "top+=380 top",
+      start: 'top+=150 top',
+      end: 'top+=380 top',
       onEnter: () => {
         gsap.to(header, {
-          backdropFilter: "blur(10px)",
-          backgroundAttachment: "url(grain.webp)",
-          backgroundColor: "rgba(255, 255, 255, 0)",
+          backdropFilter: 'blur(10px)',
+          backgroundAttachment: 'url(grain.webp)',
+          backgroundColor: 'rgba(255, 255, 255, 0)',
           duration: 1,
-          ease: "linear",
+          ease: 'linear',
         });
       },
       onLeaveBack: () => {
         gsap.to(header, {
-          backdropFilter: "blur(0px)",
-          filter: "none",
-          backgroundColor: "rgba(255, 255, 255, 0)",
+          backdropFilter: 'blur(0px)',
+          filter: 'none',
+          backgroundColor: 'rgba(255, 255, 255, 0)',
           duration: 1,
-          ease: "power2.out",
+          ease: 'power2.out',
         });
       },
       onUpdate: (self) => {
@@ -71,12 +69,7 @@ function SiteHeader({ className }: { className?: string }) {
 
   return (
     <div className={`header-main fixed w-full z-50 h-20`} ref={headerRef}>
-      <div
-        className={cn(
-          "inset-x-0 mx-auto flex justify-between items-center max-w-screen-2xl",
-          className
-        )}
-      >
+      <div className={cn('inset-x-0 mx-auto flex justify-between items-center max-w-screen-2xl', className)}>
         <Menu setActive={setActive}>
           <MenuItem setActive={setActive} menuTitle="Home"></MenuItem>
           <MenuItem setActive={setActive} menuTitle="Why Mivator?" />
@@ -84,14 +77,7 @@ function SiteHeader({ className }: { className?: string }) {
         </Menu>
 
         <div className="flex-shrink-0 rounded-md w-20">
-          <svg
-            version="1.1"
-            className="mivator_main_logo"
-            x="0px"
-            y="0px"
-            viewBox="0 0 500 500"
-            xmlSpace="preserve"
-          >
+          <svg className="mivator_main_logo" x="0px" y="0px" viewBox="0 0 500 500">
             <g className="mivator">
               <path
                 className="bg_shadow"
@@ -202,7 +188,7 @@ function SiteHeader({ className }: { className?: string }) {
 export default SiteHeader;
 
 const transition = {
-  type: "spring",
+  type: 'spring',
   mass: 0.5,
   damping: 11.5,
   stiffness: 100,
@@ -210,38 +196,17 @@ const transition = {
   restSpeed: 0.001,
 };
 
-export const MenuItem = ({
-  setActive,
-  active,
-  menuTitle,
-  children,
-}: {
-  setActive: (menuTitle: string) => void;
-  active?: string | null;
-  menuTitle: string;
-  children?: React.ReactNode;
-}) => {
+export const MenuItem = ({ setActive, active, menuTitle, children }: { setActive: (menuTitle: string) => void; active?: string | null; menuTitle: string; children?: React.ReactNode }) => {
   return (
     <div onMouseEnter={() => setActive(menuTitle)} className="relative">
-      <motion.p
-        transition={{ duration: 0.3 }}
-        className="header-link cursor-pointer hover:opacity-[0.9] font-chaney font-light trans-fade"
-      >
+      <motion.p transition={{ duration: 0.3 }} className="header-link cursor-pointer hover:opacity-[0.9] font-chaney font-light trans-fade">
         {menuTitle}
       </motion.p>
       {active !== null && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={transition}
-        >
+        <motion.div initial={{ opacity: 0, scale: 0.85, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={transition}>
           {active === menuTitle && (
             <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4 z-10">
-              <motion.div
-                transition={transition}
-                layoutId="active"
-                className="header-dropdown !backdrop-blur-3xl rounded-2xl overflow-hidden shadow-xl"
-              >
+              <motion.div transition={transition} layoutId="active" className="header-dropdown !backdrop-blur-3xl rounded-2xl overflow-hidden shadow-xl">
                 <motion.div layout className="w-max h-full p-4">
                   {children}
                 </motion.div>
@@ -254,50 +219,21 @@ export const MenuItem = ({
   );
 };
 
-export const Menu = ({
-  setActive,
-  children,
-}: {
-  setActive: (item: string | null) => void;
-  children: React.ReactNode;
-}) => {
+export const Menu = ({ setActive, children }: { setActive: (item: string | null) => void; children: React.ReactNode }) => {
   return (
-    <nav
-      onMouseLeave={() => setActive(null)}
-      className="relative flex justify-center items-center space-x-8 px-8 py-4"
-    >
+    <nav onMouseLeave={() => setActive(null)} className="relative flex justify-center items-center space-x-8 px-8 py-4">
       {children}
     </nav>
   );
 };
 
-export const DropdownCard = ({
-  title,
-  description,
-  href,
-  src,
-}: {
-  title: string;
-  description: string;
-  href: string;
-  src: string;
-}) => {
+export const DropdownCard = ({ title, description, href, src }: { title: string; description: string; href: string; src: string }) => {
   return (
     <Link to={href} className="flex space-x-2">
-      <motion.img
-        src={src}
-        width={140}
-        height={70}
-        alt={title}
-        className="flex-shrink-0 rounded-md shadow-2xl"
-      />
+      <motion.img src={src} width={140} height={70} alt={title} className="flex-shrink-0 rounded-md shadow-2xl" />
       <div>
-        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
-          {title}
-        </h4>
-        <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">
-          {description}
-        </p>
+        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">{title}</h4>
+        <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">{description}</p>
       </div>
     </Link>
   );

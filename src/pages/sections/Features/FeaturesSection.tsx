@@ -1,129 +1,194 @@
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { features } from './FeaturesData';
-import { FeatureCard } from './FeatureCard';
 import { useSelector } from 'react-redux';
 import { IRootState } from '../../../store';
-import AnimatedButton from '../../../components/AnimatedButton';
 import SplitType from 'split-type';
 import gsap from 'gsap';
+import { CursorFollower } from '../../../components/CursorFollower/CursorFollower';
+import { MouseTrackerProps } from '../../../components/CursorFollower/CursorFollowerTypes';
+import LogoThemes from '../../../components/LogoThemes';
+import horizontalLoop from '../../../hooks/horizontalLoop';
+import { getThemeTitle, ThemeName } from '../../../colorSchemes';
 export const FeaturesSection: React.FC = () => {
-  //   useEffect(() => {
-  //     const handleMouseMove = (e: MouseEvent) => {
-  //       const cards = document.querySelectorAll('.group');
-  //       cards.forEach((card) => {
-  //         const rect = card.getBoundingClientRect();
-  //         const x = ((e.clientX - rect.left) / rect.width) * 100;
-  //         const y = ((e.clientY - rect.top) / rect.height) * 100;
-  //         (card as HTMLElement).style.setProperty('--mouse-x', `${x}%`);
-  //         (card as HTMLElement).style.setProperty('--mouse-y', `${y}%`);
-  //       });
-  //     };
-
-  //     window.addEventListener('mousemove', handleMouseMove);
-  //     return () => window.removeEventListener('mousemove', handleMouseMove);
-  //   }, []);
-
-  const linkRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const linkElement = linkRef.current;
-
-    if (!linkElement) return;
-
-    const textElements = linkElement.querySelectorAll("[hoverstagger='text']");
-
-    textElements.forEach((el) => {
-      new SplitType(el as HTMLElement, {
-        types: 'words,chars',
-        tagName: 'span',
-      });
-    });
-
-    const tl = gsap.timeline({ paused: true });
-
-    const [text1, text2] = textElements;
-    if (text1 && text2) {
-      tl.to(text1.querySelectorAll('.char'), {
-        yPercent: -120,
-        duration: 0.3,
-        stagger: { amount: 0.2 },
-      }).from(
-        text2.querySelectorAll('.char'),
-        {
-          yPercent: 200,
-          duration: 0.3,
-          stagger: { amount: 0.2 },
-        },
-        0
-      );
-    }
-
-    const handleMouseEnter = () => tl.restart();
-    const handleMouseLeave = () => tl.reverse();
-
-    linkElement.addEventListener('mouseenter', handleMouseEnter);
-    linkElement.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      linkElement.removeEventListener('mouseenter', handleMouseEnter);
-      linkElement.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, []);
   const themeConfig = useSelector((state: IRootState) => state.themeConfig);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const cards = document.querySelectorAll('.feature-card');
-      cards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        (card as HTMLElement).style.setProperty('--mouse-x', `${x}%`);
-        (card as HTMLElement).style.setProperty('--mouse-y', `${y}%`);
-      });
-    };
+  const isDark = themeConfig.theme === 'dark';
+  const cardRefs = useRef({
+    card1: useRef<HTMLDivElement>(null),
+    card2: useRef<HTMLDivElement>(null),
+    card3: useRef<HTMLDivElement>(null),
+    card4: useRef<HTMLDivElement>(null),
+    card5: useRef<HTMLDivElement>(null),
+  });
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+  const cards = Object.values(cardRefs.current);
+  let containerRefToTracker;
+  useEffect(() => {
+    cards.forEach((cardRef) => {
+      const linkElement = cardRef.current;
+      containerRefToTracker = cardRef;
+      if (!linkElement) return;
+
+      const textElements = linkElement.querySelectorAll("[hoverstagger='text']");
+
+      textElements.forEach((el) => {
+        new SplitType(el as HTMLElement, {
+          types: 'words,chars',
+          tagName: 'span',
+        });
+      });
+
+      const tl = gsap.timeline({ paused: true });
+
+      const [text1, text2] = textElements;
+      if (text1 && text2) {
+        tl.to(text1.querySelectorAll('.char'), {
+          yPercent: -120,
+          duration: 0.5,
+          stagger: { amount: 0.3 },
+        }).from(
+          text2.querySelectorAll('.char'),
+          {
+            yPercent: 200,
+            duration: 0.5,
+            stagger: { amount: 0.3 },
+          },
+          0
+        );
+      }
+
+      const handleMouseEnter = () => tl.restart();
+      const handleMouseLeave = () => tl.reverse();
+
+      linkElement.addEventListener('mouseenter', handleMouseEnter);
+      linkElement.addEventListener('mouseleave', handleMouseLeave);
+
+      return () => {
+        linkElement.removeEventListener('mouseenter', handleMouseEnter);
+        linkElement.removeEventListener('mouseleave', handleMouseLeave);
+      };
+    }, []);
+  });
+  useEffect(() => {
+    const boxesRef = document.querySelector<HTMLElement>('.cards');
+    const sectionElem = document.querySelector<HTMLElement>('.sectionone');
+    const anotherSectionElem = document.querySelector<HTMLElement>('.sectiontwo');
+
+    if (!boxesRef || !sectionElem || !anotherSectionElem) return;
+
+    const boxes = gsap.utils.toArray<HTMLElement>('.card-item');
+    if (!boxes.length) return;
+
+    let loop: gsap.core.Timeline | null = null;
+
+    function build() {
+      loop?.kill(); // Kill existing loop before recreating
+
+      const boxWidth = boxes[1].getBoundingClientRect().left - boxes[0].getBoundingClientRect().right;
+      const paddingRight = boxWidth > 0 ? boxWidth : 0;
+
+      loop = horizontalLoop(boxes, {
+        paused: true, // Initially paused
+        repeat: -1,
+        paddingRight,
+      });
+    }
+
+    build();
+    window.addEventListener('resize', build); // Efficiently handle resize
+
+    function handleSectionMouseEnter() {
+      loop?.play(); // Play animation on hover
+    }
+
+    function handleSectionMouseLeave() {
+      loop?.pause(); // Pause animation on mouse leave
+    }
+
+    // Event listener attachment
+    sectionElem.addEventListener('mouseenter', handleSectionMouseEnter);
+    anotherSectionElem.addEventListener('mouseenter', handleSectionMouseEnter);
+    sectionElem.addEventListener('mouseleave', handleSectionMouseLeave);
+    anotherSectionElem.addEventListener('mouseleave', handleSectionMouseLeave);
+
+    return () => {
+      window.removeEventListener('resize', build);
+      sectionElem.removeEventListener('mouseenter', handleSectionMouseEnter);
+      anotherSectionElem.removeEventListener('mouseenter', handleSectionMouseEnter);
+      sectionElem.removeEventListener('mouseleave', handleSectionMouseLeave);
+      anotherSectionElem.removeEventListener('mouseleave', handleSectionMouseLeave);
+      loop?.kill();
+    };
   }, []);
+
+  const mouseTCRef = containerRefToTracker;
+  const MouseTracker = ({ isHovering, position }: MouseTrackerProps) => (
+    <div
+      className={`cusror_tracker
+            absolute inset-0
+            pointer-events-none
+            !z-[2] scale-100 opacity-0 !transition-opacity !duration-500
+            ${isHovering && 'opacity-100 !transition-opacity !duration-500'}
+            ${isDark ? 'mix-blend-overlay' : 'mix-blend-plus-lighter !opacity-15'}
+          `}
+      style={{
+        // Change gradient based on hover state
+        backgroundImage: isHovering
+          ? `${
+              isDark
+                ? `radial-gradient(circle 450px at ${position.x}px ${position.y}px, var(--color1) 0%, transparent 70%)`
+                : `radial-gradient(circle 450px at ${position.x}px ${position.y}px, white 0%, transparent 70%)`
+            }`
+          : `radial-gradient(circle 0px at ${position.x}px ${position.y}px, rgba(255,255,255,0) 0%, transparent 70%)`,
+      }}
+    >
+      {/* {isHovering && <div className="absolute inset-0 flex items-center justify-center text-white">Hovering!</div>} */}
+    </div>
+  );
+
+  const themeNames: ThemeName[] = [
+    'mivatorhotpink',
+    'mivatorblurple',
+    'mivatoraqua',
+    'mivatorpeach',
+    'mivatorcoal',
+    'mivatorred',
+    'mivatoremerald',
+    'mivatorplatinum',
+    'mivatorsilver',
+    'mivatorgold',
+    'pastelblue',
+    'pastelgreen',
+    'pastelpink',
+    'pastelpurple',
+    'pastelyellow',
+    'mivatorpink',
+  ] as const;
 
   return (
     <section className="min-h-screen py-20 px-4 w-full" key={'FeaturesSection'}>
       <div className="max-w-7xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-16">
+        <div className="text-center mb-16">
           <h2 className="features_title">Why Mivator?</h2>
           <p className="text-secondary dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
-        </motion.div>
+        </div>
         {/* BENTO */}
         <div className="text-white py-8 px-4">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Over 9,000 Components */}
-            <div className="col-span-1 md:col-span-2 lg:col-span-2 bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl text-center relative feature-card overflow-hidden group">
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 feature_card_mousetracker mix-blend-overlay z-[2]"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1 * 0.1 }}
-                ref={linkRef}
-              />
-              <div className="flex flex-col relative z-[1]">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Over 500 Commands */}
+            <CursorFollower
+              containerRef={mouseTCRef}
+              MouseTrackerElement={MouseTracker}
+              className="col-span-1 md:col-span-2 lg:col-span-3 bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none"
+            >
+              <div className="flex flex-col relative z-[1] size-full p-6" ref={cardRefs.current.card1}>
                 <div className="flex justify-center pb-12">
                   <svg className="h-72" viewBox="0 0 3955 3132">
                     <defs>
                       <linearGradient id="gradient-fill" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor={themeConfig.theme === 'dark' ? `var(--color-primary)` : 'var(--color-secondary)'} />
-                        <stop offset="50%" stopColor={themeConfig.theme === 'dark' ? `var(--color-primary-900)` : 'var(--color-light-900)'} />
-                        <stop offset="75%" stopColor={themeConfig.theme === 'dark' ? `var(--color-primary-1000)` : 'var(--color-light-700)'} />
-                        <stop offset="100%" stopColor={themeConfig.theme === 'dark' ? `var(--color-primary-1100)` : 'var(--color-light-600)'} />
-                      </linearGradient>
-                    </defs>
-                    <defs>
-                      <linearGradient id="gradient-fill-hover" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor={themeConfig.theme === 'dark' ? `var(--color-primary)` : 'var(--color-secondary)'} />
-                        <stop offset="50%" stopColor={themeConfig.theme === 'dark' ? `var(--color-primary-900)` : 'var(--color-light-900)'} />
-                        <stop offset="75%" stopColor={themeConfig.theme === 'dark' ? `var(--color-primary-1000)` : 'var(--color-light-700)'} />
-                        <stop offset="100%" stopColor={themeConfig.theme === 'dark' ? `var(--color-primary-1100)` : 'var(--color-light-600)'} />
+                        <stop offset="0%" stopColor={isDark ? `var(--color-primary)` : 'var(--color1)'} />
+                        <stop offset="50%" stopColor={isDark ? `var(--color-primary-900)` : 'var(--color8)'} />
+                        <stop offset="75%" stopColor={isDark ? `var(--color-primary-1000)` : 'var(--color10)'} />
+                        <stop offset="100%" stopColor={isDark ? `var(--color-primary-1100)` : 'var(--color-secondary)'} />
                       </linearGradient>
                     </defs>
                     <path
@@ -140,8 +205,8 @@ export const FeaturesSection: React.FC = () => {
                     />
                   </svg>
                 </div>
-                <div className="absolute z-[2] inset-0 m-auto flex flex-col items-center justify-end">
-                  <div className="text-6xl font-extrabold leading-none text-secondary dark:text-primary-600 font-syne overflow-hidden h-14">
+                <div className="absolute z-[2] inset-0 m-auto flex flex-col items-center justify-end pb-6">
+                  <div className="text-6xl font-extrabold leading-none text-light-200 dark:text-primary-600 font-syne overflow-hidden h-14">
                     <div className="relative overflow-hidden z-[1]">
                       <div hoverstagger="text" className="relative inline-block">
                         Commands
@@ -154,60 +219,43 @@ export const FeaturesSection: React.FC = () => {
                   <p className="mt-2 text-light-800 dark:text-primary-800 text-lg">...and counting</p>
                 </div>
               </div>
-            </div>
+            </CursorFollower>
 
-            {/* Fully Optimized for Tokens Studio */}
-            <div className=" bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center text-center overflow-hidden relative feature-card">
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 feature_card_mousetracker mix-blend-overlay z-[2]"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1 * 0.1 }}
-                ref={linkRef}
-              />
-              <div className="flex flex-col relative">
+            {/* 15 MS */}
+            <CursorFollower
+              containerRef={mouseTCRef}
+              MouseTrackerElement={MouseTracker}
+              className="bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none flex flex-col items-center justify-center"
+            >
+              <div className="flex flex-col items-center relative size-full p-6" ref={cardRefs.current.card2}>
                 <div className="flex">
-                  <svg className="h-72" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 2466 3136">
-                    <path
-                      fill="url(#gradient-fill)"
-                      d="M875.2,471.3c0.6-3.2,0.8-6.4,0.3-9.6c-1.4-8.2-6.2-11.1-16.9-11.1c-3,0-6.1,0.5-9.1,1.6c-9.7,3.4-16.9,11.6-19.7,21.5
-		C709.9,907,602.7,1340.4,504,1778h129.7C714.3,1310.1,819.2,746.5,875.2,471.3z M1152.6,2232.1h-112.4
-		c-13,229.2-21.6,458.4-34.6,687.5c-4.3,116.8-56.2,216.2-194.6,216.2c-138.4,0-185.9-103.8-181.6-224.9c0-229.2,0-458.4,0-687.5
-		c-108.1,0-220.5,0-328.6,4.3c-142.7,4.3-211.9-82.1-216.2-216.2c-4.3-60.5-4.3-121.1-8.6-181.6c0-25.9,0-56.2,8.6-82.2
-		C205.6,1228.9,352.7,714.3,521.3,204C564.5,61.4,689.9-3.5,832.6,5.1c8.6,0,21.6,0,34.6,0c164.3,0,276.7,82.2,263.8,255.1
-		c-21.6,510.2-47.6,1020.5-69.2,1526.4h112.4c21.3,0,38.2,17.9,36.9,39.1l-21.6,371.4C1188.4,2216.8,1172.2,2232.1,1152.6,2232.1z"
-                    />
-                    <path
-                      fill="url(#gradient-fill)"
-                      d="M2357.5,3040.7c0,47.9-38.8,86.7-86.7,86.7c-183.3,0.1-555.1,0.7-637,4.3c-177.1,4.3-246.2-120.9-250.5-280.7
-			c-13-246.2-25.9-492.3-38.9-738.5c-8.6-103.6,38.9-207.3,129.6-254.8c133.9-86.4,272.1-168.4,410.3-246.1
-			c4.3-367.1,4.3-729.8,4.3-1096.9c4.3-38.9-34.5-69.1-69.1-69.1c-38.9,0-73.4,30.2-73.4,69.1c0,276.4,4.3,552.8,4.3,829.1
-			c4.3,142.5-73.4,224.6-215.9,224.6c-142.5,8.6-224.6-69.1-228.9-211.6c-13-323.9-30.2-643.5-47.5-967.3
-			c-13-229.1,212.1-389,423.9-388.7c95.5,0,191.1,0,286.6,0c206.7,1.2,433.9,160.6,420.9,388.6c-21.6,444.8-47.5,885.3-69.1,1330.1
-			c0,99.3-60.5,198.6-151.1,246.1c-138.2,73.4-276.4,151.1-410.3,228.9c0,164.1,0,328.2,4.3,492.3h507.4c47.9,0,86.7,38.8,86.7,86.7
-			V3040.7z"
-                    />
+                  <svg className="h-72" fill="url(#gradient-fill)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 644.41 933.15">
+                    <path d="m78.26,867.42c-3.83-244.89-8.94-489.77-12.77-734.66h-14.05c-7.66,1.29-15.32-3.87-15.32-12.89,0-24.49-1.28-48.98-1.28-73.47,0-11.6,5.11-24.49,14.05-32.22C57.83,5.16,71.88,0,84.65,0h53.64c43.42,0,74.07,20.62,72.79,67.02-7.66,266.8-14.05,534.88-20.43,801.68-1.28,34.8-16.6,64.44-56.19,64.44s-56.19-30.93-56.19-65.73Z" />
+                    <path d="m443.29,132.75c-11.49,0-21.71,9.02-21.71,20.62,0,117.29,1.28,235.87,2.55,353.15h53.64c60.02,0,109.82,54.13,105.99,114.71-3.83,68.31-6.38,135.33-10.22,203.64-1.28,54.13-43.42,108.27-98.33,108.27h-62.57c-57.47,0-99.61-54.13-100.89-108.27-1.28-25.78-2.55-50.27-3.83-76.04-2.55-39.96,15.32-68.31,57.47-68.31h14.05c31.93-2.58,45.97,19.33,45.97,48.98v50.27c0,10.31,6.39,21.91,17.88,21.91s17.88-10.31,16.6-21.91c0-39.96,1.28-79.91,1.28-118.58,0-11.6-6.39-23.2-17.88-21.91-22.99,0-47.25,0-70.24,1.29-48.53,1.29-72.79-27.07-74.07-74.75-7.66-158.53-15.32-317.06-22.99-475.6C272.17,28.36,310.48,1.29,367.95,1.29c49.8-1.29,99.61-1.29,149.41,0,57.47,0,95.78,27.07,91.95,88.93-5.11,100.53-8.94,201.06-14.05,300.31-1.28,42.53-25.54,67.02-67.68,64.44-43.42,0-66.41-25.78-65.13-68.31,1.28-77.33,1.28-154.67,1.28-233.29,0-11.6-10.22-20.62-20.43-20.62Z" />
                   </svg>
                 </div>
-                <div className="absolute inset-0 m-auto flex flex-col items-center justify-end">
-                  <span className="text-2xl font-extrabold leading-none text-secondary dark:text-primary-600 font-syne">Events</span>
-                  <p className="mt-2 text-light-800 dark:text-primary-800 text-lg">...and counting</p>
+                <div className="absolute z-[2] inset-0 pb-6 m-auto flex flex-col items-center justify-end">
+                  <div className="text-6xl font-extrabold leading-none text-light-200 dark:text-primary-600 font-syne overflow-hidden h-14">
+                    <div className="relative overflow-hidden z-[1] w-full">
+                      <div hoverstagger="text" className="relative inline-block w-full">
+                        MS
+                      </div>
+                      <div hoverstagger="text" className="absolute inset-y-0 w-full">
+                        MS
+                      </div>
+                    </div>
+                  </div>
+                  <p className="mt-2 text-light-800 dark:text-primary-800 text-lg">on average</p>
                 </div>
               </div>
-            </div>
+            </CursorFollower>
 
             {/* Built for Designers & Developers */}
             <div className=" bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center text-center">
-              <div className="w-24 h-24 bg-purple-600 rounded-full mb-4"></div>
-              <h3 className="text-lg font-semibold">Built for both Designers & Developers</h3>
-            </div>
-
-            {/* Thousands of Icons */}
-            <div className=" bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center text-center">
-              <div className="bg-purple-600 p-4 rounded-full mb-4">
-                <span className="text-white text-4xl">📄</span>
+              <div className="bg-gray-700 w-full h-32 rounded-md mb-4 flex items-center justify-center">
+                <span className="text-white text-xl">📅</span>
               </div>
-              <h3 className="text-lg font-semibold">Thousands of high-quality Icons</h3>
+              <h3 className="text-lg font-semibold">Dark Mode Components</h3>
             </div>
 
             {/* Dark Mode Components */}
@@ -217,32 +265,97 @@ export const FeaturesSection: React.FC = () => {
               </div>
               <h3 className="text-lg font-semibold">Dark Mode Components</h3>
             </div>
-
-            {/* Variables and Tokens */}
-            <div className="col-span-1 md:col-span-2  bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md text-center">
-              <h3 className="text-lg font-semibold mb-4">Variables. Design Tokens. Styles.</h3>
-              <div className="bg-gray-700 rounded-full h-2 relative w-full">
-                <div className="absolute top-0 left-0 bg-purple-500 h-2 rounded-full" style={{ width: '75%' }}></div>
+            {/* LANGUAGES COUNT */}
+            <CursorFollower
+              containerRef={mouseTCRef}
+              MouseTrackerElement={MouseTracker}
+              className="anotherSectionElem col-span-2 w-full bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none flex flex-col items-center justify-center "
+            >
+              <div className="flex flex-col relative w-full items-center p-6" ref={cardRefs.current.card5}>
+                <div className="flex">
+                  <svg className="h-72" fill="url(#gradient-fill)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 758 933.15">
+                    <path d="m400.38,530.27c3.78,1.26,5.05,3.78,5.05,7.57-1.26,39.1-3.78,76.94-6.31,116.04,0,3.78-1.26,6.31-6.31,6.31h-81.53c-3.78,66.85-6.31,133.7-10.09,200.56-1.26,34.06-16.4,63.07-56.76,63.07s-54.24-30.27-52.98-65.59v-200.56c-31.53,0-64.33,0-95.86,1.26-41.62,1.26-61.81-23.97-63.07-63.07-1.26-17.66-1.26-35.32-2.52-52.98,0-7.57,0-16.4,2.52-23.97,35.32-151.36,78.2-301.47,127.4-450.31,12.61-41.62,49.19-60.55,90.82-58.02h10.09c47.93,0,80.73,23.97,76.94,74.42-6.31,148.84-13.87,297.68-20.18,445.26h82.79Zm-142.08-389.76c-1.01,0-2.02.2-3.03.61-2.7,1.08-4.63,3.51-5.41,6.31-34.97,126.36-66.22,252.72-95,380.33h37.84c0-41.62,45.41-296.42,70.64-382.19,0-3.78-1.26-5.05-5.05-5.05Z" />
+                    <path d="m581.61,772.45c0-39.1,1.26-76.94,1.26-116.04,0-10.09-6.31-21.44-16.4-21.44h-27.75c-18.92,1.26-29.01-11.35-29.01-29.01,0-23.97,0-46.67-1.26-70.64-1.26-17.66,10.09-30.27,29.01-30.27h29.01c10.09,0,17.66-10.09,17.66-20.18,0-108.48,1.26-216.95,1.26-325.43,1.26-11.35-10.09-20.18-20.18-20.18-11.35,0-21.44,8.83-21.44,20.18,0,80.73,1.26,161.45,1.26,242.18,1.26,41.63-21.44,65.59-63.07,65.59-41.63,2.52-65.59-20.18-66.85-61.81-3.78-94.6-8.83-187.94-13.87-282.55-2.52-65.59,59.28-113.52,121.09-113.52h84.51c61.81,0,123.61,47.93,121.09,113.52-6.31,128.66-12.61,256.06-18.92,384.72-5.05,27.75-36.58,59.28-64.33,63.07,30.27,3.78,58.02,41.62,58.02,71.9-2.52,58.02-6.31,116.04-8.83,174.07-2.52,52.98-44.15,108.48-99.65,105.95h-58.02c-56.76,2.52-98.39-52.98-100.91-105.95-1.26-25.23-2.52-49.19-3.78-74.42-2.52-39.1,15.14-66.85,56.76-66.85h13.88c31.53-2.52,45.41,18.92,45.41,47.93v49.19c0,10.09,6.31,20.18,16.4,21.44h1.26c10.09-1.26,16.4-11.35,16.4-21.44Z" />
+                  </svg>
+                </div>
+                <div className="absolute z-[2] inset-0 pb-6 m-auto flex flex-col items-center justify-end">
+                  <div className="text-6xl font-extrabold leading-none text-light-200 dark:text-primary-600 font-syne overflow-hidden h-14">
+                    <div className="relative overflow-hidden z-[1]">
+                      <div hoverstagger="text" className="relative inline-block whitespace-nowrap">
+                        Languages
+                      </div>
+                      <div hoverstagger="text" className="absolute inset-y-0 whitespace-nowrap">
+                        Languages
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className="mt-2 text-sm text-gray-400">bg-primary · text-body</p>
-            </div>
+            </CursorFollower>
 
-            {/* Desktop, Tablet, Mobile */}
-            <div className="bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center text-center">
-              <h3 className="text-lg font-semibold mb-4">Desktop. Tablet. Mobile.</h3>
-              <p className="text-gray-400 text-sm">"I'm surprised you had the courage."</p>
-            </div>
+            {/* THEMES COUNT */}
+            <CursorFollower
+              containerRef={mouseTCRef}
+              MouseTrackerElement={MouseTracker}
+              className="sectiontwo lg:col-span-2 md:col-span-2 bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none flex flex-col items-center justify-center"
+            >
+              <div className="flex flex-col relative w-full items-center p-6" ref={cardRefs.current.card3}>
+                <div className="flex">
+                  <svg className="h-52" fill="url(#gradient-fill)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 644.41 933.15">
+                    <path d="m79.69,859.84c-3.79-240.26-8.85-480.52-12.65-720.78h-13.91c-7.59,1.26-15.17-3.79-15.17-12.65,0-24.03-1.26-48.05-1.26-72.08,0-11.38,5.06-24.03,13.91-31.61,8.85-8.85,22.76-13.91,35.41-13.91h53.11c42.99,0,73.34,20.23,72.08,65.76-7.59,261.76-13.91,524.78-20.23,786.54-1.26,34.14-16.44,63.23-55.64,63.23s-55.64-30.35-55.64-64.49Z" />
+                    <path d="m478.57,493.13c59.43,0,110.01,51.85,104.96,112.54-2.53,70.81-6.32,141.63-10.12,212.44-1.26,53.11-42.99,106.22-97.37,106.22h-60.7c-58.17,0-99.9-53.11-101.16-106.22-11.38-231.41-22.76-464.08-34.14-695.49-3.79-67.02,61.96-113.81,123.92-113.81h79.67c61.96,0,127.72,46.79,123.92,113.81-3.79,89.78-8.85,179.56-12.65,270.61-1.26,41.73-25.29,64.49-67.02,61.96-42.99,0-65.76-24.03-64.49-65.76,1.26-77.14,1.26-153.01,1.26-230.14,0-11.38-10.12-20.23-20.23-20.23-11.38,0-21.5,8.85-21.5,20.23,1.26,111.28,1.26,222.56,2.53,333.83h53.11Zm-51.85,280.72c0,10.12,6.32,20.23,16.44,21.5h2.53c8.85-1.26,15.17-11.38,15.17-21.5,0-42.99,1.26-85.99,1.26-130.25,0-8.85-6.32-18.97-16.44-20.23h-20.23c1.26,50.58,1.26,101.16,1.26,150.48Z" />
+                  </svg>
+                </div>
+                <div className="absolute z-[2] inset-0 pb-6 m-auto flex flex-col items-center justify-end">
+                  <div className="text-6xl font-extrabold leading-none text-light-200 dark:text-primary-600 font-syne overflow-hidden h-14">
+                    <div className="relative overflow-hidden z-[1]">
+                      <div hoverstagger="text" className="relative inline-block whitespace-nowrap">
+                        Themes
+                      </div>
+                      <div hoverstagger="text" className="absolute inset-y-0 whitespace-nowrap">
+                        Themes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CursorFollower>
+
+            {/* THEME CAROUSAL */}
+            <CursorFollower
+              containerRef={mouseTCRef}
+              MouseTrackerElement={MouseTracker}
+              className="sectionone lg:col-span-1 bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center text-center relative overflow-hidden inset-ring-3 inset-ring-primary/5"
+            >
+              <div className="horizontal-gradient !size-full absolute inset-0 m-auto flex justify-center items-center z-[1]"></div>
+              <div ref={cardRefs.current.card4} className="">
+                <ul className="cards flex w-[150%]">
+                  {themeNames.map((theme, index) => (
+                    <li className="card-item flex items-center gap-4 relative" key={index}>
+                      <div className="flex flex-col items-center justify-center p-4 rounded-4xl relative">
+                        <LogoThemes themeName={theme} className="w-52" />
+                        {/* <div className="font-syne font-semibold w-32">{getThemeTitle(theme)}</div> */}
+
+                        <div className="absolute z-[2] inset-0 m-auto -bottom-6 flex flex-col items-center justify-end">
+                          <div className="text-xl font-extrabold leading-none text-light-200 dark:text-primary-600 font-syne overflow-hidden h-14">
+                            <div className="relative overflow-hidden z-[1]">
+                              <div hoverstagger="text" className="relative inline-block whitespace-nowrap">
+                                {getThemeTitle(theme)}
+                              </div>
+                              <div hoverstagger="text" className="absolute inset-y-0 whitespace-nowrap">
+                                {getThemeTitle(theme)}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </CursorFollower>
           </div>
         </div>
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-                    {features.map((feature, index) => {
-                        return (
-                            <div data-scroll data-scroll-speed={index <= 3 ? (index % 0.2) * 4 : (index % 1) * 3} data-scroll-direction="vertical" data-scroll-delay={index * 0.1} key={index}>
-                                <FeatureCard key={index + 6} {...feature} index={index} />
-                            </div>
-                        );
-                    })}
-                </div> */}
       </div>
     </section>
   );

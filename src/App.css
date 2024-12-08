@@ -1076,8 +1076,16 @@
     background: linear-gradient(0deg, oklch(99.4% 0 90) 5%, rgba(255, 255, 255, 0) 50%, oklch(99.4% 0 90) 95%);
   }
   .dark .vertical-gradient {
-    background: var(--color-primary-1100);
-    background: linear-gradient(0deg, var(--color-primary-1100) 5%, rgba(255, 255, 255, 0) 50%, var(--color-primary-1100) 95%);
+    background: var(--color-primary-1200);
+    background: linear-gradient(0deg, var(--color-primary-1200) 5%, rgba(255, 255, 255, 0) 50%, var(--color-primary-1200) 95%);
+  }
+  .horizontal-gradient {
+    background: oklch(99.4% 0 90);
+    background: linear-gradient(90deg, oklch(99.4% 0 90) 5%, rgba(255, 255, 255, 0) 50%, oklch(99.4% 0 90) 95%);
+  }
+  .dark .horizontal-gradient {
+    background: var(--color-primary-1200);
+    background: linear-gradient(90deg, var(--color-primary-1100) 5%, rgba(255, 255, 255, 0) 50%, var(--color-primary-1100) 95%);
   }
 
   #m_overlay {
@@ -1114,17 +1122,6 @@
     @apply font-syne text-6xl md:text-9xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-b from-secondary via-secondary dark:from-primary-700 dark:via-primary dark:to-primary-1300 to-primary-200;
   }
 
-  .feature_icon_container {
-    /* width: 250px;
-    height: 250px;
-    position: absolute;
-    pointer-events: none;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center; */
-    background-color: red;
-  }
   .feature_card_mousetracker {
     background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--color1), transparent 70%);
   }
