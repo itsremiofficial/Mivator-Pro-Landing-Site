@@ -2,11 +2,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ThemeCustomizer from '../components/ThemeCustomizer';
+// import ThemeCustomizer from '../components/ThemeCustomizer';
 import { cn } from '../utils/utils';
 import ProButton from '../components/ProButton';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ThemeCustomizer from '../components/ThemeCustomizer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -178,7 +179,7 @@ function SiteHeader({ className }: { className?: string }) {
         </div>
 
         <div className="inline-flex gap-4 items-center">
-          <ThemeCustomizer className="flex justify-center gap-3" />
+          <ThemeCustomizer />
           <ProButton buttonTitle="Get Pro" className="py-3 px-5" />
         </div>
       </div>

@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: 'Nippo';
-  src: url('/fonts/Nippo-Variable.woff2') format('woff2');
+  src: url('/fonts/nippo.ttf') format('woff2');
   font-style: normal;
   font-optical-sizing: auto;
 }
@@ -16,6 +16,12 @@
 @font-face {
   font-family: 'Syne';
   src: url('/fonts/syne.ttf') format('woff2');
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: 'Mont';
+  src: url('/fonts/NeueMontreal.woff') format('woff'), url('/fonts/NeueMontreal.woff2') format('woff2');
   font-style: normal;
   font-optical-sizing: auto;
 }
@@ -339,7 +345,6 @@
   --color14: var(--mivatorhotpink-1400);
   --color15: var(--mivatorhotpink-1500);
 }
-
 [data-color-scheme='mivatorblurple'] {
   --color1: var(--mivatorblurple-100);
   --color2: var(--mivatorblurple-200);
@@ -357,7 +362,6 @@
   --color14: var(--mivatorblurple-1400);
   --color15: var(--mivatorblurple-1500);
 }
-
 [data-color-scheme='mivatoraqua'] {
   --color1: var(--mivatoraqua-100);
   --color2: var(--mivatoraqua-200);
@@ -375,7 +379,6 @@
   --color14: var(--mivatoraqua-1400);
   --color15: var(--mivatoraqua-1500);
 }
-
 [data-color-scheme='mivatorpeach'] {
   --color1: var(--mivatorpeach-100);
   --color2: var(--mivatorpeach-200);
@@ -393,7 +396,6 @@
   --color14: var(--mivatorpeach-1400);
   --color15: var(--mivatorpeach-1500);
 }
-
 [data-color-scheme='mivatorcoal'] {
   --color1: var(--mivatorcoal-100);
   --color2: var(--mivatorcoal-200);
@@ -411,7 +413,6 @@
   --color14: var(--mivatorcoal-1400);
   --color15: var(--mivatorcoal-1500);
 }
-
 [data-color-scheme='mivatoremerald'] {
   --color1: var(--mivatoremerald-100);
   --color2: var(--mivatoremerald-200);
@@ -614,6 +615,7 @@
   --font-syne: 'Syne', 'serif';
   --font-nippo: 'Nippo', 'sans-serif';
   --font-counter: 'Porlane', 'sans-serif';
+  --font-mont: 'Mont', 'sans-serif';
 
   /* COLOR DEFINITIONS */
   --color-pro: oklch(0.862 0.228 83.39);
@@ -979,7 +981,7 @@
   }
   .btn-primary {
     @apply bg-light-900 text-white hover:bg-secondary border-light-900 hover:border-secondary
-    dark:bg-primary-1000 dark:hover:bg-primary-900 dark:text-primary dark:hover:text-primary-600 dark:!border-primary-1000 dark:hover:!border-primary-900
+    dark:bg-primary-800 dark:hover:bg-primary-900 dark:text-primary-500 dark:hover:text-primary-600 dark:!border-primary-1000 dark:hover:!border-primary-900
     transition-colors !duration-500 !border !border-solid;
   }
   .btn-secondary {

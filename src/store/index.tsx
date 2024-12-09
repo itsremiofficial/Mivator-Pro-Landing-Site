@@ -1,12 +1,32 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import themeConfigSlice from './themeConfigSlice';
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+import themeConfigReducer from './themeConfigSlice';
+
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
+  whitelist: ['themeConfig'], 
+};
 
 const rootReducer = combineReducers({
-    themeConfig: themeConfigSlice,
+  themeConfig: themeConfigReducer,
 });
 
-export default configureStore({
-    reducer: rootReducer,
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);
 
 export type IRootState = ReturnType<typeof rootReducer>;

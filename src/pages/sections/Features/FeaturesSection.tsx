@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo, useCallback, useState } from 'react';
+import { SpotifyIcon } from 'hugeicons-react';
 import { useSelector } from 'react-redux';
 import { IRootState } from '../../../store';
 import SplitType from 'split-type';
@@ -8,103 +9,142 @@ import { MouseTrackerProps } from '../../../components/CursorFollower/CursorFoll
 import LogoThemes from '../../../components/LogoThemes';
 import horizontalLoop from '../../../hooks/horizontalLoop';
 import { getThemeTitle, ThemeName } from '../../../colorSchemes';
-export const FeaturesSection: React.FC = () => {
-  const themeConfig = useSelector((state: IRootState) => state.themeConfig);
+import Image from '../../../components/ELements/Image';
+import { IconClock, IconPlusSquare, IconUser } from '../../../components/Icon';
+import CardStacked from '../../../components/InitCard';
+
+export const FeaturesSection: React.FC = React.memo(() => {
+  const themeConfig = useSelector(
+    (state: IRootState) => state.themeConfig,
+    (prev, next) => prev.theme === next.theme
+  );
 
   const isDark = themeConfig.theme === 'dark';
+
   const cardRefs = useRef({
     card1: useRef<HTMLDivElement>(null),
     card2: useRef<HTMLDivElement>(null),
     card3: useRef<HTMLDivElement>(null),
     card4: useRef<HTMLDivElement>(null),
     card5: useRef<HTMLDivElement>(null),
+    card6: useRef<HTMLDivElement>(null),
   });
 
-  const cards = Object.values(cardRefs.current);
-  let containerRefToTracker;
-  useEffect(() => {
-    cards.forEach((cardRef) => {
-      const linkElement = cardRef.current;
-      containerRefToTracker = cardRef;
-      if (!linkElement) return;
+  const nowPlayingCards = [
+    { src: '/nowplayingcards/1.avif', alt: 'Image 1 description' },
+    { src: '/nowplayingcards/2.avif', alt: 'Image 2 description' },
+    { src: '/nowplayingcards/3.avif', alt: 'Image 3 description' },
+    { src: '/nowplayingcards/4.avif', alt: 'Image 4 description' },
+    { src: '/nowplayingcards/5.avif', alt: 'Image 5 description' },
+    { src: '/nowplayingcards/6.avif', alt: 'Image 6 description' },
+    { src: '/nowplayingcards/7.avif', alt: 'Image 7 description' },
+  ];
 
-      const textElements = linkElement.querySelectorAll("[hoverstagger='text']");
+  const themeNames: ThemeName[] = useMemo(
+    () => [
+      'mivatorblurple',
+      'mivatorcoal',
+      'mivatorhotpink',
+      'mivatoremerald',
+      'mivatorsilver',
+      'mivatorgold',
+      'mivatoraqua',
+      'pastelpurple',
+      'mivatorpeach',
+      'pastelblue',
+      'mivatorred',
+      'mivatorplatinum',
+      'pastelgreen',
+      'pastelpink',
+      'pastelyellow',
+      'mivatorpink',
+    ],
+    []
+  );
 
-      textElements.forEach((el) => {
-        new SplitType(el as HTMLElement, {
-          types: 'words,chars',
-          tagName: 'span',
-        });
+  const setupTextAnimation = useCallback((cardRef: React.RefObject<HTMLDivElement>) => {
+    const linkElement = cardRef.current;
+    if (!linkElement) return () => {};
+
+    const textElements = linkElement.querySelectorAll("[hoverstagger='text']");
+
+    textElements.forEach((el) => {
+      new SplitType(el as HTMLElement, {
+        types: 'words,chars',
+        tagName: 'span',
       });
+    });
 
-      const tl = gsap.timeline({ paused: true });
+    const tl = gsap.timeline({ paused: true });
 
-      const [text1, text2] = textElements;
-      if (text1 && text2) {
-        tl.to(text1.querySelectorAll('.char'), {
-          yPercent: -120,
+    const [text1, text2] = textElements;
+    if (text1 && text2) {
+      tl.to(text1.querySelectorAll('.char'), {
+        yPercent: -120,
+        duration: 0.5,
+        stagger: { amount: 0.3 },
+      }).from(
+        text2.querySelectorAll('.char'),
+        {
+          yPercent: 200,
           duration: 0.5,
           stagger: { amount: 0.3 },
-        }).from(
-          text2.querySelectorAll('.char'),
-          {
-            yPercent: 200,
-            duration: 0.5,
-            stagger: { amount: 0.3 },
-          },
-          0
-        );
-      }
+        },
+        0
+      );
+    }
 
-      const handleMouseEnter = () => tl.restart();
-      const handleMouseLeave = () => tl.reverse();
+    const handleMouseEnter = () => tl.restart();
+    const handleMouseLeave = () => tl.reverse();
 
-      linkElement.addEventListener('mouseenter', handleMouseEnter);
-      linkElement.addEventListener('mouseleave', handleMouseLeave);
+    linkElement.addEventListener('mouseenter', handleMouseEnter);
+    linkElement.addEventListener('mouseleave', handleMouseLeave);
 
-      return () => {
-        linkElement.removeEventListener('mouseenter', handleMouseEnter);
-        linkElement.removeEventListener('mouseleave', handleMouseLeave);
-      };
-    }, []);
-  });
+    return () => {
+      linkElement.removeEventListener('mouseenter', handleMouseEnter);
+      linkElement.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+
   useEffect(() => {
+    const cleanupFunctions = Object.values(cardRefs.current).map(setupTextAnimation);
+    return () => {
+      cleanupFunctions.forEach((cleanup) => cleanup());
+    };
+  }, [setupTextAnimation]);
+
+  const setupHorizontalLoop = useCallback(() => {
     const boxesRef = document.querySelector<HTMLElement>('.cards');
     const sectionElem = document.querySelector<HTMLElement>('.sectionone');
     const anotherSectionElem = document.querySelector<HTMLElement>('.sectiontwo');
 
-    if (!boxesRef || !sectionElem || !anotherSectionElem) return;
+    if (!boxesRef || !sectionElem || !anotherSectionElem) return () => {};
 
     const boxes = gsap.utils.toArray<HTMLElement>('.card-item');
-    if (!boxes.length) return;
+    if (!boxes.length) return () => {};
 
     let loop: gsap.core.Timeline | null = null;
 
-    function build() {
-      loop?.kill(); // Kill existing loop before recreating
+    const build = () => {
+      loop?.kill();
 
       const boxWidth = boxes[1].getBoundingClientRect().left - boxes[0].getBoundingClientRect().right;
+
       const paddingRight = boxWidth > 0 ? boxWidth : 0;
 
       loop = horizontalLoop(boxes, {
-        paused: true, // Initially paused
+        paused: true,
         repeat: -1,
         paddingRight,
       });
-    }
+    };
 
     build();
-    window.addEventListener('resize', build); // Efficiently handle resize
+    window.addEventListener('resize', build);
 
-    function handleSectionMouseEnter() {
-      loop?.play(); // Play animation on hover
-    }
+    const handleSectionMouseEnter = () => loop?.play();
+    const handleSectionMouseLeave = () => loop?.pause();
 
-    function handleSectionMouseLeave() {
-      loop?.pause(); // Pause animation on mouse leave
-    }
-
-    // Event listener attachment
     sectionElem.addEventListener('mouseenter', handleSectionMouseEnter);
     anotherSectionElem.addEventListener('mouseenter', handleSectionMouseEnter);
     sectionElem.addEventListener('mouseleave', handleSectionMouseLeave);
@@ -120,65 +160,119 @@ export const FeaturesSection: React.FC = () => {
     };
   }, []);
 
-  const mouseTCRef = containerRefToTracker;
-  const MouseTracker = ({ isHovering, position }: MouseTrackerProps) => (
-    <div
-      className={`cusror_tracker
-            absolute inset-0
-            pointer-events-none
-            !z-[2] scale-100 opacity-0 !transition-opacity !duration-500
-            ${isHovering && 'opacity-100 !transition-opacity !duration-500'}
-            ${isDark ? 'mix-blend-overlay' : 'mix-blend-plus-lighter !opacity-15'}
-          `}
-      style={{
-        // Change gradient based on hover state
-        backgroundImage: isHovering
-          ? `${
-              isDark
-                ? `radial-gradient(circle 450px at ${position.x}px ${position.y}px, var(--color1) 0%, transparent 70%)`
-                : `radial-gradient(circle 450px at ${position.x}px ${position.y}px, white 0%, transparent 70%)`
-            }`
-          : `radial-gradient(circle 0px at ${position.x}px ${position.y}px, rgba(255,255,255,0) 0%, transparent 70%)`,
-      }}
-    >
-      {/* {isHovering && <div className="absolute inset-0 flex items-center justify-center text-white">Hovering!</div>} */}
-    </div>
+  useEffect(() => {
+    const cleanup = setupHorizontalLoop();
+    return cleanup;
+  }, [setupHorizontalLoop]);
+
+  const MouseTracker = useCallback(
+    ({ isHovering, position }: MouseTrackerProps) => (
+      <div
+        className={`cusror_tracker absolute inset-0 pointer-events-none !z-[2] scale-100 opacity-0 !transition-opacity !duration-500
+        ${isHovering && 'opacity-100 !transition-opacity !duration-500'}
+        ${isDark ? 'mix-blend-overlay' : 'mix-blend-plus-lighter !opacity-15'}`}
+        style={{
+          backgroundImage: isHovering
+            ? `${
+                isDark
+                  ? `radial-gradient(circle 450px at ${position.x}px ${position.y}px, var(--color1) 0%, transparent 70%)`
+                  : `radial-gradient(circle 450px at ${position.x}px ${position.y}px, white 0%, transparent 70%)`
+              }`
+            : `radial-gradient(circle 0px at ${position.x}px ${position.y}px, rgba(255,255,255,0) 0%, transparent 70%)`,
+        }}
+      />
+    ),
+    [isDark]
   );
 
-  const themeNames: ThemeName[] = [
-    'mivatorhotpink',
-    'mivatorblurple',
-    'mivatoraqua',
-    'mivatorpeach',
-    'mivatorcoal',
-    'mivatorred',
-    'mivatoremerald',
-    'mivatorplatinum',
-    'mivatorsilver',
-    'mivatorgold',
-    'pastelblue',
-    'pastelgreen',
-    'pastelpink',
-    'pastelpurple',
-    'pastelyellow',
-    'mivatorpink',
-  ] as const;
+  const renderThemeCarousel = useMemo(
+    () =>
+      themeNames.map((theme, index) => (
+        <li className="card-item flex items-center gap-4 relative -top-8" key={index}>
+          <div className="flex flex-col items-center justify-center p-4 rounded-4xl relative">
+            <LogoThemes themeName={theme} className="w-52" />
+            <div className="absolute z-[2] inset-0 m-auto -bottom-10 flex flex-col items-center justify-end">
+              <div className="text-xl font-semibold tracking-widest text-light-200 dark:text-primary-600 font-syne overflow-hidden pb-6">
+                <div className="relative overflow-hidden z-[1]">
+                  <div hoverstagger="text" className="relative inline-block whitespace-nowrap">
+                    {getThemeTitle(theme)}
+                  </div>
+                  <div hoverstagger="text" className="absolute inset-y-0 whitespace-nowrap">
+                    {getThemeTitle(theme)}
+                  </div>
+                </div>
+              </div>
+              <button className="bg-red-500 relative z-[10] cursor-pointer">Hello</button>
+            </div>
+          </div>
+        </li>
+      )),
+    [themeNames]
+  );
+
+  //
+  const [hoveredIndex, setHoveredIndex] = useState(-1);
+
+  // CARD
+
+  const nowPlayingCard = useMemo(
+    () =>
+      themeNames.slice(0, 7).map((theme, index) => {
+        return (
+          <div
+            key={index}
+            style={{
+              zIndex: hoveredIndex === -1 ? 1 - index * 2 : 10 - index,
+              top: `${index * 10}px`,
+              transform: `scale(${1 - index * 0.06})`,
+              opacity: 1 - index * 0.1,
+              background: `linear-gradient(45deg, var(--${theme}-1000) 0%, var(--${theme}) 100%)`,
+            }}
+            className={`playingcard absolute flex w-full items-center rounded-[3rem] shadow-sm p-4`}
+          >
+            <div className="w-40 h-40 flex items-center justify-center overflow-hidden mask mask-squircle">
+              <img className="object-cover w-full h-full" src="/public/inthedust.jpeg" alt="In The Dust" />
+            </div>
+
+            <div className="flex flex-col justify-between p-6 grow gap-4 rounded-4xl">
+              <div className="flex justify-between">
+                <div className="flex items-center gap-2 font-nippo tracking-wider">
+                  <IconUser className="size-5" width={2} /> Remi
+                </div>
+                <div className="flex items-center gap-2 font-nippo tracking-wider">
+                  <IconClock className="size-5" width={2} /> 03:50
+                </div>
+              </div>
+              <div className="text-3xl font-syne font-bold flex ml-1">In The Dust</div>
+              <div className="flex justify-between">
+                <div className="flex items-center gap-2 font-nippo tracking-wider">
+                  <IconPlusSquare className="size-5" width={2} /> Remi
+                </div>
+                <div className="flex items-center gap-2 font-nippo tracking-wider">
+                  <SpotifyIcon size={24} /> Spotify
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }),
+    [themeNames]
+  );
 
   return (
     <section className="min-h-screen py-20 px-4 w-full" key={'FeaturesSection'}>
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="features_title">Why Mivator?</h2>
+      <div className="max-w-screen-2xl w-full mx-auto flex flex-col items-center">
+        <div className="text-center mb-16 ">
+          <h2 className="features_title !text-[200px]">Why Mivator?</h2>
           <p className="text-secondary dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
         </div>
-        {/* BENTO */}
         <div className="text-white py-8 px-4">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {/* Over 500 Commands */}
             <CursorFollower
-              containerRef={mouseTCRef}
+              containerRef={cardRefs.current.card1}
               MouseTrackerElement={MouseTracker}
-              className="col-span-1 md:col-span-2 lg:col-span-3 bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none"
+              className="col-span-1 md:col-span-2 lg:col-span-2 bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none"
             >
               <div className="flex flex-col relative z-[1] size-full p-6" ref={cardRefs.current.card1}>
                 <div className="flex justify-center pb-12">
@@ -206,7 +300,7 @@ export const FeaturesSection: React.FC = () => {
                   </svg>
                 </div>
                 <div className="absolute z-[2] inset-0 m-auto flex flex-col items-center justify-end pb-6">
-                  <div className="text-6xl font-extrabold leading-none text-light-200 dark:text-primary-600 font-syne overflow-hidden h-14">
+                  <div className="text-6xl font-mont tracking-wide font-extrabold leading-none text-light-200 dark:text-primary-600 overflow-hidden h-fit uppercase">
                     <div className="relative overflow-hidden z-[1]">
                       <div hoverstagger="text" className="relative inline-block">
                         Commands
@@ -216,14 +310,14 @@ export const FeaturesSection: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <p className="mt-2 text-light-800 dark:text-primary-800 text-lg">...and counting</p>
+                  <p className="text-light-800 dark:text-primary-800 font-base font-nippo">...and Counting</p>
                 </div>
               </div>
             </CursorFollower>
 
             {/* 15 MS */}
             <CursorFollower
-              containerRef={mouseTCRef}
+              containerRef={cardRefs.current.card2}
               MouseTrackerElement={MouseTracker}
               className="bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none flex flex-col items-center justify-center"
             >
@@ -235,7 +329,7 @@ export const FeaturesSection: React.FC = () => {
                   </svg>
                 </div>
                 <div className="absolute z-[2] inset-0 pb-6 m-auto flex flex-col items-center justify-end">
-                  <div className="text-6xl font-extrabold leading-none text-light-200 dark:text-primary-600 font-syne overflow-hidden h-14">
+                  <div className="text-6xl font-mont font-extrabold leading-none text-light-200 dark:text-primary-600 overflow-hidden h-fit uppercase">
                     <div className="relative overflow-hidden z-[1] w-full">
                       <div hoverstagger="text" className="relative inline-block w-full">
                         MS
@@ -245,17 +339,43 @@ export const FeaturesSection: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <p className="mt-2 text-light-800 dark:text-primary-800 text-lg">on average</p>
+                  <p className="text-light-800 dark:text-primary-800 font-base font-nippo">Fast Response Time</p>
+                </div>
+              </div>
+            </CursorFollower>
+
+            {/* 16 Categories */}
+            <CursorFollower
+              containerRef={cardRefs.current.card6}
+              MouseTrackerElement={MouseTracker}
+              className="col-span-1 md:col-span-2 lg:col-span-2 bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none"
+            >
+              <div className="flex flex-col relative z-[1] size-full p-6" ref={cardRefs.current.card6}>
+                <div className="flex justify-center pb-12">
+                  <svg className="h-72" fill="url(#gradient-fill)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 758 933.15">
+                    <path d="m79.69,859.84c-3.79-240.26-8.85-480.52-12.65-720.78h-13.91c-7.59,1.26-15.17-3.79-15.17-12.65,0-24.03-1.26-48.05-1.26-72.08,0-11.38,5.06-24.03,13.91-31.61,8.85-8.85,22.76-13.91,35.41-13.91h53.11c42.99,0,73.34,20.23,72.08,65.76-7.59,261.76-13.91,524.78-20.23,786.54-1.26,34.14-16.44,63.23-55.64,63.23s-55.64-30.35-55.64-64.49Z" />
+                    <path d="m478.57,493.13c59.43,0,110.01,51.85,104.96,112.54-2.53,70.81-6.32,141.63-10.12,212.44-1.26,53.11-42.99,106.22-97.37,106.22h-60.7c-58.17,0-99.9-53.11-101.16-106.22-11.38-231.41-22.76-464.08-34.14-695.49-3.79-67.02,61.96-113.81,123.92-113.81h79.67c61.96,0,127.72,46.79,123.92,113.81-3.79,89.78-8.85,179.56-12.65,270.61-1.26,41.73-25.29,64.49-67.02,61.96-42.99,0-65.76-24.03-64.49-65.76,1.26-77.14,1.26-153.01,1.26-230.14,0-11.38-10.12-20.23-20.23-20.23-11.38,0-21.5,8.85-21.5,20.23,1.26,111.28,1.26,222.56,2.53,333.83h53.11Zm-51.85,280.72c0,10.12,6.32,20.23,16.44,21.5h2.53c8.85-1.26,15.17-11.38,15.17-21.5,0-42.99,1.26-85.99,1.26-130.25,0-8.85-6.32-18.97-16.44-20.23h-20.23c1.26,50.58,1.26,101.16,1.26,150.48Z" />
+                  </svg>
+                </div>
+                <div className="absolute z-[2] inset-0 m-auto flex flex-col items-center justify-end pb-6">
+                  <div className="text-6xl font-mont tracking-wide font-extrabold leading-none text-light-200 dark:text-primary-600 overflow-hidden h-fit uppercase">
+                    <div className="relative overflow-hidden z-[1]">
+                      <div hoverstagger="text" className="relative inline-block">
+                        Categories
+                      </div>
+                      <div hoverstagger="text" className="absolute inset-y-0">
+                        Categories
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-light-800 dark:text-primary-800 font-base font-nippo">Well-Organized</p>
                 </div>
               </div>
             </CursorFollower>
 
             {/* Built for Designers & Developers */}
-            <div className=" bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center text-center">
-              <div className="bg-gray-700 w-full h-32 rounded-md mb-4 flex items-center justify-center">
-                <span className="text-white text-xl">📅</span>
-              </div>
-              <h3 className="text-lg font-semibold">Dark Mode Components</h3>
+            <div className="lg:col-span-2 flex items-center h-48 w-full relative">
+              <CardStacked />
             </div>
 
             {/* Dark Mode Components */}
@@ -267,19 +387,19 @@ export const FeaturesSection: React.FC = () => {
             </div>
             {/* LANGUAGES COUNT */}
             <CursorFollower
-              containerRef={mouseTCRef}
+              containerRef={cardRefs.current.card5}
               MouseTrackerElement={MouseTracker}
               className="anotherSectionElem col-span-2 w-full bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none flex flex-col items-center justify-center "
             >
               <div className="flex flex-col relative w-full items-center p-6" ref={cardRefs.current.card5}>
                 <div className="flex">
-                  <svg className="h-72" fill="url(#gradient-fill)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 758 933.15">
+                  <svg className="h-52" fill="url(#gradient-fill)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 758 933.15">
                     <path d="m400.38,530.27c3.78,1.26,5.05,3.78,5.05,7.57-1.26,39.1-3.78,76.94-6.31,116.04,0,3.78-1.26,6.31-6.31,6.31h-81.53c-3.78,66.85-6.31,133.7-10.09,200.56-1.26,34.06-16.4,63.07-56.76,63.07s-54.24-30.27-52.98-65.59v-200.56c-31.53,0-64.33,0-95.86,1.26-41.62,1.26-61.81-23.97-63.07-63.07-1.26-17.66-1.26-35.32-2.52-52.98,0-7.57,0-16.4,2.52-23.97,35.32-151.36,78.2-301.47,127.4-450.31,12.61-41.62,49.19-60.55,90.82-58.02h10.09c47.93,0,80.73,23.97,76.94,74.42-6.31,148.84-13.87,297.68-20.18,445.26h82.79Zm-142.08-389.76c-1.01,0-2.02.2-3.03.61-2.7,1.08-4.63,3.51-5.41,6.31-34.97,126.36-66.22,252.72-95,380.33h37.84c0-41.62,45.41-296.42,70.64-382.19,0-3.78-1.26-5.05-5.05-5.05Z" />
                     <path d="m581.61,772.45c0-39.1,1.26-76.94,1.26-116.04,0-10.09-6.31-21.44-16.4-21.44h-27.75c-18.92,1.26-29.01-11.35-29.01-29.01,0-23.97,0-46.67-1.26-70.64-1.26-17.66,10.09-30.27,29.01-30.27h29.01c10.09,0,17.66-10.09,17.66-20.18,0-108.48,1.26-216.95,1.26-325.43,1.26-11.35-10.09-20.18-20.18-20.18-11.35,0-21.44,8.83-21.44,20.18,0,80.73,1.26,161.45,1.26,242.18,1.26,41.63-21.44,65.59-63.07,65.59-41.63,2.52-65.59-20.18-66.85-61.81-3.78-94.6-8.83-187.94-13.87-282.55-2.52-65.59,59.28-113.52,121.09-113.52h84.51c61.81,0,123.61,47.93,121.09,113.52-6.31,128.66-12.61,256.06-18.92,384.72-5.05,27.75-36.58,59.28-64.33,63.07,30.27,3.78,58.02,41.62,58.02,71.9-2.52,58.02-6.31,116.04-8.83,174.07-2.52,52.98-44.15,108.48-99.65,105.95h-58.02c-56.76,2.52-98.39-52.98-100.91-105.95-1.26-25.23-2.52-49.19-3.78-74.42-2.52-39.1,15.14-66.85,56.76-66.85h13.88c31.53-2.52,45.41,18.92,45.41,47.93v49.19c0,10.09,6.31,20.18,16.4,21.44h1.26c10.09-1.26,16.4-11.35,16.4-21.44Z" />
                   </svg>
                 </div>
                 <div className="absolute z-[2] inset-0 pb-6 m-auto flex flex-col items-center justify-end">
-                  <div className="text-6xl font-extrabold leading-none text-light-200 dark:text-primary-600 font-syne overflow-hidden h-14">
+                  <div className="text-6xl font-mont font-extrabold leading-none text-light-200 dark:text-primary-600 overflow-hidden h-fit uppercase">
                     <div className="relative overflow-hidden z-[1]">
                       <div hoverstagger="text" className="relative inline-block whitespace-nowrap">
                         Languages
@@ -289,13 +409,25 @@ export const FeaturesSection: React.FC = () => {
                       </div>
                     </div>
                   </div>
+                  <p className="text-light-800 dark:text-primary-800 font-base font-nippo">Globally Supported</p>
                 </div>
+              </div>
+            </CursorFollower>
+
+            {/* Theme Carousel */}
+            <CursorFollower
+              containerRef={cardRefs.current.card4}
+              MouseTrackerElement={MouseTracker}
+              className="col-span-2 bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center text-center relative overflow-hidden inset-ring-3 inset-ring-primary/5"
+            >
+              <div ref={cardRefs.current.card4} className="w-full relative">
+                {/* {nowPlayingCard} */}
               </div>
             </CursorFollower>
 
             {/* THEMES COUNT */}
             <CursorFollower
-              containerRef={mouseTCRef}
+              containerRef={cardRefs.current.card3}
               MouseTrackerElement={MouseTracker}
               className="sectiontwo lg:col-span-2 md:col-span-2 bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none flex flex-col items-center justify-center"
             >
@@ -306,8 +438,8 @@ export const FeaturesSection: React.FC = () => {
                     <path d="m478.57,493.13c59.43,0,110.01,51.85,104.96,112.54-2.53,70.81-6.32,141.63-10.12,212.44-1.26,53.11-42.99,106.22-97.37,106.22h-60.7c-58.17,0-99.9-53.11-101.16-106.22-11.38-231.41-22.76-464.08-34.14-695.49-3.79-67.02,61.96-113.81,123.92-113.81h79.67c61.96,0,127.72,46.79,123.92,113.81-3.79,89.78-8.85,179.56-12.65,270.61-1.26,41.73-25.29,64.49-67.02,61.96-42.99,0-65.76-24.03-64.49-65.76,1.26-77.14,1.26-153.01,1.26-230.14,0-11.38-10.12-20.23-20.23-20.23-11.38,0-21.5,8.85-21.5,20.23,1.26,111.28,1.26,222.56,2.53,333.83h53.11Zm-51.85,280.72c0,10.12,6.32,20.23,16.44,21.5h2.53c8.85-1.26,15.17-11.38,15.17-21.5,0-42.99,1.26-85.99,1.26-130.25,0-8.85-6.32-18.97-16.44-20.23h-20.23c1.26,50.58,1.26,101.16,1.26,150.48Z" />
                   </svg>
                 </div>
-                <div className="absolute z-[2] inset-0 pb-6 m-auto flex flex-col items-center justify-end">
-                  <div className="text-6xl font-extrabold leading-none text-light-200 dark:text-primary-600 font-syne overflow-hidden h-14">
+                <div className="absolute z-[2] inset-0 m-auto flex flex-col items-center justify-end">
+                  <div className="text-6xl tracking-wide font-mont font-extrabold leading-none text-light-200 dark:text-primary-600 overflow-hidden h-fit uppercase">
                     <div className="relative overflow-hidden z-[1]">
                       <div hoverstagger="text" className="relative inline-block whitespace-nowrap">
                         Themes
@@ -317,46 +449,25 @@ export const FeaturesSection: React.FC = () => {
                       </div>
                     </div>
                   </div>
+                  <p className="text-light-800 dark:text-primary-800 text-base font-nippo">Fully Customizable</p>
                 </div>
               </div>
             </CursorFollower>
 
-            {/* THEME CAROUSAL */}
+            {/* Theme Carousel */}
             <CursorFollower
-              containerRef={mouseTCRef}
+              containerRef={cardRefs.current.card4}
               MouseTrackerElement={MouseTracker}
-              className="sectionone lg:col-span-1 bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center text-center relative overflow-hidden inset-ring-3 inset-ring-primary/5"
+              className="sectionone bg-light-600 dark:bg-primary-1100 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center text-center relative overflow-hidden inset-ring-3 inset-ring-primary/5"
             >
-              <div className="horizontal-gradient !size-full absolute inset-0 m-auto flex justify-center items-center z-[1]"></div>
               <div ref={cardRefs.current.card4} className="">
-                <ul className="cards flex w-[150%]">
-                  {themeNames.map((theme, index) => (
-                    <li className="card-item flex items-center gap-4 relative" key={index}>
-                      <div className="flex flex-col items-center justify-center p-4 rounded-4xl relative">
-                        <LogoThemes themeName={theme} className="w-52" />
-                        {/* <div className="font-syne font-semibold w-32">{getThemeTitle(theme)}</div> */}
-
-                        <div className="absolute z-[2] inset-0 m-auto -bottom-6 flex flex-col items-center justify-end">
-                          <div className="text-xl font-extrabold leading-none text-light-200 dark:text-primary-600 font-syne overflow-hidden h-14">
-                            <div className="relative overflow-hidden z-[1]">
-                              <div hoverstagger="text" className="relative inline-block whitespace-nowrap">
-                                {getThemeTitle(theme)}
-                              </div>
-                              <div hoverstagger="text" className="absolute inset-y-0 whitespace-nowrap">
-                                {getThemeTitle(theme)}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                <ul className="cards flex w-60">{renderThemeCarousel}</ul>
               </div>
+              <div className="select-none cursor-events-none horizontal-gradient !size-full absolute inset-0 m-auto flex justify-center items-center z-[1]"></div>
             </CursorFollower>
           </div>
         </div>
       </div>
     </section>
   );
-};
+});

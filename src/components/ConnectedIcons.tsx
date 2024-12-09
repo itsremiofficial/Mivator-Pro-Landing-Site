@@ -41,7 +41,6 @@ const ConnectedIcons = () => {
             trigger: section,
             start: 'top 100%',
             end: 'bottom 70%',
-
             onUpdate: (self) => {
               const invertedProgress = 1 - self.progress;
               gsap.set(firstStop, { attr: { offset: invertedProgress } });
@@ -67,7 +66,7 @@ const ConnectedIcons = () => {
   }, []);
 
   return (
-    <div ref={svgSection} className="h-screen flex justify-center items-center px-4">
+    <div ref={svgSection} className="h-screen flex justify-center items-center px-4 iconscontainer">
       {/* Container */}
       <div className="relative w-full h-[850px] max-w-5xl z-[1] flex flex-col between">
         {/* Central Icon */}

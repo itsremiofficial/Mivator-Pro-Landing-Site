@@ -1,56 +1,64 @@
-import gsap from "gsap";
-import React, { useEffect } from "react";
+import gsap from 'gsap';
+import React, { useEffect, useRef, useCallback } from 'react';
 
-const BackgroundLines = () => {
-  gsap.registerPlugin();
+const BackgroundLines = React.memo(() => {
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const elementsRef = useRef<NodeListOf<HTMLLIElement> | null>(null);
 
-  useEffect(() => {
-    const elements = document.querySelectorAll<HTMLLIElement>(
-      ".background-grid li"
-    );
-    const timeline = gsap.timeline({ repeat: -1 });
+  const createAnimation = useCallback(() => {
+    // Safer plugin registration check
+    if (!gsap.registerPlugin) {
+      console.warn('GSAP plugin registration failed');
+      return;
+    }
+
+    // Cache elements once
+    elementsRef.current = document.querySelectorAll<HTMLLIElement>('.background-grid li');
+    const elements = elementsRef.current;
+
+    // Prevent multiple timelines
+    if (timelineRef.current) {
+      timelineRef.current.kill();
+    }
 
     const duration = 25;
+    const newTimeline = gsap.timeline({ repeat: -1 });
+    timelineRef.current = newTimeline;
 
     elements.forEach((li, index) => {
-      const opacityKeyframes = [
-        { top: "20%", opacity: 1 },
-        { top: "30%", opacity: 0 },
-        { top: "40%", opacity: 1 },
-        { top: "60%", opacity: 1 },
-        { top: "70%", opacity: 0 },
-        { top: "80%", opacity: 1 },
-        { top: "90%", opacity: 1 },
-      ];
-
-      // Sequential animation for each li
-      timeline.fromTo(
+      newTimeline.fromTo(
         li,
-        { "--before-top": "-200px" },
+        { '--before-top': '-200px' },
         {
-          "--before-top": "100%",
+          '--before-top': '100%',
           duration: duration,
-          ease: "linear",
+          ease: 'linear',
           onComplete: () => {
+            if (!timelineRef.current) return;
+
             if (index < elements.length - 1) {
               const nextElement = elements[index + 1];
-              timeline.add(() => {
+              timelineRef.current.add(() => {
                 gsap.fromTo(
                   nextElement,
-                  { "--before-top": "-200px" },
-                  { "--before-top": "100%", duration: duration, ease: "linear" }
+                  { '--before-top': '-200px' },
+                  {
+                    '--before-top': '100%',
+                    duration: duration,
+                    ease: 'linear',
+                  }
                 );
               });
             } else {
-              timeline.add(() => {
+              timelineRef.current.add(() => {
                 elements.forEach((el) => {
                   gsap.fromTo(
                     el,
-                    { "--before-top": "-200px" },
+                    { '--before-top': '-200px' },
                     {
-                      "--before-top": "100%",
+                      '--before-top': '100%',
                       duration: duration,
-                      ease: "linear",
+                      ease: 'linear',
                     }
                   );
                 });
@@ -62,26 +70,18 @@ const BackgroundLines = () => {
     });
   }, []);
 
-  // elements.forEach((li, index) => {
-  //   timeline.fromTo(
-  //     li,
-  //     { "--before-top": "-100px", "--before-opacity": "0" },
-  //     {
-  //       "--before-top": "15%",
-  //       "--before-opacity": "1",
-  //       duration: duration,
-  //       //   delay: 15,
-  //       repeatDelay: 10,
-  //       ease: "linear",
-  //       onComplete: () => {
-  //         gsap.to(li, {
-  //           "--before-opacity": "0",
-  //         });
-  //       },
-  //     },
-  //     index / 5 * 10
-  //   );
-  // });
+  useEffect(() => {
+    createAnimation();
+
+    // Cleanup function to kill the timeline when component unmounts
+    return () => {
+      if (timelineRef.current) {
+        timelineRef.current.kill();
+        timelineRef.current = null;
+      }
+    };
+  }, [createAnimation]);
+
   return (
     <ul className="background-grid absolute inset-0">
       <li></li>
@@ -95,6 +95,6 @@ const BackgroundLines = () => {
       <li className="hidden 2xl:block"></li>
     </ul>
   );
-};
+});
 
 export default BackgroundLines;

@@ -5,10 +5,10 @@ export const ThemeProvider: React.FC<{
   children: ReactNode;
   initialTheme?: ThemeName;
 }> = ({ children, initialTheme = 'mivatorhotpink' }) => {
+  
   const [currentTheme, setCurrentTheme] = useState<ThemeName>(initialTheme);
 
   const setTheme = (themeName: ThemeName) => {
-    // Set CSS variables
     const selectedTheme = themeColors[themeName];
     Object.entries(selectedTheme).forEach(([key, value]) => {
       document.documentElement.style.setProperty(`--${key}`, value);
