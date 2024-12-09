@@ -1,6 +1,5 @@
 import React, { createContext, useContext, ReactNode, useState } from 'react';
 
-// Theme name type definition
 export type ThemeName =
   | 'mivatorhotpink'
   | 'mivatorblurple'
@@ -19,12 +18,10 @@ export type ThemeName =
   | 'pastelyellow'
   | 'mivatorpink';
 
-// Theme colors interface
 export interface ThemeColors {
   [key: string]: string;
 }
 
-// Generate theme color map function
 function generateThemeColorMap(themeName: string): ThemeColors {
   return Array.from({ length: 12 }, (_, i) => `color${i + 1}`).reduce((acc, colorKey, index) => {
     acc[colorKey] = `--color-${themeName}-${(index + 1) * 100}`;
@@ -32,7 +29,6 @@ function generateThemeColorMap(themeName: string): ThemeColors {
   }, {} as ThemeColors);
 }
 
-// Theme colors object
 export const themeColors: Record<ThemeName, ThemeColors> = {
   mivatorhotpink: generateThemeColorMap('mivatorhotpink'),
   mivatorblurple: generateThemeColorMap('mivatorblurple'),
@@ -52,7 +48,6 @@ export const themeColors: Record<ThemeName, ThemeColors> = {
   mivatorpink: generateThemeColorMap('mivatorpink'),
 };
 
-// Mapping of theme names to display titles
 export const themeTitles: Record<ThemeName, string> = {
   mivatorhotpink: 'Hot Pink',
   mivatorblurple: 'Blurple',
@@ -72,32 +67,31 @@ export const themeTitles: Record<ThemeName, string> = {
   mivatorpink: 'Pink',
 };
 
-// Theme context type
 export interface ThemeContextType {
   currentTheme: ThemeName;
   theme: ThemeColors;
   setTheme: (themeName: ThemeName) => void;
 }
 
-// Create context with explicit type and initial value
 export const ThemeContext = createContext<ThemeContextType>({
   currentTheme: 'mivatorhotpink',
   theme: themeColors['mivatorhotpink'],
   setTheme: () => {},
 });
 
-// Custom hook for using theme
 export const useTheme = () => {
   return useContext(ThemeContext);
 };
 
-// Function to get theme title
 export const getThemeTitle = (themeName: ThemeName): string => {
   return themeTitles[themeName];
 };
 
+// Extracts an array of theme names
+export const getThemeNames = (): ThemeName[] => {
+  return Object.keys(themeColors) as ThemeName[];
+};
 
-// Constants export
 export const constants = {
   pro: '--color-pro',
   pro2: '--color-pro2',

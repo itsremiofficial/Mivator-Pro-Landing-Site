@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import App from '../App';
 import { IRootState } from '../store';
 import Portals from './Portals';
-import PreLoader from '../components/PreLoader';
+// import PreLoader from '../components/PreLoader';
 import SiteHeader from './SiteHeader';
 
 const MainSite = ({ children }: PropsWithChildren) => {
@@ -14,7 +14,7 @@ const MainSite = ({ children }: PropsWithChildren) => {
       {/* BEGIN MAIN CONTAINER */}
       <div className="relative">
         {/* PRELOADER */}
-        <PreLoader />
+        {/* <PreLoader /> */}
         <div className="fixed bottom-6 ltr:right-6 rtl:left-6 z-50">
           <button name="gototop" type="button" className="btn btn-primary rounded-full p-2 animate-pulse bg-[#fafafa] dark:bg-[#060818] dark:hover:bg-primary">
             {/* onClick={goToTop}> */}
@@ -29,9 +29,7 @@ const MainSite = ({ children }: PropsWithChildren) => {
           <div className="main-content flex flex-col min-h-screen">
             <SiteHeader />
             {/* BEGIN CONTENT AREA */}
-            <Suspense>
-              <div className={`${themeConfig.animation} animate__animated`}>{children}</div>
-            </Suspense>
+            <Suspense>{children}</Suspense>
             {/* END CONTENT AREA */}
             <Portals />
           </div>
