@@ -1,7 +1,6 @@
 'use client';
 
 import { SpotifyIcon } from 'hugeicons-react';
-import { cn } from '../utils/utils';
 import { IconClock, IconPlusSquare, IconUser } from './Icon';
 import { CardStack } from './NowPlayCard';
 import { useMemo } from 'react';

@@ -36,7 +36,7 @@ export const CardStack = ({ items, offset, scaleFactor }: { items: Card[]; offse
         return (
           <motion.div
             key={card.id}
-            className="absolute size-full rounded-[3rem] flex w-full items-center !p-6"
+            className="absolute size-full rounded-[3rem] flex w-full items-center !p-4"
             style={{
               transformOrigin: 'bottom center',
               background: `linear-gradient(45deg, var(--${card.themeKey}-1000) 0%, var(--${card.themeKey}) 100%)`,
