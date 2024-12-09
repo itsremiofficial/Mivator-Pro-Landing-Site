@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import IconFast from './Icon/Features/IconFast';
-import IconModify from './Icon/Features/IconModify';
-import IconCompatible from './Icon/Features/IconCompatible';
-import IconUi from './Icon/Features/IconUi';
-import IconFeatures from './Icon/Features/IconFeatures';
-import IconInput from './Icon/Features/IconInput';
+import IconFast from '@icon/Features/IconFast';
+import IconModify from '@icon/Features/IconModify';
+import IconCompatible from '@icon/Features/IconCompatible';
+import IconUi from '@icon/Features/IconUi';
+import IconFeatures from '@icon/Features/IconFeatures';
+import IconInput from '@icon/Features/IconInput';
 
 const ConnectedIcons = () => {
   const svgRef = useRef<SVGSVGElement>(null);

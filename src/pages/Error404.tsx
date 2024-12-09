@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { IRootState } from '../store';
-import { setPageTitle } from '../store/themeConfigSlice';
+import { IRootState } from '@store/index';
+import { setPageTitle } from '@store/themeConfigSlice';
 
 const Error404 = () => {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import SplitType from "split-type";
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import SplitType from 'split-type';
 
 // Define types for the icon props
 interface IconProps {
@@ -18,13 +18,7 @@ interface AnimatedButtonProps {
   iconProps?: IconProps;
 }
 
-const AnimatedButton: React.FC<AnimatedButtonProps> = ({
-  linkText1,
-  linkText2,
-  className,
-  Icon,
-  iconProps,
-}) => {
+const AnimatedButton: React.FC<AnimatedButtonProps> = ({ linkText1, linkText2, className, Icon, iconProps }) => {
   const linkRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
@@ -36,8 +30,8 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
 
     textElements.forEach((el) => {
       new SplitType(el as HTMLElement, {
-        types: "words,chars",
-        tagName: "span",
+        types: 'words,chars',
+        tagName: 'span',
       });
     });
 
@@ -45,12 +39,12 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
 
     const [text1, text2] = textElements;
     if (text1 && text2) {
-      tl.to(text1.querySelectorAll(".char"), {
+      tl.to(text1.querySelectorAll('.char'), {
         yPercent: -120,
         duration: 0.3,
         stagger: { amount: 0.2 },
       }).from(
-        text2.querySelectorAll(".char"),
+        text2.querySelectorAll('.char'),
         {
           yPercent: 200,
           duration: 0.3,
@@ -63,12 +57,12 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
     const handleMouseEnter = () => tl.restart();
     const handleMouseLeave = () => tl.reverse();
 
-    linkElement.addEventListener("mouseenter", handleMouseEnter);
-    linkElement.addEventListener("mouseleave", handleMouseLeave);
+    linkElement.addEventListener('mouseenter', handleMouseEnter);
+    linkElement.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
-      linkElement.removeEventListener("mouseenter", handleMouseEnter);
-      linkElement.removeEventListener("mouseleave", handleMouseLeave);
+      linkElement.removeEventListener('mouseenter', handleMouseEnter);
+      linkElement.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 
@@ -91,7 +85,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
 
 export default AnimatedButton;
 
-declare module "react" {
+declare module 'react' {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
     hoverstagger?: string;
   }

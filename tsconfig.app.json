@@ -7,6 +7,19 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@icon/*": ["src/components/Icon/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@pages/*": ["src/pages/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
+      "@router/*": ["src/router/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@assets/*": ["src/assets/*"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",

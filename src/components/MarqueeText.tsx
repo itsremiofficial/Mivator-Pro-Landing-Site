@@ -2,8 +2,8 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { Observer } from 'gsap/Observer';
 import { useGSAP } from '@gsap/react';
-import horizontalLoop from '../hooks/horizontalLoop';
-import IconFeatureFast from './Icon/IconFeatureFast';
+import horizontalLoop from '@/utils/horizontalLoop';
+import IconFeatureFast from '@icon/IconFeatureFast';
 gsap.registerPlugin(Observer, useGSAP);
 const MarqueeText = () => {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -1,7 +1,5 @@
-import { useSelector } from 'react-redux';
-import { constants, ThemeName, useTheme } from '../colorSchemes';
-import { ThemeProvider } from './ThemeProvider';
-import { IRootState } from '../store';
+import { constants, ThemeName, useTheme } from '@/colorSchemes';
+import { ThemeProvider } from '@components/ThemeProvider';
 import { useEffect } from 'react';
 
 interface LogoThemesProps {

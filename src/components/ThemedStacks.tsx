@@ -1,13 +1,13 @@
 'use client';
 
 import { Clock01Icon, Message02Icon, MessageMultiple01Icon, Mic01Icon, SpotifyIcon, UserIcon, VolumeHighIcon } from 'hugeicons-react';
-import { CardStack } from './ELements/CardStack';
+import { CardStack } from '@components/Common/CardStack';
 import { useMemo } from 'react';
-import { getThemeNames } from '../colorSchemes';
+import { getThemeNames, getThemeTitle, ThemeName} from '@/colorSchemes';
 
+const themeNames = getThemeNames();
 // NOW PLAYING CARDS
 export const NowPlayingCard = () => {
-  const themeNames = getThemeNames();
   const CARDS = useMemo(
     () =>
       themeNames.slice(0, 7).map((theme, index) => ({
@@ -48,8 +48,6 @@ export const NowPlayingCard = () => {
 
 // RANK CARDS
 export const RankCard = () => {
-  const themeNames = getThemeNames();
-
   const CARDS = useMemo(
     () =>
       themeNames.slice(7, 14).map((theme, index) => ({
@@ -124,4 +122,104 @@ export const RankCard = () => {
     [themeNames]
   );
   return <CardStack items={CARDS} speed={9} />;
+};
+
+interface ColorUiWindowProps {
+  onThemeChange: (themeKey: ThemeName) => void;
+  className?: string;
+}
+
+export const ColorUiWindow: React.FC<ColorUiWindowProps> = ({ className, onThemeChange }) => {
+  const storedTheme = localStorage.getItem('colorScheme');
+
+  const handleThemeChange = (themeName: ThemeName) => {
+    onThemeChange(themeName);
+  };
+
+  const windowCards = useMemo(
+    () =>
+      themeNames.map((themeKey, index) => {
+        return (
+          <div key={index}>
+            <div
+              className={`w-72 h-52 relative bg-light-500 border-light-100/10 dark:bg-primary-1400 rounded-3xl cursor-pointer overflow-hidden border-2 animate-border-opacity-animation duration-500 ${
+                storedTheme === themeKey ? `!border-secondary dark:!border-primary border-opacity-100` : ''
+              }`}
+              onClick={() => handleThemeChange(themeKey)}
+            >
+              <div
+                style={{ backgroundColor: `var(--${themeKey})` }}
+                className="absolute !size-full opacity-0 hover:opacity-[0.15] transition-opacity duration-300 z-10 left-0 top-0 right-0 bottom-0"
+              ></div>
+              <div className="mockup-window relative overflow-hidden overflow-x-auto flex flex-col w-full rounded-2xl bg-base-300 left-6 top-6">
+                <div className={`mockup-window-toolbar py-2 inline-flex w-full items-center pr-6 rounded-t-lg`} style={{ backgroundColor: `var(--${themeKey}-1100)` }}>
+                  <div className="size-3 aspect-square rounded-full ml-3 mr-[0.1rem] bg-red-500"></div>
+                  <div className="size-3 aspect-square rounded-full ml-1 mr-[0.1rem] bg-yellow-500"></div>
+                  <div className="size-3 aspect-square rounded-full ml-1 mr-3 bg-green-500"></div>
+                  <div
+                    className="relative mx-6 inline-flex justify-center items-center h-5 w-4/5 text-ellipsis whitespace-nowrap rounded-md font-nippo font-light"
+                    // style={{ color: color4, backgroundColor: color1 }}
+                  >
+                    {/* {themeObj.name} */}
+                  </div>
+                </div>
+                <div className={`bg-base-200 flex`} style={{ backgroundColor: `var(--${themeKey}-1000)` }}>
+                  <div className="w-16 h-36 flex flex-col items-center pt-4 gap-2" style={{ backgroundColor: `var(--${themeKey}-1200)` }}>
+                    <div className="w-8 h-4 rounded-[0.2rem]" style={{ backgroundColor: `var(--${themeKey}-900)`, opacity: 1 }}></div>
+                    <div className="w-8 h-4 rounded-[0.2rem]" style={{ backgroundColor: `var(--${themeKey}-900)`, opacity: 0.75 }}></div>
+                    <div className="w-8 h-4 rounded-[0.2rem]" style={{ backgroundColor: `var(--${themeKey}-900)`, opacity: 0.5 }}></div>
+                    <div className="w-8 h-4 rounded-[0.2rem]" style={{ backgroundColor: `var(--${themeKey}-900)`, opacity: 0.25 }}></div>
+                    <div className="w-8 h-4 rounded-[0.2rem]" style={{ backgroundColor: `var(--${themeKey}-900)`, opacity: 0.1 }}></div>
+                  </div>
+                  <div className="flex flex-col justify-between p-4 pt-2 text-5xl font-bold font-syne w-4/5" style={{ color: `var(--${themeKey})` }}>
+                    <span>Aa</span>
+                    <div className="flex flex-col gap-2">
+                      <div className="w-4/5 inline-flex items-center gap-2">
+                        <div className="aspect-square size-5 rounded-full" style={{ backgroundColor: `var(--${themeKey})` }}></div>
+                        <div className="w-4/5 h-5 rounded-md rounded-tl-none" style={{ backgroundColor: `var(--${themeKey})` }}></div>{' '}
+                      </div>
+                      <div className="w-full inline-flex items-center gap-2">
+                        <div className="aspect-square size-5 rounded-full" style={{ backgroundColor: `var(--${themeKey})`, opacity: 0.3 }}></div>
+                        <div className="w-4/5 h-5 rounded-md rounded-tl-none" style={{ backgroundColor: `var(--${themeKey})`, opacity: 0.3 }}></div>{' '}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className={`absolute flex items-center font-nippo text-base border-t-2 bottom-0 left-0 w-full pl-4 py-2 animate-border-opacity-animation duration-500
+                          border-t-light-100/10 bg-light-400
+                          dark:bg-primary-1400 dark:border-t-light-100/10
+                          ${storedTheme === themeKey ? `dark:!border-t-primary !border-t-secondary` : ''} `}
+                style={{
+                  color: `var(--${themeKey})`,
+                  boxShadow: '0 -5px 10px -5px rgba(0, 0, 0, 0.3)',
+                }}
+              >
+                {getThemeTitle(themeKey)}
+                <span
+                  className={`ml-2 px-2 py-1 rounded-full opacity-0 font-nippo text-xs leading-none
+                              text-neu-100 font-medium dark:font-normal
+                              dark:text-white dark:bg-primary-900
+                              bg-secondary text-light-100 transition-all duration-500 ${storedTheme && storedTheme === themeKey && 'opacity-100'}`}
+                >
+                  Current
+                </span>
+              </div>
+            </div>
+          </div>
+        );
+      }),
+    [themeNames, storedTheme]
+  );
+
+  return (
+    <>
+      {windowCards.map((window, i) => (
+        <div key={i} className={className}>
+          {window}
+        </div>
+      ))}
+    </>
+  );
 };

@@ -1,9 +1,9 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect } from 'react';
 
-import LocomotiveScroll from "locomotive-scroll";
+import LocomotiveScroll from 'locomotive-scroll';
 
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 const useLocoScroll = (start, triggeredElem) => {
   gsap.registerPlugin(ScrollTrigger);
@@ -27,14 +27,12 @@ const useLocoScroll = (start, triggeredElem) => {
       },
     });
 
-    locoScroll.on("scroll", ScrollTrigger.update);
+    locoScroll.on('scroll', ScrollTrigger.update);
 
     ScrollTrigger.scrollerProxy(scrollEl, {
       scrollTop(value) {
         if (locoScroll) {
-          return arguments.length
-            ? locoScroll.scrollTo(value, { duration: 0, disableLerp: true })
-            : locoScroll.scroll.instance.scroll.y;
+          return arguments.length ? locoScroll.scrollTo(value, { duration: 0, disableLerp: true }) : locoScroll.scroll.instance.scroll.y;
         }
         return null;
       },
@@ -46,9 +44,7 @@ const useLocoScroll = (start, triggeredElem) => {
           height: window.innerHeight,
         };
       },
-      pinType: document.querySelector(triggeredElem).style.transform
-        ? "transform"
-        : "fixed",
+      pinType: document.querySelector(triggeredElem).style.transform ? 'transform' : 'fixed',
     });
 
     const lsUpdate = () => {
@@ -60,19 +56,17 @@ const useLocoScroll = (start, triggeredElem) => {
     // ScrollTrigger.defaults({ scroller: scrollEl });
 
     ScrollTrigger.defaults({
-      scroller:
-        document.documentElement.classList.contains("has-scroll-smooth") &&
-        scrollEl,
+      scroller: document.documentElement.classList.contains('has-scroll-smooth') && scrollEl,
     });
 
-    ScrollTrigger.addEventListener("refresh", lsUpdate);
+    ScrollTrigger.addEventListener('refresh', lsUpdate);
     //ScrollTrigger.refresh();
 
-    console.log("Loco-scroll initiated.");
+    console.log('Loco-scroll initiated.');
 
     return () => {
       locoScroll.destroy();
-      ScrollTrigger.removeEventListener("refresh", lsUpdate);
+      ScrollTrigger.removeEventListener('refresh', lsUpdate);
     };
   }, [start]);
 };

@@ -74,8 +74,8 @@ export interface ThemeContextType {
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
-  currentTheme: 'mivatorhotpink',
-  theme: themeColors['mivatorhotpink'],
+  currentTheme: 'mivatorblurple',
+  theme: themeColors['mivatorblurple'],
   setTheme: () => {},
 });
 

@@ -1,20 +1,16 @@
 import { PropsWithChildren, Suspense } from 'react';
-import { useSelector } from 'react-redux';
-import App from '../App';
-import { IRootState } from '../store';
-import Portals from './Portals';
-// import PreLoader from '../components/PreLoader';
-import SiteHeader from './SiteHeader';
+import App from '@/App';
+import Portals from '@layouts/Portals';
+import SiteHeader from '@layouts/SiteHeader';
+import PreLoader from '@/components/PreLoader';
 
 const MainSite = ({ children }: PropsWithChildren) => {
-  const themeConfig = useSelector((state: IRootState) => state.themeConfig);
-
   return (
     <App>
       {/* BEGIN MAIN CONTAINER */}
       <div className="relative">
         {/* PRELOADER */}
-        {/* <PreLoader /> */}
+        <PreLoader />
         <div className="fixed bottom-6 ltr:right-6 rtl:left-6 z-50">
           <button name="gototop" type="button" className="btn btn-primary rounded-full p-2 animate-pulse bg-[#fafafa] dark:bg-[#060818] dark:hover:bg-primary">
             {/* onClick={goToTop}> */}

@@ -1,12 +1,11 @@
-import { createBrowserRouter } from "react-router-dom";
-import { routes } from "./routes";
-import MainSite from "../layouts/MainSite";
+import { createBrowserRouter } from 'react-router-dom';
+import { routes } from '@router/routes';
+import MainSite from '@/layouts/MainSite';
 
 const finalRoutes = routes.map((route) => {
   return {
     ...route,
-    element:
-      route.layout === "site" ? <MainSite>{route.element}</MainSite> : "",
+    element: route.layout === 'site' ? <MainSite>{route.element}</MainSite> : '',
     // <Dashboard>{route.element}</Dashboard>,
   };
 });

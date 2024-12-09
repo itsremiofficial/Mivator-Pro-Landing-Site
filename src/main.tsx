@@ -1,19 +1,19 @@
-import React, { Suspense } from "react";
-import ReactDOM from "react-dom/client";
+import React, { Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
 
 // Tailwind css
-import "./App.css";
-import "./assets/css/locomotive.css";
+import './App.css';
+import './assets/css/locomotive.css';
 
 // Router
-import { RouterProvider } from "react-router-dom";
-import router from "./router/index";
+import { RouterProvider } from 'react-router-dom';
+import router from './router/index';
 
 // Redux
-import { Provider } from "react-redux";
-import { store } from "./store";
+import { Provider } from 'react-redux';
+import { store } from './store';
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Suspense>
       <Provider store={store}>

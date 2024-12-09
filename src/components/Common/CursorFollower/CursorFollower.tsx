@@ -1,7 +1,6 @@
 // src/components/CursorFollower.tsx
 import React, { useEffect, useRef, useState } from 'react';
-import { CursorFollowerProps, MouseTrackerProps } from './CursorFollowerTypes';
-import gsap from 'gsap';
+import { CursorFollowerProps, MouseTrackerProps } from '@components/Common/CursorFollower/CursorFollowerTypes';
 
 export const CursorFollower: React.FC<CursorFollowerProps> = ({ children, containerRef: externalContainerRef, className, MouseTrackerElement }) => {
   const internalContainerRef = useRef<HTMLDivElement>(null);

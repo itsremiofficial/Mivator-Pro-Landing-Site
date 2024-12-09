@@ -1,12 +1,13 @@
-import useLocoScroll from '../hooks/useLocoScroll.js';
-import BackgroundLines from '../components/BackgroundLines';
-import Hero from './sections/Hero.js';
-import MarqueeText from '../components/MarqueeText.js';
-import ConnectedIcons from '../components/ConnectedIcons.js';
-import { FeaturesSection } from './sections/Features/FeaturesSection.js';
+import BackgroundLines from '@components/BackgroundLines';
+import Hero from '@pages/sections/Hero.js';
+import MarqueeText from '@components/MarqueeText.js';
+import ConnectedIcons from '@components/ConnectedIcons.js';
+import { FeaturesSection } from '@pages/sections/Features/FeaturesSection.js';
+import { useState } from 'react';
+import useLocoScroll from '@/utils/useLocoScroll';
 const Home = () => {
-  useLocoScroll(true, '[data-scroll-container]');
-
+  const [startScroll, setStartScroll] = useState(true);
+  useLocoScroll(startScroll, '[data-scroll-container]');
   return (
     <div>
       <div className="grain"></div>
@@ -18,7 +19,6 @@ const Home = () => {
         <ConnectedIcons />
         <FeaturesSection />
         {/* <Bento /> */}
-        <div className="h-screen"></div>
       </main>
     </div>
   );
