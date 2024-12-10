@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useMemo, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '@store/index';
 import SplitType from 'split-type';
 import gsap from 'gsap';
 import { CursorFollower } from '@components/Common/CursorFollower/CursorFollower';
 import { MouseTrackerProps } from '@components/Common/CursorFollower/CursorFollowerTypes';
-import LogoThemes from '@components/LogoThemes';
 import horizontalLoop from '@/utils/horizontalLoop';
-import { getThemeNames, getThemeTitle } from '@/colorSchemes';
-import { NowPlayingCard, RankCard } from '@components/ThemedStacks';
+import { getThemeNames, getThemeTitle, ThemeName } from '@/colorSchemes';
+import { LogoThemes } from '@components/ThemedStacks';
+import { toggleColorScheme, toggleTheme } from '@/store/themeConfigSlice';
+import { RankCard } from '@/components/ThemedStacks/RankCard';
+import { NowPlayingCard } from '@/components/ThemedStacks/NowPlayingCard';
 
 export const FeaturesSection: React.FC = React.memo(() => {
   const themeNames = getThemeNames();
@@ -145,31 +147,15 @@ export const FeaturesSection: React.FC = React.memo(() => {
     [isDark]
   );
 
-  const renderThemeCarousel = useMemo(
-    () =>
-      themeNames.map((theme, index) => (
-        <li className="card-item flex items-center gap-4 relative -top-8" key={index}>
-          <div className="flex flex-col items-center justify-center p-4 rounded-4xl relative">
-            <LogoThemes themeName={theme} className="w-52" />
-            <div className="absolute z-[2] inset-0 m-auto -bottom-10 flex flex-col items-center justify-end">
-              <div className="text-xl font-semibold tracking-widest text-light-200 dark:text-primary-600 font-syne overflow-hidden pb-6">
-                <div className="relative overflow-hidden z-[1]">
-                  <div hoverstagger="text" className="relative inline-block whitespace-nowrap">
-                    {getThemeTitle(theme)}
-                  </div>
-                  <div hoverstagger="text" className="absolute inset-y-0 whitespace-nowrap font-bold">
-                    {getThemeTitle(theme)}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-      )),
-    [themeNames]
-  );
+  const dispatch = useDispatch();
+  const handleThemeChange = (themeKey: ThemeName) => {
+    const isDarkTheme = themeKey !== 'mivatorsilver';
 
-  // Use a single function to create CursorFollower components with refs
+    dispatch(toggleTheme(isDarkTheme ? 'dark' : 'light'));
+    dispatch(toggleColorScheme(themeKey));
+  };
+
+  // CURSOR FOLLOWER
   const createCursorFollower = (index: number, className: string, content: React.ReactNode) => (
     <CursorFollower containerRef={cardRefs.current[index]} MouseTrackerElement={MouseTracker} className={className}>
       <div className="flex flex-col relative z-[1] size-full p-6" ref={cardRefs.current[index]}>
@@ -180,7 +166,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
 
   return (
     <section className="min-h-screen py-20 px-4 w-full" key={'FeaturesSection'}>
-      <div className="max-w-screen-2xl w-full mx-auto flex flex-col items-center">
+      <div className="max-w-screen-2xl w-full mx-auto flex flex-col items-center group/bento">
         <div className="text-center mb-16 ">
           <h2 className="features_title !text-[150px]">Why Mivator?</h2>
           <p className="text-secondary dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
@@ -191,7 +177,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
             {createCursorFollower(
               1,
               'col-span-1 md:col-span-2 lg:col-span-2 bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none',
-              <div className="opacity-40 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="opacity-40 group-hover/bento:opacity-100 transition-opacity duration-300">
                 <div className="flex justify-center pb-12">
                   <svg className="h-64" viewBox="0 0 3955 3132">
                     <defs>
@@ -236,7 +222,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
             {createCursorFollower(
               2,
               'bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none flex flex-col items-center justify-center',
-              <div className="opacity-40 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="opacity-40 group-hover/bento:opacity-100 transition-opacity duration-300">
                 <div className="flex justify-center">
                   <svg className="h-64" fill="url(#gradient-fill)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 644.41 933.15">
                     <path d="m78.26,867.42c-3.83-244.89-8.94-489.77-12.77-734.66h-14.05c-7.66,1.29-15.32-3.87-15.32-12.89,0-24.49-1.28-48.98-1.28-73.47,0-11.6,5.11-24.49,14.05-32.22C57.83,5.16,71.88,0,84.65,0h53.64c43.42,0,74.07,20.62,72.79,67.02-7.66,266.8-14.05,534.88-20.43,801.68-1.28,34.8-16.6,64.44-56.19,64.44s-56.19-30.93-56.19-65.73Z" />
@@ -263,7 +249,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
             {createCursorFollower(
               3,
               'col-span-1 md:col-span-2 lg:col-span-2 bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none',
-              <div className="opacity-40 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="opacity-40 group-hover/bento:opacity-100 transition-opacity duration-300">
                 <div className="flex justify-center pb-12">
                   <svg className="h-64" fill="url(#gradient-fill)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 758 933.15">
                     <path d="m79.69,859.84c-3.79-240.26-8.85-480.52-12.65-720.78h-13.91c-7.59,1.26-15.17-3.79-15.17-12.65,0-24.03-1.26-48.05-1.26-72.08,0-11.38,5.06-24.03,13.91-31.61,8.85-8.85,22.76-13.91,35.41-13.91h53.11c42.99,0,73.34,20.23,72.08,65.76-7.59,261.76-13.91,524.78-20.23,786.54-1.26,34.14-16.44,63.23-55.64,63.23s-55.64-30.35-55.64-64.49Z" />
@@ -287,23 +273,25 @@ export const FeaturesSection: React.FC = React.memo(() => {
             )}
 
             {/* PLAYER CARD */}
-            <div className="mt-6 lg:col-span-2 flex items-center h-48 w-full relative opacity-40 hover:opacity-100 transition-opacity duration-500">
-              <NowPlayingCard />
+            <div className="mt-6 lg:col-span-2 flex items-center h-48 w-full relative opacity-40 group-hover/bento:opacity-100 transition-opacity duration-500">
+              <div className="h-32 w-[380px] xl:h-44 xl:w-[520px] relative">
+                <NowPlayingCard />
+              </div>
             </div>
 
             {/* ELEGENT CARDS */}
             {createCursorFollower(
               4,
-              'relative feature-card inset-ring-3 inset-ring-primary/5 select-none p-6 flex items-center justify-center rounded-full overflow-hidden size-64 bg-primary-1100 ',
+              'relative feature-card inset-ring-3 inset-ring-primary/5 select-none p-6 flex items-center justify-center rounded-4xl overflow-hidden size-64 bg-primary-1100 ',
 
-              <div className="opacity-40 group-hover:opacity-100 transition-opacity duration-300 flex items-center size-full">
+              <div className="opacity-40 group-hover/bento:opacity-100 transition-opacity duration-300 flex items-center size-full">
                 <div className="relative text-3xl font-syne font-bold text-center leading-snug text-primary-700">Elegant Cards</div>
               </div>
             )}
 
             {/* RNAK CARDS */}
-            <div className="mt-6 lg:col-span-2 flex items-center relative pb-14 opacity-40 hover:opacity-100 transition-opacity duration-300">
-              <div className="relative flex size-full">
+            <div className="mt-6 lg:col-span-2 flex items-center relative pb-14 opacity-40 group-hover/bento:opacity-100 transition-opacity duration-300">
+              <div className="h-36 w-[380px] mt-24 xl:h-48 xl:w-[520px] relative">
                 <RankCard />
               </div>
             </div>
@@ -312,7 +300,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
             {createCursorFollower(
               5,
               'anotherSectionElem col-span-2 w-full bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none flex flex-col items-center justify-center ',
-              <div className="opacity-40 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="opacity-40 group-hover/bento:opacity-100 transition-opacity duration-300">
                 <div className="flex justify-center">
                   <svg className="h-52" fill="url(#gradient-fill)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 758 933.15">
                     <path d="m400.38,530.27c3.78,1.26,5.05,3.78,5.05,7.57-1.26,39.1-3.78,76.94-6.31,116.04,0,3.78-1.26,6.31-6.31,6.31h-81.53c-3.78,66.85-6.31,133.7-10.09,200.56-1.26,34.06-16.4,63.07-56.76,63.07s-54.24-30.27-52.98-65.59v-200.56c-31.53,0-64.33,0-95.86,1.26-41.62,1.26-61.81-23.97-63.07-63.07-1.26-17.66-1.26-35.32-2.52-52.98,0-7.57,0-16.4,2.52-23.97,35.32-151.36,78.2-301.47,127.4-450.31,12.61-41.62,49.19-60.55,90.82-58.02h10.09c47.93,0,80.73,23.97,76.94,74.42-6.31,148.84-13.87,297.68-20.18,445.26h82.79Zm-142.08-389.76c-1.01,0-2.02.2-3.03.61-2.7,1.08-4.63,3.51-5.41,6.31-34.97,126.36-66.22,252.72-95,380.33h37.84c0-41.62,45.41-296.42,70.64-382.19,0-3.78-1.26-5.05-5.05-5.05Z" />
@@ -339,7 +327,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
             {createCursorFollower(
               6,
               'sectiontwo lg:col-span-2 md:col-span-2 bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none flex flex-col items-center justify-center',
-              <div className="opacity-40 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="opacity-40 group-hover/bento:opacity-100 transition-opacity duration-300">
                 <div className="flex justify-center">
                   <svg className="h-52" fill="url(#gradient-fill)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 644.41 933.15">
                     <path d="m79.69,859.84c-3.79-240.26-8.85-480.52-12.65-720.78h-13.91c-7.59,1.26-15.17-3.79-15.17-12.65,0-24.03-1.26-48.05-1.26-72.08,0-11.38,5.06-24.03,13.91-31.61,8.85-8.85,22.76-13.91,35.41-13.91h53.11c42.99,0,73.34,20.23,72.08,65.76-7.59,261.76-13.91,524.78-20.23,786.54-1.26,34.14-16.44,63.23-55.64,63.23s-55.64-30.35-55.64-64.49Z" />
@@ -366,12 +354,14 @@ export const FeaturesSection: React.FC = React.memo(() => {
             {createCursorFollower(
               7,
               'sectionone bg-light-600 dark:bg-primary-1100 rounded-4xl shadow-md flex flex-col items-center justify-center text-center relative overflow-hidden inset-ring-3 inset-ring-primary/5',
-              <div className="opacity-40 group-hover:opacity-100 transition-opacity duration-300">
+              <>
                 <div ref={cardRefs.current[8]} className="">
-                  <ul className="cards flex w-60">{renderThemeCarousel}</ul>
+                  <ul className="cards flex">
+                    <LogoThemes onLogoClick={handleThemeChange} className="card-item w-full" />
+                  </ul>
                 </div>
-                <div className="select-none cursor-events-none p-6 horizontal-gradient !size-full absolute inset-0 m-auto flex justify-center items-center z-[1]"></div>
-              </div>
+                {/* <div className="select-none cursor-events-none p-6 horizontal-gradient !size-full absolute inset-0 m-auto flex justify-center items-center z-[1]"></div> */}
+              </>
             )}
           </div>
         </div>

@@ -12,7 +12,7 @@ const Home = () => {
     <div>
       <div className="grain"></div>
 
-      <main data-scroll-container className="background">
+      <main data-scroll-container className="background flex flex-col items-center">
         <BackgroundLines />
         <Hero />
         <MarqueeText />

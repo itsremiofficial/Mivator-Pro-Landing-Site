@@ -11,14 +11,30 @@ import router from './router/index';
 
 // Redux
 import { Provider } from 'react-redux';
-import { store } from './store';
+import { store } from '@/store';
+import { ThemeProvider } from '@/ThemeProvider';
+// import { MobileProvider } from '@utils/deviceDetection/MobileContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Suspense>
-      <Provider store={store}>
+    <Provider store={store}>
+      <ThemeProvider>
+        {/* <MobileProvider> */}
         <RouterProvider router={router} />
-      </Provider>
-    </Suspense>
+        {/* </MobileProvider> */}
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
+
+// import DeviceDetector from 'react-device-detector';
+
+// function App() {
+//   const deviceDetector = new DeviceDetector();
+
+//   return (
+//     <div>
+//       {deviceDetector.getDeviceType() === 'Mobile' ? 'Mobile device detected' : 'Desktop device detected'}
+//     </div>
+//   );
+// }

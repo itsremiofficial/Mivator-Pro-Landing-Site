@@ -3,7 +3,21 @@
 
 @font-face {
   font-family: 'Nippo';
-  src: url('/fonts/nippo.ttf') format('truetype');
+  src: url('/fonts/nippo-demibold.ttf') format('truetype');
+  font-display: swap;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: 'Nippo';
+  src: url('/fonts/nippo-regular.ttf') format('truetype');
+  font-display: swap;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: 'Nippo';
+  src: url('/fonts/nippo-light.ttf') format('truetype');
   font-display: swap;
   font-style: normal;
   font-optical-sizing: auto;
@@ -30,6 +44,8 @@
 }
 
 @variant dark (&:where(.dark, .dark *));
+@variant hover (&:hover);
+
 :root {
   --transition-duration: 250ms;
   --transition-timing: cubic-bezier(0, 0, 0.58, 1);
@@ -668,6 +684,8 @@
 
   /* KEYFRAMES */
 
+  --ease-fluid: cubic-bezier(.7, 0, .2, 1);
+
   @keyframes breath {
     0%,
     100% {
@@ -1005,7 +1023,7 @@
   }
 
   .btn {
-    @apply relative flex items-center justify-center rounded-2xl border-none px-5 py-2 text-base outline-none active:translate-y-[1px] cursor-pointer h-fit font-nippo tracking-wider !transition-colors !duration-300 whitespace-nowrap overflow-hidden;
+    @apply relative flex items-center justify-center rounded-2xl border-none px-5 py-2 text-base outline-none active:translate-y-[1px] cursor-pointer font-semibold h-fit font-nippo tracking-wider !transition-colors !duration-300 whitespace-nowrap overflow-hidden;
   }
   .btn-primary {
     @apply bg-light-900 text-white hover:bg-secondary border-light-900 hover:border-secondary
