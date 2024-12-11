@@ -109,7 +109,12 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({ className }) => {
         </h3>
       </button>
 
-      <nav ref={drawerRef} className={`${showCustomizer && '!right-0'} fixed h-screen -right-[450px] ease-fluid top-0 bottom-0 w-full max-w-[360px] will-change-transform transition-[right] duration-600 z-[51] p-1 pb-8 pr-0`}>
+      <nav
+        ref={drawerRef}
+        className={`${
+          showCustomizer && '!right-0'
+        } fixed h-screen -right-[450px] ease-fluid top-0 bottom-0 w-full max-w-[360px] will-change-transform transition-[right] duration-600 z-[51] p-1 pb-8 pr-0`}
+      >
         <div
           className="absolute top-0 left-0 w-full rounded-t-3xl
             bg-light-400 border-light-400 border-b-light-600 text-secondary
@@ -117,8 +122,7 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({ className }) => {
             border-2 text-center font-syne text-lg py-4 z-[51] m-1 mr-0 font-bold tracking-wider"
         >
           <span>Theme Preference</span>
-          <button type="button" className="absolute z-[52] top-0 right-0 !transition-colors !duration-300 rounded-full px-4 h-full"
-          onClick={() => setShowCustomizer(!showCustomizer)}>
+          <button type="button" className="absolute z-[52] top-0 right-0 !transition-colors !duration-300 rounded-full px-4 h-full" onClick={() => setShowCustomizer(!showCustomizer)}>
             <IconClose width={1.5} className="text-light-primary cursor-pointer dark:text-primary-800 hover:text-secondary dark:hover:text-primary-700 !transition-colors !duration-300" />
           </button>
         </div>

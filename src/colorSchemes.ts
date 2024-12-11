@@ -74,7 +74,7 @@ export interface ThemeContextType {
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
-  currentTheme: 'mivatorblurple',
+  currentTheme: (localStorage.getItem('colorScheme') as ThemeName) || 'mivatorblurple',
   theme: themeColors['mivatorblurple'],
   setTheme: () => {},
 });
