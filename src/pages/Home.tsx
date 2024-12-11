@@ -5,6 +5,7 @@ import ConnectedIcons from '@components/ConnectedIcons.js';
 import { FeaturesSection } from '@pages/sections/Features/FeaturesSection.js';
 import { useState } from 'react';
 import useLocoScroll from '@/utils/useLocoScroll';
+import AdvancedFluidGrid from './sections/Features/fluid';
 const Home = () => {
   const [startScroll, setStartScroll] = useState(true);
   useLocoScroll(startScroll, '[data-scroll-container]');
@@ -15,6 +16,7 @@ const Home = () => {
       <main data-scroll-container className="background flex flex-col items-center">
         <BackgroundLines />
         <Hero />
+        <AdvancedFluidGrid />
         <MarqueeText />
         <ConnectedIcons />
         <FeaturesSection />

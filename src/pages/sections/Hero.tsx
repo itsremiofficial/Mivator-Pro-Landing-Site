@@ -114,22 +114,22 @@ const Hero = () => {
               <AnimatedButton
                 linkText1="Get Started"
                 className="btn-primary px-6 py-5 z-[10]"
-                Icon={IconArrowRight}
-                iconProps={{
-                  className:
-                    'border !rounded-lg group-hover:ml-3 !transition-all duration-300 border-light-800 group-hover:border-light-100/5 group-hover:bg-light-100/15 dark:border-primary dark:group-hover:bg-primary-800  dark:text-primary-600 dark:group-hover:text-primary-500 dark:group-hover:border-primary-800 p-1 ml-2 size-7',
-                  fill: true,
-                  duotone: false,
-                  width: '2',
-                }}
+                Icon={
+                  <IconArrowRight
+                    className="border !rounded-lg group-hover:ml-3 !transition-all duration-300 border-light-800 group-hover:border-light-100/5 group-hover:bg-light-100/15 dark:border-primary dark:group-hover:bg-primary-800  dark:text-primary-600 dark:group-hover:text-primary-500 dark:group-hover:border-primary-800 p-1 ml-2 size-7"
+                    fill
+                    duotone={false}
+                    width={2}
+                  />
+                }
               />
             </a>
 
             <a href="/color" data-scroll-speed="1.5" data-scroll-position="top" data-scroll-delay="0.1" data-scroll>
               <AnimatedButton
                 linkText1="Dashboard"
-                className="btn-secondary px-6 py-5 z-[1000]"
-                Icon={IconDashboard}
+                className="btn-secondary px-6 py-5"
+                Icon={<IconDashboard />}
                 iconProps={{
                   className: 'ml-2 size-5',
                   fill: true,

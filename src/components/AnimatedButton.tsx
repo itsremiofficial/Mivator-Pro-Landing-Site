@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import SplitType from 'split-type';
 
@@ -14,7 +14,7 @@ interface AnimatedButtonProps {
   linkText1: string;
   linkText2?: string;
   className?: string;
-  Icon?: React.ComponentType<IconProps>;
+  Icon?: ReactNode;
   iconProps?: IconProps;
 }
 
@@ -68,17 +68,17 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ linkText1, linkText2, c
 
   return (
     <button className={`btn ${className}`} ref={linkRef} name={linkText1}>
-      <div hoverstagger="link" className="flex">
+      <div hoverstagger="link" className="flex justify-start">
         <div className="relative overflow-hidden z-[1]">
           <div hoverstagger="text" className="relative inline-block">
             {linkText1}
           </div>
           <div hoverstagger="text" className="absolute inset-y-0">
-            {linkText2 || linkText1}
+            {linkText2 ? linkText2 : linkText1}
           </div>
         </div>
       </div>
-      {Icon && <Icon {...iconProps} />} {/* Corrected usage of iconProps */}
+      {Icon && Icon}
     </button>
   );
 };

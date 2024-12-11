@@ -10,6 +10,13 @@
 }
 @font-face {
   font-family: 'Nippo';
+  src: url('/fonts/nippo-extrabold.ttf') format('truetype');
+  font-display: swap;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: 'Nippo';
   src: url('/fonts/nippo-regular.ttf') format('truetype');
   font-display: swap;
   font-style: normal;
@@ -47,7 +54,7 @@
 @variant hover (&:hover);
 
 :root {
-  --transition-duration: 250ms;
+  --transition-duration: 200ms;
   --transition-timing: cubic-bezier(0, 0, 0.58, 1);
 
   /* HOTPINK */
@@ -684,7 +691,7 @@
 
   /* KEYFRAMES */
 
-  --ease-fluid: cubic-bezier(.7, 0, .2, 1);
+  --ease-fluid: cubic-bezier(0.7, 0, 0.2, 1);
 
   @keyframes breath {
     0%,
@@ -776,13 +783,13 @@
 }
 
 @layer base {
-  *,
+  /* *,
   *::before,
   *::after {
-    transition-property: background-color, border-color, fill, stroke, opacity, box-shadow;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
     transition-timing-function: var(--transition-timing);
     transition-duration: var(--transition-duration);
-  }
+  } */
 
   html,
   body {
@@ -790,6 +797,9 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    touch-action: pan-left, pan-right, pan-up, pan-down;
+
     @apply bg-light-200 dark:bg-primary-1200;
   }
 
@@ -798,11 +808,6 @@
     @apply absolute !z-[-1] top-0 left-0 w-full h-full dark:bg-primary;
   }
 
-  .transition-theme {
-    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
-    transition-timing-function: var(--transition-timing);
-    transition-duration: var(--transition-duration);
-  }
   /* BACKGROUND LINES */
   .background {
     position: fixed;
@@ -1023,17 +1028,17 @@
   }
 
   .btn {
-    @apply relative flex items-center justify-center rounded-2xl border-none px-5 py-2 text-base outline-none active:translate-y-[1px] cursor-pointer font-semibold h-fit font-nippo tracking-wider !transition-colors !duration-300 whitespace-nowrap overflow-hidden;
+    @apply relative flex items-center justify-center rounded-2xl border-none px-5 py-2 text-base outline-none active:translate-y-[1px] cursor-pointer font-semibold h-fit font-nippo tracking-wider transition-colors duration-300 whitespace-nowrap overflow-hidden;
   }
   .btn-primary {
     @apply bg-light-900 text-white hover:bg-secondary border-light-900 hover:border-secondary
-    dark:bg-primary-800 dark:hover:bg-primary-900 dark:text-primary-500 dark:hover:text-primary-600 dark:!border-primary-1000 dark:hover:!border-primary-900
-    transition-colors !duration-500 !border !border-solid;
+    dark:bg-primary-800 dark:hover:bg-primary-900 dark:text-primary-500 dark:hover:text-primary-600 dark:border-primary-1000 dark:hover:border-primary-900
+    transition-colors duration-500 border border-solid;
   }
   .btn-secondary {
-    @apply dark:text-primary-600 dark:hover:bg-primary-600 dark:hover:text-secondary dark:!border-primary-600
-    bg-transparent !border-light-800 hover:!border-light-600 hover:bg-light-800 text-light-800 hover:text-white
-    !transition-colors !duration-600 !border !border-solid;
+    @apply dark:text-primary-600 dark:hover:bg-primary-600 dark:hover:text-secondary dark:border-primary-600
+    bg-transparent border-light-800 hover:border-light-600 hover:bg-light-800 text-light-800 hover:text-white
+    transition-colors duration-600 border border-solid;
   }
 
   .mivator_main_svg {
@@ -1175,5 +1180,19 @@
   }
   .dark .feature_card_mousetracker {
     background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--color6), transparent 70%);
+  }
+
+  .cusror_tracker {
+    will-change: transform, opacity;
+    transition-property: transform, opacity;
+    transition-timing-function: 6s;
+    transition-duration: var(--transition-duration);
+  }
+
+  .feature_section canvas {
+    clip-path: circle(calc(50% - 1px));
+
+    width: 300px !important;
+    height: 300px !important;
   }
 }

@@ -348,5 +348,5 @@ export const LogoThemes: React.FC<LogoThemesProps> = ({ className, onLogoClick }
     [themeNames]
   );
 
-  return <CardStack items={mivatorLogos} speed={12} noBg offset={5} containerClass='absolute inset-0 flex items-center justify-center rounded-[3rem]'/>;
+  return <CardStack items={mivatorLogos} speed={12} noBg offset={5} containerClass="absolute inset-0 flex items-center justify-center rounded-[3rem]" />;
 };
