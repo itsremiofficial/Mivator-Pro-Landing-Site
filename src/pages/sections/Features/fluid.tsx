@@ -170,7 +170,6 @@ const AdvancedFluidGrid = () => {
         {gridItems.map((item) => (
           <div
             key={item.id}
-            // onClick={() => setActiveCard(item.id === activeCard ? null : item.id)}
             className={`
               bg-gradient-to-br 
               ${item.color}

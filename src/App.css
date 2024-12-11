@@ -6,6 +6,7 @@
   src: url('/fonts/nippo-demibold.ttf') format('truetype');
   font-display: swap;
   font-style: normal;
+  font-weight: 500;
   font-optical-sizing: auto;
 }
 @font-face {
@@ -14,6 +15,7 @@
   font-display: swap;
   font-style: normal;
   font-optical-sizing: auto;
+  font-weight: 800;
 }
 @font-face {
   font-family: 'Nippo';
@@ -54,9 +56,6 @@
 @variant hover (&:hover);
 
 :root {
-  --transition-duration: 200ms;
-  --transition-timing: cubic-bezier(0, 0, 0.58, 1);
-
   /* HOTPINK */
   --mivatorhotpink-100: oklch(100% 0 0);
   --mivatorhotpink-200: oklch(99.1% 0.01 324);
@@ -676,6 +675,43 @@
 
   --ease-fluid: cubic-bezier(0.7, 0, 0.2, 1);
 
+  --transition-duration: 200ms;
+  --transition-timing: cubic-bezier(0, 0, 0.58, 1);
+
+  --animate-move: move 10s linear infinite;
+
+  /* @keyframes move {
+    0% {
+      transform: translateX(-300px) rotateY(0deg);
+    }
+    5% {
+      transform: translateX(-300px) rotateY(0deg);
+    }
+    95% {
+      transform: translateX(300px) rotateY(0deg);
+    }
+    100% {
+      transform: translateX(300px) rotateY(180deg);
+    }
+  } */
+  @keyframes move {
+    0% {
+      transform: translateX(-310px) rotateY(0deg);
+    }
+    40% {
+      transform: translateX(300px) rotateY(0deg);
+    }
+    50% {
+      transform: translateX(310px) rotateY(180deg);
+    }
+    90% {
+      transform: translateX(-300px) rotateY(180deg);
+    }
+    100% {
+      transform: translateX(-310px) rotateY(0deg);
+    }
+  }
+
   @keyframes breath {
     0%,
     100% {
@@ -754,7 +790,7 @@
       transform: translate(calc(-50% - 0.5rem));
     }
   }
-
+  /* 
   @keyframes move {
     0% {
       transform: translateX(0);
@@ -762,7 +798,7 @@
     100% {
       transform: translateX(calc(100% + 100px));
     }
-  }
+  } */
 }
 
 @layer base {
@@ -1117,11 +1153,11 @@
   }
   .horizontal-gradient {
     background: oklch(99.4% 0 90);
-    background: linear-gradient(90deg, oklch(99.4% 0 90) 5%, rgba(255, 255, 255, 0) 50%, oklch(99.4% 0 90) 95%);
+    background: linear-gradient(90deg, oklch(99.4% 0 90) 5%, transparent 50%, oklch(99.4% 0 90) 95%);
   }
   .dark .horizontal-gradient {
     background: var(--color-primary-1200);
-    background: linear-gradient(90deg, var(--color-primary-1100) 5%, rgba(255, 255, 255, 0) 50%, var(--color-primary-1100) 95%);
+    background: linear-gradient(90deg, var(--color-primary-1100) 0%, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0) 75%, var(--color-primary-1100) 100%);
   }
 
   #m_overlay {
@@ -1185,5 +1221,9 @@
 
   .mivatorround {
     fill: red;
+  }
+
+  .feature-card {
+    @apply relative overflow-hidden p-10 from-light-200 to-light-500 dark:from-primary-1000 dark:to-primary-1100 rounded-[3rem] inset-ring-3 inset-ring-primary/5 select-none z-[1];
   }
 }
