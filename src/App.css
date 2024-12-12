@@ -680,20 +680,8 @@
 
   --animate-move: move 10s linear infinite;
 
-  /* @keyframes move {
-    0% {
-      transform: translateX(-300px) rotateY(0deg);
-    }
-    5% {
-      transform: translateX(-300px) rotateY(0deg);
-    }
-    95% {
-      transform: translateX(300px) rotateY(0deg);
-    }
-    100% {
-      transform: translateX(300px) rotateY(180deg);
-    }
-  } */
+  --animate-scroll: scroll 160s var(--animation-direction, forwards) linear infinite;
+
   @keyframes move {
     0% {
       transform: translateX(-310px) rotateY(0deg);

@@ -137,7 +137,6 @@ const Hero = () => {
               />
             </a>
           </div>
-          <RecentBots />
         </div>
       </div>
       <div
