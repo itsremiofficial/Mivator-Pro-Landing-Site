@@ -364,7 +364,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
 
               {/* 16 Categories */}
               {createCursorFollower(
-                5,
+                6,
                 'col-span-5 bg-gradient-to-l feature-card',
                 <div className="flex flex-col justify-between h-full gap-5">
                   <div className="flex flex-col items-start justify-end">
@@ -393,7 +393,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
             <div className="grid grid-cols-13 col-span-9 gap-6">
               {/* LANGUAGES COUNT */}
               {createCursorFollower(
-                6,
+                7,
                 'anotherSectionElem col-span-5 w-full bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none flex flex-col items-center justify-center ',
                 <div>
                   <div className="flex justify-center">
@@ -420,7 +420,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
 
               {/* THEMES COUNT */}
               {createCursorFollower(
-                7,
+                8,
                 'sectiontwo col-span-5 bg-light-1100 dark:bg-primary-1100 rounded-4xl text-center relative z-[1] feature-card overflow-hidden inset-ring-3 inset-ring-primary/5 select-none flex flex-col items-center justify-center',
                 <div className="">
                   <div className="flex justify-center">
@@ -447,7 +447,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
 
               {/* Theme Carousel */}
               {createCursorFollower(
-                8,
+                9,
                 'sectionone col-span-2 bg-light-600 dark:bg-primary-1100 rounded-4xl shadow-md flex flex-col items-center justify-center text-center relative overflow-hidden inset-ring-3 inset-ring-primary/5',
                 <>
                   <div ref={cardRefs.current[8]} className="">
