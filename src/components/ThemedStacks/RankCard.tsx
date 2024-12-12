@@ -75,7 +75,7 @@ const StatRows = () => (
     </div>
     <div className="flex gap-4">
       <StatItem icon={<MessageMultiple01Icon className="size-4 xl:size-5" />} label="total msgs" value="02" />
-      <StatItem icon={<VolumeHighIcon className="size-4 xl:size-5" />} label="voice time" value="14D 9H" />
+      <StatItem icon={<VolumeHighIcon className="size-4 xl:size-5" />} label="voice time" value="2D 9H" />
     </div>
   </div>
 );
@@ -102,7 +102,7 @@ const StatItem = ({ icon, label, value }: StatItemProps) => (
 );
 
 const RankNumber = ({ theme }: RankCardContentProps) => (
-  <div style={{ color: `var(--${theme}-1200)` }} className="text-7xl xl:text-8xl font-mont flex font-black leading-[0.8]">
+  <div style={{ color: `var(--${theme}-1200)` }} className="text-4xl xl:text-6xl font-mont flex font-black leading-[0.8]">
     97<span className="text-xl font-normal">#</span>
   </div>
 );
