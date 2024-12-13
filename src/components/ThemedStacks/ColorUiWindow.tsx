@@ -8,7 +8,7 @@ interface ColorUiWindowProps {
   className?: string;
 }
 
-export const ColorUiWindow: React.FC<ColorUiWindowProps> = ({ className, onThemeChange }) => {
+const ColorUiWindow: React.FC<ColorUiWindowProps> = ({ className, onThemeChange }) => {
   const { theme, colorScheme } = useSelector((state: IRootState) => state.themeConfig);
 
   const themeNames = getThemeNames();
@@ -153,3 +153,5 @@ const CurrentThemeLabel = ({ isCurrentTheme }: { isCurrentTheme: boolean }) => (
     Current
   </span>
 );
+
+export default ColorUiWindow;

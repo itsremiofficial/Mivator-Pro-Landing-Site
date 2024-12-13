@@ -40,7 +40,7 @@ const MarqueeText = () => {
       className="
                     pt-10 md:pt-14 xl:pt-48
                     pb-8 md:pb-10 xl:pb-32
-                    select-none"
+                    select-none antialiased"
     >
       <div
         className="

@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import IconPremium from '@components/Icon/IconPremium';
 import AnimatedButton from '@components/AnimatedButton';
 import { IconArrowRight, IconDashboard } from '@components/Icon';
-import RecentBots from '@components/RecentBots';
 
 const Hero = () => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -76,12 +75,12 @@ const Hero = () => {
         <div className="relative">
           <div
             className="
-                        text-[2.5rem] lg:text-7xl xl:text-8xl md:text-5xl
+                        text-[2.5rem] lg:text-7xl xl:text-7xl md:text-5xl
                         leading-tight font-syne font-extrabold relative text-secondary dark:text-primary-500 flex flex-col whitespace-nowrap"
           >
-            <span className="hero-title">Take Full</span>
-            <span className="hero-title">Control with</span>
-            <span className="hero-title">
+            <span className="hero-title scale-y-130 leading-relaxed">Take Full</span>
+            <span className="hero-title scale-y-130 leading-relaxed">Control with</span>
+            <span className="hero-title scale-y-130 leading-relaxed">
               Mivator <span className="text-pro dark:text-pro">Pro</span>
             </span>
           </div>
@@ -89,7 +88,7 @@ const Hero = () => {
         <div
           className="
                     text-sm lg:text-lg
-                    text-neu-700 dark:text-slate-400
+                    text-neu-700 dark:text-primary-700/50
                     font-syne w-[70%]"
         >
           Bring your vision to life with a custom Mivator Pro. From name to colors to complete ownership, it’s all yours.
@@ -126,15 +125,7 @@ const Hero = () => {
             </a>
 
             <a href="/color" data-scroll-speed="1.5" data-scroll-position="top" data-scroll-delay="0.1" data-scroll>
-              <AnimatedButton
-                linkText1="Dashboard"
-                className="btn-secondary px-6 py-5"
-                Icon={<IconDashboard />}
-                iconProps={{
-                  className: 'ml-2 size-5',
-                  fill: true,
-                }}
-              />
+              <AnimatedButton linkText1="Dashboard" className="btn-secondary px-6 py-5" Icon={<IconDashboard className="ml-2 size-7" fill />} />
             </a>
           </div>
         </div>

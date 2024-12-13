@@ -3,31 +3,31 @@ import { Backward02Icon, Forward02Icon, LeftToRightListTriangleIcon, NextIcon, R
 import React, { useEffect, useState } from 'react';
 
 const items = [
-  <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
+  <button className="btn infinite-scrolling-btns">
     <StarIcon className="mr-2" /> Favorite
   </button>,
-  <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
+  <button className="btn infinite-scrolling-btns">
     <StopIcon className="mr-2" /> Stop
   </button>,
-  <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
+  <button className="btn infinite-scrolling-btns">
     <NextIcon className="mr-2" /> Skip
   </button>,
-  <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
+  <button className="btn infinite-scrolling-btns">
     <LeftToRightListTriangleIcon className="mr-2" /> Lyrics
   </button>,
-  <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
+  <button className="btn infinite-scrolling-btns">
     <Backward02Icon className="mr-2" /> Rewind
   </button>,
-  <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
+  <button className="btn infinite-scrolling-btns">
     <Forward02Icon className="mr-2" /> Forward
   </button>,
-  <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
+  <button className="btn infinite-scrolling-btns">
     <ToggleOnIcon className="mr-2" /> Autoplay
   </button>,
-  <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
+  <button className="btn infinite-scrolling-btns">
     <RepeatIcon className="mr-2" /> Loop
   </button>,
-  <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
+  <button className="btn infinite-scrolling-btns">
     <VolumeHighIcon className="mr-2" /> Volume
   </button>,
 ];

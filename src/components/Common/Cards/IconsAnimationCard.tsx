@@ -2,11 +2,7 @@
 import { animate, motion } from 'framer-motion';
 import { useEffect } from 'react';
 
-export function IconsAnimationCard() {
-  return <Skeleton />;
-}
-
-const Skeleton = () => {
+export const IconsAnimationCard = () => {
   const scale = [1, 1.1, 1];
   const transform = ['translateY(0px)', 'translateY(-4px)', 'translateY(0px)'];
   const sequence = [
@@ -62,28 +58,29 @@ const Skeleton = () => {
   return (
     <div className="p-4 h-full relative flex items-center justify-center z-[-1]">
       <div className="flex flex-row flex-shrink-0 justify-center items-center gap-4">
-        <div className="size-14 circle-1 shadow-[0px_0px_12px_0px_rgba(255,255,255,0.20)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)] bg-primary-1000/50 rounded-full p-3">
-          <VoiceIcon className="size-full fill-primary-500" />
+        <div className="size-14 circle-1 dark:shadow-[0px_0px_12px_0px_rgba(255,255,255,0.20)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)] dark:bg-primary-1000/50 bg-light-500 rounded-full p-3">
+          <VoiceIcon className="size-full dark:fill-primary-500 fill-secondary" />
         </div>
-        <div className="size-18 circle-2 shadow-[0px_0px_14px_0px_rgba(255,255,255,0.20)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)] bg-primary-1000/50 rounded-full p-4">
-          <LockIcon className="size-full fill-primary-500" />
+        <div className="size-18 circle-2 dark:shadow-[0px_0px_14px_0px_rgba(255,255,255,0.20)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)] dark:bg-primary-1000/50 bg-light-500 rounded-full p-4">
+          <LockIcon className="size-full dark:fill-primary-500 fill-secondary" />
         </div>
-        <div className="size-24 circle-3 shadow-[0px_0px_16px_0px_rgba(255,255,255,0.20)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)] bg-primary-1000/50 rounded-full p-5">
-          <EyeIcon className="size-full fill-primary-500" />
+        <div className="size-24 circle-3 shadow-[0px_0px_16px_0px_rgba(0,0,0,0.1)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.20)] dark:shadow-[0px_0px_16px_0px_rgba(255,255,255,0.20)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)] dark:bg-primary-1000/50 bg-light-500 rounded-full p-5">
+          <EyeIcon className="size-full dark:fill-primary-500 fill-secondary" />
         </div>
-        <div className="size-18 circle-4 shadow-[0px_0px_14px_0px_rgba(255,255,255,0.20)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)] bg-primary-1000/50 rounded-full p-4">
-          <HammerIcon className="size-full fill-primary-500" />
+        <div className="size-18 circle-4 dark:shadow-[0px_0px_14px_0px_rgba(255,255,255,0.20)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)] dark:bg-primary-1000/50 bg-light-500 rounded-full p-4">
+          <HammerIcon className="size-full dark:fill-primary-500 fill-secondary" />
         </div>
-        <div className="size-14 circle-5 shadow-[0px_0px_12px_0px_rgba(255,255,255,0.20)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)] bg-primary-1000/50 rounded-full p-3">
-          <ChannelIcon className="size-full fill-primary-500" />
+        <div className="size-14 circle-5 dark:shadow-[0px_0px_12px_0px_rgba(255,255,255,0.20)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)] dark:bg-primary-1000/50 bg-light-500 rounded-full p-3">
+          <ChannelIcon className="size-full dark:fill-primary-500 fill-secondary" />
         </div>
       </div>
 
-      <div className="h-28 w-px absolute inset-0 m-auto z-[12] bg-gradient-to-b from-transparent via-primary-300 to-transparent animate-move">
+      <div className="h-28 w-px absolute inset-0 m-auto z-[12] bg-gradient-to-b from-transparent via-secondary dark:via-primary-300 to-transparent animate-move">
         <div className="w-10 h-32 top-1/2 -translate-y-1/2 absolute -left-10 z-10">
           <Sparkles />
         </div>
       </div>
+      {/* GRADIENT OVERLAY */}
       <div className="horizontal-gradient absolute inset-0 z-[12]"></div>
     </div>
   );
@@ -117,7 +114,7 @@ const Sparkles = () => {
             borderRadius: '50%',
             zIndex: 1,
           }}
-          className="inline-block bg-primary-100"
+          className="inline-block bg-secondary dark:bg-primary-100"
         ></motion.span>
       ))}
     </div>
