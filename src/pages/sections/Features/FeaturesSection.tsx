@@ -1,5 +1,5 @@
 import Balancer from 'react-wrap-balancer';
-import React, { useEffect, useRef, useMemo, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '@store/index';
 import SplitType from 'split-type';
@@ -8,16 +8,14 @@ import { CursorFollower } from '@components/Common/CursorFollower/CursorFollower
 import { MouseTrackerProps } from '@components/Common/CursorFollower/CursorFollowerTypes';
 import horizontalLoop from '@/utils/horizontalLoop';
 import { getThemeNames, getThemeTitle, ThemeName } from '@/colorSchemes';
-import { LogoThemes } from '@components/ThemedStacks';
 import { toggleColorScheme, toggleTheme } from '@/store/themeConfigSlice';
 import { RankCard } from '@/components/ThemedStacks/RankCard';
 import { NowPlayingCard } from '@/components/ThemedStacks/NowPlayingCard';
-import { Backward02Icon, Forward02Icon, LeftToRightListTriangleIcon, LinkSquare02Icon, NextIcon, PlayIcon, RepeatIcon, StarIcon, StopIcon, ToggleOnIcon, VolumeHighIcon } from 'hugeicons-react';
+import { LinkSquare02Icon } from 'hugeicons-react';
 import ThreeJSCanvas from './Mivator360';
 import IconSecurity from '@/components/Icon/Features/IconSecurity';
 import { IconsAnimationCard } from '@/components/Common/Cards/IconsAnimationCard';
 import IconMusic from '@/components/Icon/Features/IconMusic';
-import RecentBots from '@/components/RecentBots';
 import { InfiniteMovingCards } from '@/components/Common/Cards/InfiniteScrolling';
 
 export const FeaturesSection: React.FC = React.memo(() => {
@@ -139,7 +137,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
       <div
         className={`cusror_tracker absolute inset-0 pointer-events-none !z-[2] scale-100 opacity-0 !transition-opacity !duration-500
       ${isHovering && 'opacity-100 !transition-opacity !duration-500'}
-      ${isDark ? 'mix-blend-overlay' : 'mix-blend-plus-lighter !opacity-15'}`}
+      ${isDark ? 'mix-blend-overlay' : 'mix-blend-plus-lighter !opacity-5'}`}
         style={{
           backgroundImage: isHovering
             ? `${
@@ -174,7 +172,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
   return (
     <section className="min-h-screen py-20 px-4 w-full feature_section" key={'FeaturesSection'}>
       <div className="w-full mx-auto flex flex-col items-center">
-        <div className="max-w-screen-2xl text-center mb-16 ">
+        <div className="max-w-screen-2xl text-center mb-10">
           <h2 className="features_title !text-[150px]">Why Mivator?</h2>
           <p className="text-secondary dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
         </div>
@@ -198,17 +196,30 @@ export const FeaturesSection: React.FC = React.memo(() => {
                 <div className="grid md:grid-cols-2 h-full">
                   <div className="flex flex-col justify-between relative">
                     <div className="mask mask-squircle w-max relative">
-                      <div className="p-10 size-32 bg-primary-900 rounded-3xl flex items-center justify-center">
+                      <div className="p-10 size-32 bg-secondary dark:bg-primary-900 rounded-3xl flex items-center justify-center">
                         <div className="perspective-distant relative size-full flex justify-center items-center">
-                          <div className="size-full rounded-xl transform-3d rotate-x-45 rotate-z-45 bg-primary-600 absolute -top-2 inset-0 z-[3] border-4 border-primary-900 group-hover/commands:-top-4 transition-all duration-300 ease-in group-hover/commands:rotate-z-225"></div>
-                          <div className="size-full rounded-xl transform-3d rotate-x-45 rotate-z-45 bg-primary-600/50 backdrop-blur-3xl absolute top-1 inset-0 z-[2] border-4 border-primary-900 group-hover/commands:top-0 transition-all duration-300 ease-in group-hover/commands:rotate-z-135"></div>
-                          <div className="size-full rounded-xl transform-3d rotate-x-45 rotate-z-45 bg-primary-600/30 absolute top-4 inset-0 z-[1] border-4 border-primary-900"></div>
+                          <div
+                            className="size-full rounded-xl transform-3d rotate-x-45 rotate-z-45 absolute -top-2 inset-0 z-[3] border-4
+                          dark:bg-primary-600 dark:border-primary-900 bg-light-100 border-secondary
+                          group-hover/commands:-top-4 transition-all duration-500 ease-fluid group-hover/commands:rotate-z-225"
+                          ></div>
+                          <div
+                            className="
+                          size-full rounded-xl transform-3d rotate-x-45 rotate-z-45 dark:bg-primary-600/50 dark:border-primary-900 bg-light-100/50 border-secondary
+                          backdrop-blur-3xl absolute top-1 inset-0 z-[2] border-4  group-hover/commands:top-0 transition-all duration-500 ease-fluid group-hover/commands:rotate-z-135"
+                          ></div>
+                          <div
+                            className="
+                          size-full rounded-xl transform-3d rotate-x-45 rotate-z-45
+                          absolute top-4 inset-0 z-[1] border-4
+                          dark:bg-primary-600/30 dark:border-primary-900 bg-light-100/30 border-secondary"
+                          ></div>
                         </div>
                       </div>
                     </div>
 
                     <div className="absolute z-[2] inset-0 flex flex-col justify-end w-full">
-                      <div className="text-6xl font-nippo font-extrabold leading-none text-light-200 dark:text-primary-600 overflow-hidden h-fit">
+                      <div className="text-6xl feature-card-title">
                         <div className="relative overflow-hidden z-[1] w-full">
                           <div hoverstagger="title" className="relative inline-block w-full">
                             Commands
@@ -219,9 +230,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
                         </div>
                       </div>
                       <div>
-                        <Balancer className="w-[100%] dark:text-primary-800 font-base font-mont tracking-wide nth-[first-child]:w-full">
-                          Explore a vast library of versatile commands, tailored for every need.
-                        </Balancer>
+                        <Balancer className="feature-card-subtitle">Explore a vast library of versatile commands, tailored for every need.</Balancer>
                       </div>
                     </div>
                   </div>
@@ -229,7 +238,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
                     <div
                       className="
                   flex flex-col items-center justify-center gap-4
-                  dark:bg-primary-1100 bg-light-600 
+                  dark:bg-primary-1100 bg-light-400/50
                   p-4 rounded-4xl h-48 w-full grow relative"
                     >
                       <div className="flex h-full justify-center">
@@ -237,9 +246,8 @@ export const FeaturesSection: React.FC = React.memo(() => {
                           <defs>
                             <linearGradient id="gradient-fill" x1="0%" y1="0%" x2="0%" y2="100%">
                               <stop offset="0%" stopColor={isDark ? `var(--color-primary)` : 'var(--color-secondary)'} />
-                              {/* <stop offset="70%" stopColor={isDark ? `var(--color-primary-900)` : 'var(--color8)'} /> */}
-                              <stop offset="75%" stopColor={isDark ? `var(--color-primary-1000)` : 'var(--color7)'} />
-                              <stop offset="95%" stopColor={isDark ? `var(--color-primary-1100)` : 'var(--color6)'} />
+                              <stop offset="75%" stopColor={isDark ? `var(--color-primary-1000)` : 'var(--color5)'} />
+                              <stop offset="95%" stopColor={isDark ? `var(--color-primary-1100)` : 'var(--color3)'} />
                             </linearGradient>
                           </defs>
                           <path
@@ -256,10 +264,12 @@ export const FeaturesSection: React.FC = React.memo(() => {
                           />
                         </svg>
                       </div>
-                      <p className="absolute bottom-3 text-light-800 dark:text-primary-800 text-lg font-medium font-nippo">...and counting</p>
+                      <p className="absolute bottom-3 text-light-800 group-hover/bento:text-light-1000 dark:text-primary-800 text-lg font-medium font-nippo transition-colors duration-1000">
+                        ...and counting
+                      </p>
                     </div>
                     <a href="" className="w-full">
-                      <button className="btn btn-primary dark:bg-primary-1000 text-primary border-none w-full font-medium rounded-3xl relative mt-4 px-7 py-4 gap-2 group/btn">
+                      <button className="btn bg-light-400 hover:bg-light-600 dark:bg-primary-1000 dark:text-primary text-light-800 hover:text-secondary border-none w-full font-medium rounded-3xl relative mt-4 px-7 py-4 gap-2 transition-colors duration-400">
                         Explore Commands Library
                         <LinkSquare02Icon className="size-5 ml-2" />
                       </button>
@@ -277,9 +287,8 @@ export const FeaturesSection: React.FC = React.memo(() => {
                       <defs>
                         <linearGradient id="gradient-fill2" x1="0%" y1="0%" x2="0%" y2="100%">
                           <stop offset="0%" stopColor={isDark ? `var(--color-primary)` : 'var(--color-secondary)'} />
-                          {/* <stop offset="70%" stopColor={isDark ? `var(--color-primary-900)` : 'var(--color8)'} /> */}
-                          <stop offset="75%" stopColor={isDark ? `var(--color-primary-1000)` : 'var(--color7)'} />
-                          <stop offset="100%" stopColor={isDark ? `var(--color-primary-1100)` : 'var(--color6)'} />
+                          <stop offset="75%" stopColor={isDark ? `var(--color-primary-1000)` : 'var(--color5)'} />
+                          <stop offset="95%" stopColor={isDark ? `var(--color-primary-1100)` : 'var(--color3)'} />
                         </linearGradient>
                       </defs>
                       <path
@@ -293,7 +302,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
                     </svg>
                   </div>
                   <div className="absolute z-[2] inset-0 m-auto flex flex-col items-center justify-end">
-                    <div className="text-4xl font-nippo leading-none whitespace-nowrap text-light-200 dark:text-primary-600 h-fit uppercase">
+                    <div className="text-4xl feature-card-title uppercase">
                       <div className="relative overflow-hidden z-[1] font-extrabold">
                         <div hoverstagger="title" className="relative inline-block">
                           MS
@@ -303,7 +312,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
                         </div>
                       </div>
                     </div>
-                    <p className="dark:text-primary-800 font-base font-nippo font-medium">Fast and Seamless</p>
+                    <p className="feature-card-subtitle">Fast and Seamless</p>
                   </div>
                 </div>
               )}
@@ -319,7 +328,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
                     </svg>
                   </div>
                   <div className="absolute z-[2] inset-0 m-auto flex flex-col items-center justify-end">
-                    <div className="text-4xl font-nippo tracking-wide font-extrabold leading-none text-light-200 dark:text-primary-600">
+                    <div className="text-4xl feature-card-title">
                       <div className="relative overflow-hidden z-[1]">
                         <div hoverstagger="title" className="relative inline-block">
                           Themes
@@ -329,7 +338,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
                         </div>
                       </div>
                     </div>
-                    <p className="dark:text-primary-800 font-base font-nippo font-medium">Customize Your Experience</p>
+                    <p className="feature-card-subtitle">Customize Your Experience</p>
                   </div>
                 </div>
               )}
@@ -344,10 +353,10 @@ export const FeaturesSection: React.FC = React.memo(() => {
                       4,
                       'grow col-span-5 feature-card flex items-center justify-center bg-gradient-to-r',
                       <div className="flex items-center justify-between grow">
-                        <Balancer className="relative text-3xl font-nippo font-medium leading-snug text-primary-700 gap-4">Robust Security System</Balancer>
+                        <Balancer className="feature-card-title font-medium leading-normal text-3xl">Robust Security System</Balancer>
                         <div className="mask mask-squircle w-max relative">
-                          <div className="p-6 size-max bg-gradient-to-bl from-light-200 to-light-500 dark:from-primary-1000/50 dark:to-primary/30 rounded-3xl">
-                            <IconSecurity className="size-16 text-primary-600" />
+                          <div className="p-6 size-max bg-gradient-to-bl from-secondary to-secondary dark:from-primary-1000/50 dark:to-primary/30 rounded-3xl ">
+                            <IconSecurity className="size-16 text-light-100 dark:text-primary-600" />
                           </div>
                         </div>
                       </div>
@@ -365,14 +374,19 @@ export const FeaturesSection: React.FC = React.memo(() => {
                     <ThreeJSCanvas />
                   </div>
                 </div>
-                <div className="col-span-8 grid grid-cols-8 gap-6">
-                  <div className="flex flex-col gap-6 w-full col-span-6">
+                <div className="col-span-8 grid grid-cols-11 gap-6">
+                  <div className="col-span-9">
                     {createCursorFollower(
-                      4,
+                      6,
                       'grow col-span-8 row-span-1 feature-card flex items-center justify-center bg-gradient-to-r',
                       <div className="relative">
                         <div className="flex items-center justify-between grow">
-                          <Balancer className="relative text-3xl font-nippo font-medium leading-snug text-primary-700 gap-4">Robust Security System</Balancer>
+                          <div>
+                            <div className="relative text-3xl font-nippo font-medium leading-snug text-primary-700 mb-2">Interactive Music Player</div>
+                            <Balancer className="dark:text-primary-800 group-hover/bento:text-primary-700 font-mont font-medium leading-snug text-primary-800 tracking-wide transition-colors duration-1000">
+                              Enjoy a feature-rich music player with a sleek, modern UI designed for an immersive listening experience.
+                            </Balancer>
+                          </div>
                           <div className="mask mask-squircle w-max relative">
                             <div className="p-6 size-max bg-gradient-to-bl from-light-200 to-light-500 dark:from-primary-1000/50 dark:to-primary/30 rounded-3xl">
                               <IconMusic className="size-16 text-primary-600" />
@@ -385,49 +399,98 @@ export const FeaturesSection: React.FC = React.memo(() => {
                         </div>
                       </div>
                     )}
-                    {createCursorFollower(4, 'grow col-span-8 row-span-1 feature-card flex items-center justify-center bg-gradient-to-r', <RecentBots />)}
                   </div>
-                  <div className="flex flex-col gap-6 w-full col-span-2">
-                    {createCursorFollower(
-                      4,
-                      'grow col-span-8 row-span-1 feature-card flex items-center justify-center bg-gradient-to-r',
-                      <div className="flex items-center justify-between grow">
-                        <Balancer className="relative text-3xl font-nippo font-medium leading-snug text-primary-700 gap-4">Robust Security System</Balancer>
+                  {createCursorFollower(
+                    7,
+                    'col-span-2 feature-card bg-gradient-to-t',
+                    <a href="" className="flex flex-col items-center justify-center h-full relative">
+                      <div className="text-xs font-nippo font-medium leading-snug text-primary-800 group-hover/bento:text-primary-700 transition-colors duration-1000 text-center">
+                        SCROLL <br /> DOWN
                       </div>
-                    )}
-                  </div>
+                      <div className="jumper flex flex-col absolute bottom-0">
+                        <svg className="w-3" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 7.4 11.9">
+                          <path
+                            d="M0.1,8.5c0.1-0.1,0.4-0.2,0.5,0l3.1,2.6l3.1-2.6c0.1-0.1,0.4-0.1,0.5,0c0.1,0.1,0.1,0.4,0,0.5l-3.3,2.8
+		c-0.1,0.1-0.3,0.1-0.5,0L0.1,9C0,8.9,0,8.7,0.1,8.5z"
+                          />
+                          <path
+                            d="M0.1,4.3c0.1-0.1,0.4-0.2,0.5,0l3.1,2.6l3.1-2.6c0.1-0.1,0.4-0.1,0.5,0c0.1,0.1,0.1,0.4,0,0.5L3.9,7.7
+		c-0.1,0.1-0.3,0.1-0.5,0L0.1,4.8C0,4.7,0,4.5,0.1,4.3z"
+                          />
+                          <path
+                            d="M0.1,0.1C0.2,0,0.4,0,0.6,0.1l3.1,2.6l3.1-2.6C6.9,0,7.1,0,7.3,0.1c0.1,0.1,0.1,0.4,0,0.5L3.9,3.5
+		c-0.1,0.1-0.3,0.1-0.5,0L0.1,0.6C0,0.5,0,0.3,0.1,0.1z"
+                          />
+                        </svg>
+                      </div>
+                    </a>
+                  )}
                 </div>
               </div>
 
-              {/* 16 Categories */}
-              {createCursorFollower(
-                6,
-                'col-span-5 bg-gradient-to-l feature-card',
-                <div className="flex flex-col justify-between h-full gap-5">
-                  <div className="flex flex-col items-start justify-end">
-                    <div className="text-3xl font-mont tracking-wide font-medium leading-snug text-light-200 dark:text-primary-600">
-                      <div className="relative whitespace-nowrap overflow-hidden">
-                        <div hoverstagger="title" className="relative inline-block">
-                          Interactive Music Player
-                        </div>
-                        <div hoverstagger="title" className="absolute inset-y-0">
-                          Interactive Music Player
+              <div className="col-span-5">
+                {/* 16 Categories */}
+
+                {createCursorFollower(
+                  8,
+                  'col-span-5 bg-gradient-to-l feature-card',
+                  <div className="flex flex-col justify-between h-full gap-5">
+                    <div className="flex flex-col items-start justify-end">
+                      <div className="text-3xl feature-card-title leading-normal">
+                        <div className="relative whitespace-nowrap overflow-hidden">
+                          <div hoverstagger="title" className="relative inline-block">
+                            Modern Design Cards
+                          </div>
+                          <div hoverstagger="title" className="absolute inset-y-0">
+                            Modern Design Cards
+                          </div>
                         </div>
                       </div>
+                      <Balancer className="feature-card-subtitle">
+                        {' '}
+                        Code generated stunning cards effortlessly with dynamic, visually striking designs.
+                      </Balancer>
                     </div>
-                    <Balancer className="dark:text-primary-800 font-base font-mont text-left"> Enjoy your favorite tracks with a sleek, modern music player that’s packed with features.</Balancer>
+                    <div className="h-32 w-[380px] xl:h-44 xl:w-[480px] relative mx-auto">
+                      <NowPlayingCard />
+                    </div>
+                    <div className="h-36 w-[380px] mt-5 xl:h-48 xl:w-[480px] relative mx-auto">
+                      <RankCard />
+                    </div>
                   </div>
-                  <div className="h-32 w-[380px] xl:h-44 xl:w-[480px] relative mx-auto">
-                    <NowPlayingCard />
+                )}
+
+                <div className="flex gap-6 mt-6">
+                  <div className="grow col-span-8 feature-card flex items-center justify-center bg-primary-1100 p-6 !size-32">
+                    <svg className="fill-primary size-full" width="24px" height="24px" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24.419 57.512a6 6 0 1 0 3.162 11.576L24.42 57.512Zm5.706 34.312a6 6 0 0 0 3.421 11.502l-3.421-11.502Zm5.66 34.469a6 6 0 1 0 3.817 11.377l-3.817-11.377Zm105.947 19.99a6.001 6.001 0 0 0 5.69-10.566l-5.69 10.566Zm14.797-31.392a6 6 0 1 0 5.53-10.65l-5.53 10.65Zm14.758-31.384a6 6 0 0 0 5.426-10.704l-5.426 10.704ZM27.581 69.087C44.481 64.472 62.304 62 80.726 62V50c-19.5 0-38.385 2.615-56.307 7.512l3.162 11.576Zm5.965 34.239c14.92-4.438 30.759-6.828 47.18-6.828v-12c-17.59 0-34.582 2.56-50.602 7.326l3.422 11.502Zm6.056 34.344c12.886-4.324 26.718-6.674 41.124-6.674v-12c-15.718 0-30.839 2.565-44.941 7.297l3.817 11.377Zm41.124-6.674c22.134 0 42.92 5.547 61.006 15.287l5.69-10.566c-19.799-10.662-42.536-16.721-66.696-16.721v12Zm0-34.498c27.404 0 53.198 6.655 75.803 18.393l5.53-10.65c-24.28-12.607-51.967-19.743-81.333-19.743v12Zm0-34.498c32.665 0 63.454 7.767 90.561 21.507l5.426-10.704C147.956 58.228 115.311 50 80.726 50v12Z" />
+                    </svg>
                   </div>
-                  <div className="h-36 w-[380px] mt-5 xl:h-48 xl:w-[480px] relative mx-auto">
-                    <RankCard />
+                  <div className="grow col-span-8 feature-card flex items-center justify-center bg-primary-1100 p-6 !size-32">
+                    <svg className="fill-primary size-full" width="24px" height="24px" viewBox="0 -4.5 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <g id="Page-1" stroke="none" strokeWidth="1" fillRule="evenodd">
+                        <g transform="translate(-60.000000, -7483.000000)">
+                          <g id="icons" transform="translate(56.000000, 160.000000)">
+                            <path d="M12.5857188,7333.74807 L12.5857188,7323.71968 C12.5857188,7323.40078 12.681671,7323.20964 12.8745748,7323.14824 C16.086973,7322.38863 19.3323547,7324.62982 19.6272077,7328.00596 C22.7676418,7326.67987 25.4982802,7330.67597 23.0644937,7333.07562 C22.4478012,7333.6837 21.7081701,7333.98774 20.8456002,7333.98774 L12.7526356,7333.97883 C12.6456889,7333.94317 12.5857188,7333.83225 12.5857188,7333.74807 L12.5857188,7333.74807 Z M10.4088043,7333.45294 C10.4088043,7334.17789 11.7861176,7334.1868 11.7861176,7333.45294 L11.7861176,7323.80485 C11.7861176,7322.89173 10.4088043,7322.8957 10.4088043,7323.80485 L10.4088043,7333.45294 L10.4088043,7333.45294 Z M8.26987088,7333.45294 C8.26987088,7334.16105 9.6461846,7334.18878 9.6461846,7333.45294 L9.6461846,7327.76629 C9.6461846,7326.85318 8.26987088,7326.85714 8.26987088,7327.76629 L8.26987088,7333.45294 L8.26987088,7333.45294 Z M6.13893345,7333.15782 C6.13893345,7333.88672 7.50725116,7333.89861 7.50725116,7333.15782 L7.50725116,7326.92746 C7.50725116,7326.04504 6.13893345,7326.03415 6.13893345,7326.92746 L6.13893345,7333.15782 Z M4,7332.01494 C4,7332.86566 5.3673182,7333.08057 5.3673182,7332.01494 L5.3673182,7329.34196 C5.3673182,7328.43677 4,7328.44469 4,7329.34196 L4,7332.01494 Z"></path>
+                          </g>
+                        </g>
+                      </g>
+                    </svg>
+                  </div>
+                  <div className="grow col-span-8 feature-card flex items-center justify-center bg-primary-1100 p-6 !size-32">
+                    <svg className="fill-primary size-full" width="24px" height="24px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                      <title>deezer</title>
+                      <path d="M24.511 22.011v3.785h6.484v-3.786h-6.486zM16.676 22.011v3.785h6.486v-3.786h-6.486zM8.84 22.011v3.785h6.484v-3.786h-6.486zM1.004 22.011v3.785h6.486v-3.786h-6.486zM24.511 16.742v3.783h6.484v-3.783h-6.484zM16.676 16.742v3.783h6.486v-3.783zM8.84 16.742v3.783h6.484v-3.783h-6.484zM24.51 11.476v3.783h6.486v-3.783zM8.84 11.476v3.783h6.484v-3.783h-6.484zM24.51 6.203v3.786h6.486v-3.786z"></path>
+                    </svg>
+                  </div>
+                  <div className="grow col-span-8 feature-card flex flex-col items-center justify-center bg-primary-1100 p-6 !size-32">
+                    <svg className="fill-primary size-full" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 512 512">
+                      <path display="inline" d="M354.27,407.291H0.5l157.231-302.582H511.5L354.27,407.291z"></path>
+                    </svg>
+                    <span className="font-nippo">Bandcamp</span>
                   </div>
                 </div>
-              )}
-              {/* <div className="col-span-9 grid grid-cols-13 auto-rows-[minmax(200px,auto)] gap-6">
-                <div className="feature-card h-32 w-full col-span-9">Interactive Music Player</div>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

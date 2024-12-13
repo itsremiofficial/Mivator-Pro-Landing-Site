@@ -16,10 +16,10 @@ const items = [
     <LeftToRightListTriangleIcon className="mr-2" /> Lyrics
   </button>,
   <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
-    <Forward02Icon className="mr-2" /> Forward
+    <Backward02Icon className="mr-2" /> Rewind
   </button>,
   <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
-    <Backward02Icon className="mr-2" /> Rewind
+    <Forward02Icon className="mr-2" /> Forward
   </button>,
   <button className="btn hover:dark:bg-primary-800 transition-colors duration-500 dark:bg-primary-900 rounded-xl pr-6 py-3">
     <ToggleOnIcon className="mr-2" /> Autoplay

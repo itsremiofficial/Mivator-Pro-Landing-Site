@@ -4,31 +4,14 @@ import { toggleColorScheme, toggleTheme } from '../store/themeConfigSlice';
 import IconClose from '../components/Icon/IconClose';
 import { IRootState } from '@/store';
 import { ColorUiWindow } from './ThemedStacks/ColorUiWindow';
-
-type ThemeKeys =
-  | 'mivatorhotpink'
-  | 'mivatorblurple'
-  | 'mivatoraqua'
-  | 'mivatorpeach'
-  | 'mivatorcoal'
-  | 'mivatorred'
-  | 'mivatoremerald'
-  | 'mivatorplatinum'
-  | 'mivatorsilver'
-  | 'mivatorgold'
-  | 'pastelblue'
-  | 'pastelgreen'
-  | 'pastelpink'
-  | 'pastelpurple'
-  | 'pastelyellow'
-  | 'mivatorpink';
+import { getThemeNames, getThemeTitle, ThemeName } from '@/colorSchemes';
 
 interface Theme {
   name: string;
   color: string;
 }
 
-const colorSchemes: Record<ThemeKeys, Theme> = {
+const colorSchemes: Record<ThemeName, Theme> = {
   mivatorhotpink: { name: 'Hot Pink', color: `var(--mivatorhotpink)` },
   mivatorblurple: { name: 'Blurple', color: `var(--mivatorblurple)` },
   mivatoraqua: { name: 'Aqua', color: `var(--mivatoraqua)` },
@@ -52,11 +35,13 @@ interface ThemeCustomizerProps {
 }
 
 const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({ className }) => {
-  const storedTheme = useSelector((state: IRootState) => state.themeConfig.colorScheme);
-  const dispatch = useDispatch();
-  const [colorScheme, setColorScheme] = useState(storedTheme);
+  const allColorScheme = getThemeNames();
 
-  const handleThemeChange = (themeKey: ThemeKeys) => {
+  const dispatch = useDispatch();
+  const { theme, colorScheme } = useSelector((state: IRootState) => state.themeConfig);
+  const [isColorScheme, setColorScheme] = useState(colorScheme);
+
+  const handleThemeChange = (themeKey: ThemeName) => {
     if (themeKey === 'mivatorsilver') {
       dispatch(toggleTheme('light'));
       setColorScheme(themeKey);
@@ -78,6 +63,7 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({ className }) => {
   };
 
   useEffect(() => {
+    console.log(allColorScheme);
     if (showCustomizer) {
       document.addEventListener('mousedown', handleClickOutside);
     }
@@ -101,11 +87,11 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({ className }) => {
         <span
           className="w-5 h-5 rounded-full inline-block"
           style={{
-            backgroundColor: colorSchemes[storedTheme as ThemeKeys].color,
+            backgroundColor: `var(--${colorScheme}-700)`,
           }}
         ></span>
         <h3 className="text-light-1000 group-hover:text-secondary text-[14px] tracking-wider leading-none dark:text-primary-700 dark:group-hover:text-primary-600 whitespace-nowrap !transition-colors !duration-300">
-          {colorSchemes[storedTheme as ThemeKeys].name}
+          {getThemeTitle(colorScheme as ThemeName)}
         </h3>
       </button>
 
@@ -117,7 +103,7 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({ className }) => {
       >
         <div
           className="absolute top-0 left-0 w-full rounded-t-3xl
-            bg-light-400 border-light-400 border-b-light-600 text-secondary
+            bg-light-400 border-light-600 border-b-light-600 text-secondary
             dark:bg-primary-1100 dark:border-primary/20 dark:border-b-primary/20 dark:text-primary-600
             border-2 text-center font-syne text-lg py-4 z-[51] m-1 mr-0 font-bold tracking-wider"
         >
@@ -127,7 +113,7 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({ className }) => {
           </button>
         </div>
         <div
-          className="bg-light-300 dark:bg-primary-1100 border-light-400
+          className="bg-light-400 dark:bg-primary-1100 border-light-600
           dark:border-white/10 relative perfect-scrollbar !size-full p-4 mt-6 py-12 shadow-[-23px_0_25px_0_rgba(0,0,0,0.1)] dark:shadow-[-43px_0_45px_0_rgba(0,0,0,0.6)] rounded-3xl border-2"
         >
           <div className="flex flex-col gap-4 items-center">
@@ -137,8 +123,8 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({ className }) => {
 
         <div
           className="absolute bottom-0 left-0 w-full rounded-b-4xl
-            bg-light-400 border-light-500
-            dark:bg-primary-1100 dark:border-white/10 dark:border-t-white/5
+            bg-light-400 border-light-600
+            dark:bg-primary-1100 dark:border-t-white/5
             border-2 py-4 z-[52] m-1 mr-0"
         ></div>
       </nav>

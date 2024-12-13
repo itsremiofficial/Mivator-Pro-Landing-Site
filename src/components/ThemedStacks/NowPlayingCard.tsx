@@ -15,7 +15,7 @@ export const NowPlayingCard = () => {
     [themeNames]
   );
 
-  return <CardStack items={CARDS} speed={9} offset={4} scaleFactor={0.07} containerClass="absolute size-full rounded-4xl xl:rounded-[3rem] flex items-center p-3 xl:p-4 gap-2 xl:gap-0" />;
+  return <CardStack items={CARDS} speed={9} offset={4} scaleFactor={0.07} containerClass="absolute size-full rounded-4xl xl:rounded-[3rem] flex items-center p-3 xl:p-4 gap-2 xl:gap-0 text-white" />;
 };
 
 const NowPlayingContent = () => (

@@ -16,7 +16,7 @@ export const RankCard = () => {
     [themeNames]
   );
 
-  return <CardStack items={CARDS} speed={9} offset={4} scaleFactor={0.07} containerClass="absolute size-full rounded-4xl xl:rounded-[3rem] flex items-center !p-6" />;
+  return <CardStack items={CARDS} speed={9} offset={4} scaleFactor={0.07} containerClass="absolute size-full rounded-4xl xl:rounded-[3rem] flex items-center text-white !p-6" />;
 };
 
 interface RankCardContentProps {
