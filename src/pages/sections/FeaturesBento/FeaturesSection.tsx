@@ -9,25 +9,12 @@ import gsap from 'gsap';
 // Lazy imports with named exports
 const CursorFollower = React.lazy(() => import('@components/Common/CursorFollower/CursorFollower'));
 const ThreeJSCanvas = React.lazy(() => import('./Mivator360'));
-const IconSecurity = React.lazy(() => import('@/components/Icon/Features/IconSecurity'));
-const IconMusic = React.lazy(() => import('@/components/Icon/Features/IconMusic'));
 
 // External components and utilities
-import { MouseTrackerProps } from '@components/Common/CursorFollower/CursorFollowerTypes';
-import horizontalLoop from '@/utils/horizontalLoop';
 import { getThemeNames, getThemeTitle, ThemeName } from '@/colorSchemes';
 import { toggleColorScheme, toggleTheme } from '@/store/themeConfigSlice';
-import { RankCard } from '@/components/ThemedStacks/RankCard';
-import { NowPlayingCard } from '@/components/ThemedStacks/NowPlayingCard';
-import { LinkSquare02Icon } from 'hugeicons-react';
-import { IconsAnimationCard } from '@/components/Common/Cards/IconsAnimationCard';
-import { InfiniteMovingCards } from '@/components/Common/Cards/InfiniteScrolling';
 
 // SVG Imports
-import ThemesCountSvg from './svgs/ThemesCountSvg';
-import CommandsCountSvg from './svgs/CommandsCountSvg';
-import FastSpeedSvg from './svgs/FastSpeedSvg';
-import ScrollDownSvg from './svgs/ScrollDownSvg';
 import SpotifySvg from './svgs/SpotifySvg';
 import SoundCloudSvg from './svgs/SoundCloudSvg';
 import DeezerSvg from './svgs/DeezerSvg';
@@ -167,7 +154,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
           <h2 className="features_title !text-[150px]">Why Mivator?</h2>
           <p className="text-secondary dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
         </div>
-        <div className="relative w-full max-w-screen-2xl mx-auto">
+        <div className="relative w-full max-w-screen-2xl mx-auto group/bento">
           {/* <div
             className=" grid 
                         grid-cols-1 
