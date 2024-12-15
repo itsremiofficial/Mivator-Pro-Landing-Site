@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useRef, useMemo, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { createSelector } from '@reduxjs/toolkit';
 import { toggleColorScheme, toggleTheme } from '../store/themeConfigSlice';
 import { IRootState } from '@/store';
 import { getThemeTitle, ThemeName } from '@/colorSchemes';
@@ -9,11 +10,12 @@ import { useOutsideClick, useToggle } from '@/utils/outsideClick';
 const IconClose = lazy(() => import('../components/Icon/IconClose'));
 const ColorUiWindow = lazy(() => import('./ThemedStacks/ColorUiWindow'));
 
-// Performance optimization: Memoized selector
-const selectThemeConfig = (state: IRootState) => ({
-  theme: state.themeConfig.theme,
-  colorScheme: state.themeConfig.colorScheme,
-});
+// Memoized selector using createSelector to prevent unnecessary rerenders
+const selectThemeConfig = createSelector(
+  (state: IRootState) => state.themeConfig.theme,
+  (state: IRootState) => state.themeConfig.colorScheme,
+  (theme, colorScheme) => ({ theme, colorScheme })
+);
 
 // Type definition for props
 interface ThemeCustomizerProps {
@@ -24,15 +26,16 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = memo(({ className }) => 
   const dispatch = useDispatch();
   const { theme, colorScheme } = useSelector(selectThemeConfig);
 
+  // Memoized toggle state and outside click handler
   const [showCustomizer, toggleCustomizer] = useToggle(false);
   const drawerRef = useRef<HTMLDivElement | null>(null);
 
-  // Memoized outside click handler
+  // Optimized outside click handler
   useOutsideClick(drawerRef, () => {
     if (showCustomizer) toggleCustomizer();
   });
 
-  // Highly optimized theme change handler
+  // Highly optimized theme change handler with memoization
   const handleThemeChange = useCallback(
     (themeKey: ThemeName) => {
       const themeAction = themeKey === 'mivatorsilver' ? toggleTheme('light') : toggleTheme('dark');
@@ -51,7 +54,7 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = memo(({ className }) => 
     [colorScheme]
   );
 
-  // Performance optimization: Extracted class names
+  // Memoized button classes to prevent unnecessary rerenders
   const buttonClasses = useMemo(
     () =>
       `
