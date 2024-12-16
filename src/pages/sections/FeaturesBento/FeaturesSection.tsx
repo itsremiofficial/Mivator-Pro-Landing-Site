@@ -148,7 +148,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
   );
 
   return (
-    <section className="min-h-screen py-20 px-4 w-full feature_section" key={'FeaturesSection'}>
+    <section className="py-20 px-4 w-full feature_section" key={'FeaturesSection'}>
       <div className="w-full mx-auto flex flex-col items-center">
         <div className="max-w-screen-2xl text-center mb-10">
           <h2 className="features_title !text-[150px]">Why Mivator?</h2>

@@ -1270,4 +1270,28 @@
   .players_icon {
     @apply fill-light-800 size-full group-hover/bento:fill-secondary dark:fill-primary-800 group-hover/bento:dark:fill-primary transition-colors duration-1000;
   }
+  .stackcards {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    border: 2px solid red;
+    margin-bottom: 50vh;
+  }
+  
+  .stackcards > * {
+    grid-area: 1/1/2/2;
+  }
+  
+  .stackcards li {
+    list-style: none;
+  }
+  
+  .stackcard {
+    height: 100%;
+    background-color: red;
+    min-height: auto;
+    padding: 30px;
+  }
 }

@@ -2,32 +2,18 @@
 import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '@store/index';
-import Balancer from 'react-wrap-balancer';
 import SplitType from 'split-type';
 import gsap from 'gsap';
 
 // Lazy imports with named exports
 const CursorFollower = React.lazy(() => import('@components/Common/CursorFollower/CursorFollower'));
 const ThreeJSCanvas = React.lazy(() => import('./Mivator360'));
-const IconSecurity = React.lazy(() => import('@/components/Icon/Features/IconSecurity'));
-const IconMusic = React.lazy(() => import('@/components/Icon/Features/IconMusic'));
 
 // External components and utilities
-import { MouseTrackerProps } from '@components/Common/CursorFollower/CursorFollowerTypes';
-import horizontalLoop from '@/utils/horizontalLoop';
 import { getThemeNames, getThemeTitle, ThemeName } from '@/colorSchemes';
 import { toggleColorScheme, toggleTheme } from '@/store/themeConfigSlice';
-import { RankCard } from '@/components/ThemedStacks/RankCard';
-import { NowPlayingCard } from '@/components/ThemedStacks/NowPlayingCard';
-import { LinkSquare02Icon } from 'hugeicons-react';
-import { IconsAnimationCard } from '@/components/Common/Cards/IconsAnimationCard';
-import { InfiniteMovingCards } from '@/components/Common/Cards/InfiniteScrolling';
 
 // SVG Imports
-import ThemesCountSvg from './svgs/ThemesCountSvg';
-import CommandsCountSvg from './svgs/CommandsCountSvg';
-import FastSpeedSvg from './svgs/FastSpeedSvg';
-import ScrollDownSvg from './svgs/ScrollDownSvg';
 import SpotifySvg from './svgs/SpotifySvg';
 import SoundCloudSvg from './svgs/SoundCloudSvg';
 import DeezerSvg from './svgs/DeezerSvg';
