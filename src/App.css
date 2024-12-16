@@ -992,7 +992,7 @@
     font-weight: 500;
     line-height: 1.5;
     transition: color 0.2s ease-in-out;
-    @apply font-normal tracking-wide text-secondary;
+    @apply font-medium tracking-wide text-light-1000 dark:text-primary-1000;
   }
 
   .ProButtoninner svg.icon {

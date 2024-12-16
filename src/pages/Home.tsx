@@ -6,6 +6,7 @@ import { FeaturesSection } from '@/pages/sections/FeaturesBento/FeaturesSection.
 import { useState } from 'react';
 import useLocoScroll from '@/utils/useLocoScroll';
 import { Compare } from './sections/ProFeatures/Compare';
+import { TimelineDemo } from './sections/ProFeatures/TimelineDemo';
 const Home = () => {
   const [startScroll, setStartScroll] = useState(true);
   useLocoScroll(startScroll, '[data-scroll-container]');
@@ -19,6 +20,9 @@ const Home = () => {
         <MarqueeText />
         <ConnectedIcons />
         <FeaturesSection />
+        <div className="relative bg-primary-1200 z-30 w-screen">
+          <TimelineDemo />
+        </div>
         <div className="p-4 border rounded-3xl dark:bg-neutral-900 bg-neutral-100  border-neutral-200 dark:border-neutral-800 px-4">
           <Compare
             firstImage="https://assets.aceternity.com/code-problem.png"
