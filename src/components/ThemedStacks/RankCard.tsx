@@ -4,7 +4,7 @@ import { CardStack } from '../Common/CardStack';
 import { Message02Icon, MessageMultiple01Icon, VolumeHighIcon } from 'hugeicons-react';
 
 export const RankCard = () => {
-  const themeNames = getThemeNames().slice(7, 14);
+  const themeNames = getThemeNames().slice(5, 10);
 
   const CARDS = useMemo(
     () =>
@@ -16,7 +16,7 @@ export const RankCard = () => {
     [themeNames]
   );
 
-  return <CardStack items={CARDS} speed={9} offset={4} scaleFactor={0.07} containerClass="absolute size-full rounded-4xl xl:rounded-[3rem] flex items-center text-white !p-6" />;
+  return <CardStack items={CARDS} speed={5} offset={4} scaleFactor={0.07} containerClass="absolute size-full rounded-4xl xl:rounded-[3rem] flex items-center text-white !p-6" />;
 };
 
 interface RankCardContentProps {
@@ -62,7 +62,7 @@ const StatsSection = ({ theme }: RankCardContentProps) => (
 
 const StatsContent = () => (
   <div className="flex flex-col gap-1">
-    <div className="xl:text-3xl text-xl font-bold font-syne whitespace-nowrap">Dark Soul</div>
+    <div className="xl:text-3xl text-xl font-bold font-syne whitespace-nowrap">EnvoGod</div>
     <StatRows />
   </div>
 );

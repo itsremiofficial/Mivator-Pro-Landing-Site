@@ -12,9 +12,7 @@ const WhyPro = () => {
         <div className="flex flex-wrap items-center justify-between py-10 group/whypro">
           <div className="w-full md:w-1/2 p-8 flex flex-col">
             <h2 className="mb-6 text-6xl md:text-7xl font-extrabold font-syne leading-tight dark:text-primary-700 text-secondary">Full Bot Ownership</h2>
-            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg">
-              Gain complete control. With Mivator Pro, the bot is entirely yours to manage and grow.
-            </p>
+            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg">Gain complete control. With Mivator Pro, the bot is entirely yours to manage.</p>
           </div>
           <div className="">
             <svg className="w-full h-[580px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2661.3 2417.8">

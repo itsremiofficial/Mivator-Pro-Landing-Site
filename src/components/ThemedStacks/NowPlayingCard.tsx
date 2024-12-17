@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { CardStack } from '../Common/CardStack';
 import { Clock01Icon, Mic01Icon, SpotifyIcon, UserIcon } from 'hugeicons-react';
 export const NowPlayingCard = () => {
-  const themeNames = getThemeNames().slice(0, 7);
+  const themeNames = getThemeNames().slice(0, 4);
 
   const CARDS = useMemo(
     () =>

@@ -9,10 +9,9 @@ interface TimelineEntry {
 }
 
 export const Timeline = React.memo(({ data }: { data: TimelineEntry[] }) => {
+  gsap.registerPlugin(ScrollTrigger);
   // Register GSAP plugin inside the component
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       gsap.killTweensOf('*');
@@ -131,7 +130,7 @@ export const Timeline = React.memo(({ data }: { data: TimelineEntry[] }) => {
         </div>
 
         <div className="relative max-w-7xl mx-auto pb-20 [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]">
-          <div className="absolute md:left-8 left-8 top-0 h-full overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-secondary/10 dark:via-white/5 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_80%,transparent_90%)]">
+          <div className="absolute md:left-8 left-8 top-0 h-full overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-secondary/10 dark:via-white/10 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_80%,transparent_90%)]">
             <div
               ref={lineRef}
               className="absolute inset-x-0 top-0 w-[2px]

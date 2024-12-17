@@ -7,8 +7,9 @@ import { useState } from 'react';
 import useLocoScroll from '@/utils/useLocoScroll';
 import { HowItWorks } from './sections/HowItWorks/HowItWorks';
 import WhyPro from './sections/WhyPro/WhyPro';
-import Footer from './sections/Footer';
+import Footer from './sections/Footer/Footer';
 import CTA from './sections/CTA';
+import { MivatorText } from './sections/Footer/MivatorText';
 const Home = () => {
   const [startScroll, setStartScroll] = useState(true);
   useLocoScroll(startScroll, '[data-scroll-container]');
@@ -25,6 +26,9 @@ const Home = () => {
         <WhyPro />
         <HowItWorks />
         <CTA />
+        <div className="relative flex items-center justify-center w-screen">
+          <MivatorText text="MIVATOR" />
+        </div>
         <Footer />
       </main>
     </>
