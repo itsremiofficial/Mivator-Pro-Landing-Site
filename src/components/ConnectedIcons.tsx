@@ -458,7 +458,7 @@ const ConnectedIcons: React.FC = () => {
   );
 
   return (
-    <div ref={svgSection} className="h-screen flex justify-center items-center px-4 iconscontainer">
+    <div ref={svgSection} className="h-screen flex justify-center items-center px-4 iconscontainer py-32">
       <div className="relative w-screen h-[850px] max-w-5xl z-[1] flex flex-col justify-between">
         {/* Central Icon */}
         <div className="relative flex flex-col items-center">

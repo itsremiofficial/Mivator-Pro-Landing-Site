@@ -21,7 +21,7 @@ const BackgroundLines = React.memo(() => {
       timelineRef.current.kill();
     }
 
-    const duration = 25;
+    const duration = 5;
     const newTimeline = gsap.timeline({ repeat: -1 });
     timelineRef.current = newTimeline;
 
@@ -83,7 +83,7 @@ const BackgroundLines = React.memo(() => {
   }, [createAnimation]);
 
   return (
-    <ul className="background-grid absolute inset-0">
+    <ul className="background-grid absolute inset-0 h-screen overflow-hidden [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_90%,transparent_100%)]">
       <li></li>
       <li></li>
       <li></li>

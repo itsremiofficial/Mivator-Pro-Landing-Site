@@ -47,337 +47,64 @@ const MarqueeText = () => {
                 marquee-text
                 text-6xl lg:text-7xl xl:text-9xl
                 py-8 md:py-10
-                bg-light-400 dark:bg-primary-1100 font-syne font-extrabold -rotate-3 flex flex-nowrap text-secondary dark:text-primary overflow-hidden relative right-0"
+                bg-light-400 dark:bg-primary-1100 font-syne font-extrabold -rotate-3 flex flex-nowrap gap-24 text-secondary dark:text-primary overflow-hidden relative right-0"
         ref={containerRef}
       >
         <div
-          className="marqueeword marquee-content
-                                flex gap-24 md:gap-48
-                                md:px-24 px-12
-                                "
+          className="marqueeword marqueetext whitespace-nowrap flex items-center
+                                  gap-6 lg:gap-12
+                                  "
         >
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Fast&nbsp;&amp;&nbsp;efficient
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Easy&nbsp;to&nbsp;Modify
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Highly&nbsp;Compatible
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Better&nbsp;UI
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Premium&nbsp;Features
-          </div>
+          Mivator
         </div>
         <div
-          className="marqueeword marquee-content
-                                flex gap-24 md:gap-48
-                                md:px-24 px-12
-                                "
+          className="marqueeword marqueetext whitespace-nowrap flex items-center
+                                    gap-6 lg:gap-12
+                                    "
         >
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Fast&nbsp;&amp;&nbsp;efficient
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Easy&nbsp;to&nbsp;Modify
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Highly&nbsp;Compatible
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Better&nbsp;UI
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Premium&nbsp;Features
-          </div>
+          Mivator
         </div>
         <div
-          className="marqueeword marquee-content
-                                flex gap-24 md:gap-48
-                                md:px-24 px-12
-                                "
+          className="marqueeword marqueetext whitespace-nowrap flex items-center
+                                    gap-6 lg:gap-12
+                                    "
         >
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Fast&nbsp;&amp;&nbsp;efficient
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Easy&nbsp;to&nbsp;Modify
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Highly&nbsp;Compatible
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Better&nbsp;UI
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Premium&nbsp;Features
-          </div>
+          Mivator
         </div>
         <div
-          className="marqueeword marquee-content
-                                flex gap-24 md:gap-48
-                                md:px-24 px-12
-                                "
+          className="marqueeword marqueetext whitespace-nowrap flex items-center
+                                    gap-6 lg:gap-12
+                                    "
         >
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Fast&nbsp;&amp;&nbsp;efficient
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Easy&nbsp;to&nbsp;Modify
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Highly&nbsp;Compatible
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Better&nbsp;UI
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Premium&nbsp;Features
-          </div>
+          Mivator
         </div>
         <div
-          className="marqueeword marquee-content
-                                flex gap-24 md:gap-48
-                                md:px-24 px-12
-                                "
+          className="marqueeword marqueetext whitespace-nowrap flex items-center
+                                    gap-6 lg:gap-12
+                                    "
         >
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Fast&nbsp;&amp;&nbsp;efficient
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Easy&nbsp;to&nbsp;Modify
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Highly&nbsp;Compatible
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Better&nbsp;UI
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Premium&nbsp;Features
-          </div>
+          Mivator
         </div>
         <div
-          className="marqueeword marquee-content
-                                flex gap-24 md:gap-48
-                                md:px-24 px-12
-                                "
+          className="marqueeword marqueetext whitespace-nowrap flex items-center
+                                    gap-6 lg:gap-12
+                                    "
         >
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Fast&nbsp;&amp;&nbsp;efficient
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Easy&nbsp;to&nbsp;Modify
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Highly&nbsp;Compatible
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Better&nbsp;UI
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Premium&nbsp;Features
-          </div>
+          Mivator
         </div>
         <div
-          className="marqueeword marquee-content
-                                flex gap-24 md:gap-48
-                                md:px-24 px-12
-                                "
+          className="marqueeword marqueetext whitespace-nowrap flex items-center
+                                    gap-6 lg:gap-12
+                                    "
         >
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Fast&nbsp;&amp;&nbsp;efficient
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
+          Mivator
+        </div>
+        <div
+          className="marqueeword marqueetext whitespace-nowrap flex items-center
                                     gap-6 lg:gap-12
                                     "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Easy&nbsp;to&nbsp;Modify
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Highly&nbsp;Compatible
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Better&nbsp;UI
-          </div>
-          <div
-            className="marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-          >
-            <IconFeatureFast className="size-14 md:size-16 lg:size-24 xl:size-32" />
-            Premium&nbsp;Features
-          </div>
+        >
+          Mivator
         </div>
       </div>
     </section>

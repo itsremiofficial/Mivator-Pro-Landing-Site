@@ -46,7 +46,7 @@ const CommandsCount = ({ isDark }: { isDark: boolean }) => {
         </div>
       </div>
       <div className="flex flex-col items-end">
-        <div className="flex flex-col items-center justify-center gap-4 dark:bg-primary-1100 bg-light-400/50 p-4 rounded-4xl h-48 w-full grow relative">
+        <div className="flex flex-col items-center justify-center gap-4 dark:bg-primary-1100 bg-light-500 p-4 rounded-4xl h-48 w-full grow relative">
           <div className="flex h-full justify-center">
             <CommandsCountSvg isDark={isDark} />
           </div>

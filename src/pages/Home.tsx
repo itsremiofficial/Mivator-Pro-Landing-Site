@@ -7,23 +7,27 @@ import { useState } from 'react';
 import useLocoScroll from '@/utils/useLocoScroll';
 import { HowItWorks } from './sections/HowItWorks/HowItWorks';
 import WhyPro from './sections/WhyPro/WhyPro';
+import Footer from './sections/Footer';
+import CTA from './sections/CTA';
 const Home = () => {
   const [startScroll, setStartScroll] = useState(true);
   useLocoScroll(startScroll, '[data-scroll-container]');
   return (
-    <div>
+    <>
       <div className="grain"></div>
 
-      <main data-scroll-container className="background flex flex-col items-center">
+      <main data-scroll-container className="relative background flex flex-col items-center min-h-screen h-max">
         <BackgroundLines />
         <Hero />
         <MarqueeText />
-        <ConnectedIcons />
         <FeaturesSection />
-        <HowItWorks />
+        <ConnectedIcons />
         <WhyPro />
+        <HowItWorks />
+        <CTA />
+        <Footer />
       </main>
-    </div>
+    </>
   );
 };
 

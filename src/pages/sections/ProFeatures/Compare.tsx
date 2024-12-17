@@ -159,7 +159,7 @@ export const Compare = ({
     >
       <AnimatePresence initial={false}>
         <motion.div
-          className="h-full w-px absolute top-0 m-auto z-30 bg-gradient-to-b from-transparent from-[5%] to-[95%] via-indigo-500 to-transparent"
+          className="h-full w-px absolute top-0 m-auto z-30 bg-gradient-to-b from-transparent from-[0%] to-[100%] dark:via-primary via-white to-transparent"
           style={{
             left: `${sliderXPercent}%`,
             top: '0',
@@ -167,14 +167,16 @@ export const Compare = ({
           }}
           transition={{ duration: 0 }}
         >
-          <div className="w-36 h-full [mask-image:radial-gradient(100px_at_left,white,transparent)] absolute top-1/2 -translate-y-1/2 left-0 bg-gradient-to-r from-indigo-400 via-transparent to-transparent z-20 opacity-50" />
-          <div className="w-10 h-1/2 [mask-image:radial-gradient(50px_at_left,white,transparent)] absolute top-1/2 -translate-y-1/2 left-0 bg-gradient-to-r from-cyan-400 via-transparent to-transparent z-10 opacity-100" />
+          <div className="w-36 h-full [mask-image:radial-gradient(100px_at_left,white,transparent)] absolute top-1/2 -translate-y-1/2 left-0 bg-gradient-to-r dark:from-primary from-white via-transparent to-transparent z-20 opacity-50" />
+
+          <div className="w-10 h-1/2 [mask-image:radial-gradient(50px_at_left,white,transparent)] absolute top-1/2 -translate-y-1/2 left-0 bg-gradient-to-r from-primary via-transparent to-transparent z-10 opacity-100" />
+
           <div className="w-10 h-3/4 top-1/2 -translate-y-1/2 absolute -right-10 [mask-image:radial-gradient(100px_at_left,white,transparent)]">
             <MemoizedSparklesCore background="transparent" minSize={0.4} maxSize={1} particleDensity={1200} className="w-full h-full" particleColor="#FFFFFF" />
           </div>
           {showHandlebar && (
-            <div className="h-5 w-5 rounded-md top-1/2 -translate-y-1/2 bg-white z-30 -right-2.5 absolute   flex items-center justify-center shadow-[0px_-1px_0px_0px_#FFFFFF40]">
-              <IconThreeDots className="h-4 w-4 text-black rotate-90" />
+            <div className="h-5 w-5 rounded-md top-1/2 -translate-y-1/2 bg-primary-400 z-30 -right-2.5 absolute flex items-center justify-center">
+              <IconThreeDots className="h-4 w-4 text-secondary dark:text-primary rotate-90" fill duotone={false} />
             </div>
           )}
         </motion.div>
@@ -189,7 +191,10 @@ export const Compare = ({
               }}
               transition={{ duration: 0 }}
             >
-              <img alt="first image" src={firstImage} className={cn('absolute inset-0  z-20 rounded-2xl flex-shrink-0 w-full h-full select-none', firstImageClassName)} draggable={false} />
+              <picture>
+                <source srcSet={`${firstImage}.avif`} type="image/avif" />
+                <img alt="first image" src={`${firstImage}.webp`} className={cn('absolute inset-0 z-20 rounded-2xl flex-shrink-0 w-full h-full select-none', firstImageClassName)} draggable={false} />
+              </picture>
             </motion.div>
           ) : null}
         </AnimatePresence>
@@ -197,7 +202,10 @@ export const Compare = ({
 
       <AnimatePresence initial={false}>
         {secondImage ? (
-          <motion.img className={cn('absolute top-0 left-0 z-[19]  rounded-2xl w-full h-full select-none', secondImageClassname)} alt="second image" src={secondImage} draggable={false} />
+          <picture>
+            <source srcSet={`${secondImage}.avif`} type="image/avif" />
+            <img className={cn('absolute top-0 left-0 z-[19]  rounded-2xl w-full h-full select-none', secondImageClassname)} alt="second image" src={`${secondImage}.avif`} draggable={false} />
+          </picture>
         ) : null}
       </AnimatePresence>
     </div>

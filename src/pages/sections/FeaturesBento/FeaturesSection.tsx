@@ -148,25 +148,13 @@ export const FeaturesSection: React.FC = React.memo(() => {
   );
 
   return (
-    <section className="py-20 px-4 w-full feature_section" key={'FeaturesSection'}>
+    <section className="my-20 px-4 w-full feature_section" key={'FeaturesSection'}>
       <div className="w-full mx-auto flex flex-col items-center">
         <div className="max-w-screen-2xl text-center mb-10">
-          <h2 className="features_title !text-[150px]">Why Mivator?</h2>
-          <p className="text-secondary dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
+          <h2 className="features_title !text-[150px]">Features</h2>
+          <p className="text-light-900 dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
         </div>
         <div className="relative w-full max-w-screen-2xl mx-auto group/bento">
-          {/* <div
-            className=" grid 
-                        grid-cols-1 
-                        sm:grid-cols-2 
-                        md:grid-cols-3 
-                        lg:grid-cols-4 
-                        xl:grid-cols-9 
-                        gap-6 
-                        auto-rows-[minmax(200px,auto)] group/bento"
-          >
-          </div> */}
-
           <div className="col-span-9 grid grid-cols-5 gap-6">
             {/* Over 500 Commands */}
             {createCursorFollower(1, 'col-span-3 feature-card bg-gradient-to-br flex flex-col justify-between group/commands', <CommandsCount isDark={isDark} />)}

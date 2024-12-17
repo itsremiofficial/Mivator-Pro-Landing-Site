@@ -10,8 +10,8 @@ const CommandsCountSvg: FC<CommandsCountSvgProps> = ({ isDark }) => {
       <defs>
         <linearGradient id="gradient-fill" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor={isDark ? `var(--color-primary)` : 'var(--color-secondary)'} />
-          <stop offset="75%" stopColor={isDark ? `var(--color-primary-1000)` : 'var(--color5)'} />
-          <stop offset="95%" stopColor={isDark ? `var(--color-primary-1100)` : 'var(--color3)'} />
+          <stop offset="75%" stopColor={isDark ? `var(--color-primary-1000)` : 'var(--color6)'} />
+          <stop offset="95%" stopColor={isDark ? `var(--color-primary-1100)` : 'var(--color5)'} />
         </linearGradient>
       </defs>
       <path

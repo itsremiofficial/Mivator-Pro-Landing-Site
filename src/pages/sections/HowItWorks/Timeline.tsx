@@ -124,7 +124,7 @@ export const Timeline = React.memo(({ data }: { data: TimelineEntry[] }) => {
         <div className="max-w-7xl mx-auto py-10 flex items-end justify-between">
           <div>
             <h2 className="features_title max-w-4xl">How it Works?</h2>
-            <p className="md:text-base text-secondary dark:text-primary-700/40 text-lg max-w-sm">Build Your Unique Discord Bot in Just 3 Easy Steps</p>
+            <p className="md:text-base text-light-900 dark:text-primary-700/40 text-lg max-w-sm">Build Your Unique Discord Bot in Just 3 Easy Steps</p>
           </div>
           <AnimatedButton linkText1="Start Now!" className="btn btn-secondary py-6 px-10" />
           {/* <a href='' className="btn btn-primary py-6 px-10">Start Now!</a> */}
