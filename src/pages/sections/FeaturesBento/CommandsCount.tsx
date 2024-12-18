@@ -1,4 +1,3 @@
-import Balancer from 'react-wrap-balancer';
 import CommandsCountSvg from './svgs/CommandsCountSvg';
 import { LinkSquare02Icon } from 'hugeicons-react';
 
@@ -41,7 +40,7 @@ const CommandsCount = ({ isDark }: { isDark: boolean }) => {
             </div>
           </div>
           <div>
-            <Balancer className="feature-card-subtitle">Explore a vast library of versatile commands, tailored for every need.</Balancer>
+            <p className="feature-card-subtitle text-balance">Explore a vast library of versatile commands, tailored for every need.</p>
           </div>
         </div>
       </div>
@@ -50,7 +49,7 @@ const CommandsCount = ({ isDark }: { isDark: boolean }) => {
           <div className="flex h-full justify-center">
             <CommandsCountSvg isDark={isDark} />
           </div>
-          <p className="absolute bottom-3 text-light-800 group-hover/bento:text-light-1000 dark:text-primary-800 text-lg font-medium font-nippo transition-colors duration-1000">...and counting</p>
+          <p className="absolute bottom-3 text-light-800 group-hover/bento:text-light-1000 dark:text-primary-800 dark:group-hover/bento:text-primary text-lg font-medium font-nippo transition-colors duration-1000">...and counting</p>
         </div>
         <a href="" className="w-full">
           <button className="btn bg-light-500 hover:bg-light-600 dark:bg-primary-1000 hover:dark:bg-primary-900 hover:dark:text-primary-700 dark:text-primary text-light-800 hover:text-secondary border-none w-full font-medium rounded-3xl relative mt-4 px-7 py-4 gap-2 transition-colors duration-400">

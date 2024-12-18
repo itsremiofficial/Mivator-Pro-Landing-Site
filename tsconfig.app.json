@@ -10,15 +10,18 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@icon/*": ["src/components/Icon/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@pages/*": ["src/pages/*"],
-      "@store/*": ["src/store/*"],
-      "@utils/*": ["src/utils/*"],
-      "@router/*": ["src/router/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@assets/*": ["src/assets/*"]
+      "@Components/*": ["src/components/*"],
+      "@Common/*": ["src/components/Common/*"],
+      "@ThemedStacks/*": ["src/components/ThemedStacks/*"],
+      "@Icons/*": ["src/components/Icons/*"],
+      "@Layouts/*": ["src/layouts/*"],
+      "@Pages/*": ["src/pages/*"],
+      "@Sections/*": ["src/pages/sections/*"],
+      "@Store/*": ["src/store/*"],
+      "@Utils/*": ["src/utils/*"],
+      "@Router/*": ["src/router/*"],
+      "@Hooks/*": ["src/hooks/*"],
+      "@Assets/*": ["src/assets/*"]
     },
 
     /* Bundler mode */

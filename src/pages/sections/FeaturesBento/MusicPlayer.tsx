@@ -1,6 +1,5 @@
-import { InfiniteMovingCards } from '@/components/Common/Cards/InfiniteScrolling';
-import IconMusic from '@/components/Icon/Features/IconMusic';
-import Balancer from 'react-wrap-balancer';
+import { InfiniteMovingCards } from '@Common/Cards/InfiniteScrolling';
+import IconMusic from '@Icons/Features/IconMusic';
 
 const MusicPlayer = () => {
   return (
@@ -8,7 +7,7 @@ const MusicPlayer = () => {
       <div className="flex items-start justify-between grow">
         <div>
           <div className="feature-card-title text-3xl mb-2 font-medium tracking-wide leading-normal">Interactive Music Player</div>
-          <Balancer className="feature-card-subtitle">Enjoy a feature-rich music player with a sleek, modern UI designed for an immersive listening experience.</Balancer>
+          <p className="feature-card-subtitle text-balance">Enjoy a feature-rich music player with a sleek, modern UI designed for an immersive listening experience.</p>
         </div>
         <div className="mask mask-squircle w-max relative">
           <div className="p-6 size-max bg-gradient-to-bl from-secondary to-secondary dark:from-primary-1000/50 dark:to-primary/30 rounded-3xl">

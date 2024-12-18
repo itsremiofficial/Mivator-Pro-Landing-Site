@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setPageTitle } from '@store/themeConfigSlice';
+import { setPageTitle } from '@Store/themeConfigSlice';
 
-import * as Iconss from '@components/Icon';
+import * as Iconss from '@Icons/index';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
 

@@ -2,8 +2,8 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { Observer } from 'gsap/Observer';
 import { useGSAP } from '@gsap/react';
-import horizontalLoop from '@/utils/horizontalLoop';
-import IconFeatureFast from '@icon/IconFeatureFast';
+import horizontalLoop from '@Utils/horizontalLoop';
+
 gsap.registerPlugin(Observer, useGSAP);
 const MarqueeText = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,7 +14,6 @@ const MarqueeText = () => {
         const loop = horizontalLoop('.marqueeword', {
           repeat: -1,
           speed: 1.5,
-          paddingRight: 10,
         });
         let tl: GSAPTimeline | null = null;
         Observer.create({
@@ -38,9 +37,9 @@ const MarqueeText = () => {
   return (
     <section
       className="
-                    pt-10 md:pt-14 xl:pt-48
-                    pb-8 md:pb-10 xl:pb-32
-                    select-none antialiased"
+          pt-10 md:pt-14 xl:pt-48
+          pb-8 md:pb-10 xl:pb-32
+          select-none antialiased"
     >
       <div
         className="
@@ -50,62 +49,22 @@ const MarqueeText = () => {
                 bg-light-400 dark:bg-primary-1100 font-syne font-extrabold -rotate-3 flex flex-nowrap gap-24 text-secondary dark:text-primary overflow-hidden relative right-0"
         ref={containerRef}
       >
-        <div
-          className="marqueeword marqueetext whitespace-nowrap flex items-center
-                                  gap-6 lg:gap-12
-                                  "
-        >
-          Mivator
-        </div>
-        <div
-          className="marqueeword marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-        >
-          Mivator
-        </div>
-        <div
-          className="marqueeword marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-        >
-          Mivator
-        </div>
-        <div
-          className="marqueeword marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-        >
-          Mivator
-        </div>
-        <div
-          className="marqueeword marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-        >
-          Mivator
-        </div>
-        <div
-          className="marqueeword marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-        >
-          Mivator
-        </div>
-        <div
-          className="marqueeword marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-        >
-          Mivator
-        </div>
-        <div
-          className="marqueeword marqueetext whitespace-nowrap flex items-center
-                                    gap-6 lg:gap-12
-                                    "
-        >
-          Mivator
-        </div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
+        <div className="marqueeword whitespace-nowrap flex items-center lg:px-6 px-4">Mivator</div>
       </div>
     </section>
   );

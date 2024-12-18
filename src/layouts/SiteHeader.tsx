@@ -1,14 +1,14 @@
-import ProButton from '@/components/ProButton';
-import ThemeCustomizer from '@/components/ThemeCustomizer';
+import AnimatedText from '@/components/Common/AnimatedText';
+import ProButton from '@Components/ProButton';
+import ThemeCustomizer from '@Components/ThemeCustomizer';
 import gsap from 'gsap';
-import { CancelCircleIcon, Menu03Icon } from 'hugeicons-react';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const SiteHeader = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  const menuItemsRef = useRef<HTMLDivElement>(null); // Ref to menu container
-  // Toggle expand state on button click
+  const menuItemsRef = useRef<HTMLDivElement>(null);
+
   const handleButtonClick = () => {
     setIsExpanded((prev) => !prev);
   };
@@ -18,25 +18,24 @@ const SiteHeader = () => {
       const items = menuItemsRef.current.querySelectorAll('.menu_item');
 
       if (isExpanded) {
-        // Animate menu items one by one when opening
         gsap.fromTo(
           items,
           { opacity: 0, y: 20 },
           {
+            delay: 0.5,
             opacity: 1,
             y: 0,
-            duration: 0.6,
-            stagger: 0.2, // Delay between each animation
+            duration: 0.4,
+            stagger: 0.2,
             ease: 'power2.out',
           }
         );
       } else {
-        // Animate menu items in reverse when closing
         gsap.to(items, {
           opacity: 0,
           y: 20,
-          duration: 0.5,
-          stagger: 0.1, // Reverse delay
+          duration: 0.2,
+          stagger: 0.5,
           ease: 'power2.in',
         });
       }
@@ -44,34 +43,68 @@ const SiteHeader = () => {
   }, [isExpanded]);
 
   return (
-    <header className="relative flex justify-center items-center w-screen py-6 px-40">
+    <header className="relative top-0 flex justify-center items-center w-screen py-6 px-40">
       <div className="flex justify-end w-full relative z-20">
         {/* NAV MENU */}
-        <div className={`header_button absolute inset-y-0 overflow-hidden left-0 bg-secondary dark:bg-primary-900 text-sm py-4 px-5 cursor-pointer ${isExpanded ? 'expanded' : ''}`}>
-          <div className="w-full flex flex-col gap-3 group/button" ref={menuItemsRef}>
+        <div
+          className={`header_button absolute inset-y-0 overflow-hidden left-0 bg-light-500 dark:bg-primary-900 text-sm cursor-pointer group/button ${
+            isExpanded ? 'expanded' : 'hover:bg-light-600 dark:hover:bg-primary-800'
+          }`}
+        >
+          <div className="w-full flex flex-col" ref={menuItemsRef}>
+            {/* HAMBURGER */}
             <button
-              className="flex gap-3 first_menu_item justify-center text-primary-700 group-hover/button:text-primary-400 cursor-pointer transition-colors duration-300"
               onClick={handleButtonClick}
+              className="flex gap-3 first_menu_item justify-center text-primary-700 group-hover/button:text-primary-400 cursor-pointer transition-colors duration-300 py-4 px-5"
             >
-              {isExpanded ? <CancelCircleIcon className="size-5" strokeWidth="2" /> : <Menu03Icon className="size-5" strokeWidth="2" />}
+              <div className={`wrapper-menu ${isExpanded ? 'open' : ''}`}>
+                <div className="line-menu half start"></div>
+                <div className="line-menu"></div>
+                <div className="line-menu half end"></div>
+              </div>
             </button>
-            <div className="h-full flex flex-col gap-4 py-6 whitespace-nowrap font-nippo text-xl font-extrabold">
-              <button className="flex items-center gap-3 cursor-pointer text-light-700 hover:text-light-500 dark:text-primary-600 hover:dark:text-primary-400 transition-colors duration-300 menu_item">
-                FEATURES
-              </button>
-              <button className="flex items-center gap-3 cursor-pointer text-light-700 hover:text-light-500 dark:text-primary-600 hover:dark:text-primary-400 transition-colors duration-300 menu_item">
-                WHY PRO?
-              </button>
-              <button className="flex items-center gap-3 cursor-pointer text-light-700 hover:text-light-500 dark:text-primary-600 hover:dark:text-primary-400 transition-colors duration-300 menu_item">
-                HOW IT WORKS?
-              </button>
-              <button className="flex items-center gap-3 cursor-pointer text-light-700 hover:text-light-500 dark:text-primary-600 hover:dark:text-primary-400 transition-colors duration-300 menu_item">
-                CONTACT
-              </button>
+            {/* LINKS */}
+            <div className="h-full flex flex-col justify-between items-start gap-4 whitespace-nowrap font-nippo text-xl font-extrabold px-10 pt-4 pb-8">
+              <a href="#features">
+                <AnimatedText
+                  linkText1="HOME"
+                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
+                ></AnimatedText>
+              </a>
+              <a href="#features">
+                <AnimatedText
+                  linkText1="FEATURES"
+                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
+                ></AnimatedText>
+              </a>
+              <a href="#features">
+                <AnimatedText
+                  linkText1="WHY PRO?"
+                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
+                ></AnimatedText>
+              </a>
+              <a href="#features">
+                <AnimatedText
+                  linkText1="HOW IT WORKS?"
+                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
+                ></AnimatedText>
+              </a>
+              <a href="#features">
+                <AnimatedText
+                  linkText1="GET STARTED"
+                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
+                ></AnimatedText>
+              </a>
+              <a href="#features">
+                <AnimatedText
+                  linkText1="LEGAL"
+                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
+                ></AnimatedText>
+              </a>
             </div>
           </div>
         </div>
-
+        {/* RIGHT BUTTONS */}
         <div className="inline-flex gap-4 items-center">
           <ThemeCustomizer />
           <ProButton buttonTitle="Get Pro" className="py-3 px-5" />
@@ -79,8 +112,8 @@ const SiteHeader = () => {
       </div>
 
       {/* HEADERLOGO */}
-      <div className="absolute flex-shrink-0 rounded-md w-20">
-        <svg className="mivator_main_logo" x="0px" y="0px" viewBox="0 0 500 500">
+      <div className="absolute inset-0 w-full flex justify-center z-10">
+        <svg className="mivator_main_logo w-20" x="0px" y="0px" viewBox="0 0 500 500">
           <g className="mivator">
             <path
               className="bg_shadow"

@@ -13,7 +13,7 @@ const useLocoScroll = (start, triggeredElem) => {
 
     const scrollEl = document.querySelector(triggeredElem);
 
-    let locoScroll = new LocomotiveScroll({
+    const locoScroll = new LocomotiveScroll({
       el: scrollEl,
       smooth: true,
       lerp: 0.07,
@@ -60,9 +60,6 @@ const useLocoScroll = (start, triggeredElem) => {
     });
 
     ScrollTrigger.addEventListener('refresh', lsUpdate);
-    //ScrollTrigger.refresh();
-
-    console.log('Loco-scroll initiated.');
 
     return () => {
       locoScroll.destroy();

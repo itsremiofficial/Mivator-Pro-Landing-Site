@@ -6,17 +6,14 @@ const BackgroundLines = React.memo(() => {
   const elementsRef = useRef<NodeListOf<HTMLLIElement> | null>(null);
 
   const createAnimation = useCallback(() => {
-    // Safer plugin registration check
     if (!gsap.registerPlugin) {
       console.warn('GSAP plugin registration failed');
       return;
     }
 
-    // Cache elements once
     elementsRef.current = document.querySelectorAll<HTMLLIElement>('.background-grid li');
     const elements = elementsRef.current;
 
-    // Prevent multiple timelines
     if (timelineRef.current) {
       timelineRef.current.kill();
     }
@@ -73,7 +70,6 @@ const BackgroundLines = React.memo(() => {
   useEffect(() => {
     createAnimation();
 
-    // Cleanup function to kill the timeline when component unmounts
     return () => {
       if (timelineRef.current) {
         timelineRef.current.kill();

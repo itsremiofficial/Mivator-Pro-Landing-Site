@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { routes } from '@router/routes';
-import MainSite from '@/layouts/MainSite';
+import { routes } from '@Router/routes';
+import MainSite from '@Layouts/MainSite';
 
 const finalRoutes = routes.map((route) => {
   return {

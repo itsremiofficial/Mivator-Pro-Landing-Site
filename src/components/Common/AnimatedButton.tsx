@@ -26,7 +26,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ linkText1, linkText2, c
 
     if (!linkElement) return;
 
-    const textElements = linkElement.querySelectorAll("[hoverstagger='text']");
+    const textElements = linkElement.querySelectorAll("[hoverstagger='button']");
 
     textElements.forEach((el) => {
       new SplitType(el as HTMLElement, {
@@ -69,11 +69,11 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ linkText1, linkText2, c
   return (
     <button className={`btn ${className}`} ref={linkRef} name={linkText1}>
       <div hoverstagger="link" className="flex justify-start">
-        <div className="relative overflow-hidden z-[1]">
-          <div hoverstagger="text" className="relative inline-block">
+        <div className="relative overflow-hidden z-[1] leading-none">
+          <div hoverstagger="button" className="relative inline-block">
             {linkText1}
           </div>
-          <div hoverstagger="text" className="absolute inset-y-0">
+          <div hoverstagger="button" className="absolute inset-y-0">
             {linkText2 ? linkText2 : linkText1}
           </div>
         </div>

@@ -109,3 +109,13 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
     </svg>
   );
 };
+
+const MivatorFooterText = () => {
+  return (
+    <div className="relative flex items-center justify-center w-screen">
+      <MivatorText text="MIVATOR" />
+    </div>
+  );
+};
+
+export default MivatorFooterText;

@@ -1,6 +1,5 @@
-import { NowPlayingCard } from '@/components/ThemedStacks/NowPlayingCard';
-import { RankCard } from '@/components/ThemedStacks/RankCard';
-import Balancer from 'react-wrap-balancer';
+import { NowPlayingCard } from '@ThemedStacks/NowPlayingCard';
+import { RankCard } from '@ThemedStacks/RankCard';
 
 const CardsUi = () => {
   return (
@@ -16,7 +15,7 @@ const CardsUi = () => {
             </div>
           </div>
         </div>
-        <Balancer className="feature-card-subtitle"> Code generated stunning cards effortlessly with dynamic, visually striking designs.</Balancer>
+        <p className="feature-card-subtitle"> Code generated stunning cards effortlessly with dynamic, visually striking designs.</p>
       </div>
       <div className="h-32 w-[380px] xl:h-44 xl:w-[480px] relative mx-auto">
         <NowPlayingCard />

@@ -1,6 +1,6 @@
 import { getThemeNames } from '@/colorSchemes';
 import { ReactNode, useMemo } from 'react';
-import { CardStack } from '../Common/CardStack';
+import { CardStack } from '@Common/CardStack';
 import { Message02Icon, MessageMultiple01Icon, VolumeHighIcon } from 'hugeicons-react';
 
 export const RankCard = () => {

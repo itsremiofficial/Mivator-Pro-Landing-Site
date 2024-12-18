@@ -1,8 +1,8 @@
 'use client';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { cn } from '@utils/utils';
-import { IconThreeDots } from '@/components/Icon';
+import { cn } from '@Utils/utils';
+import { IconThreeDots } from '@Icons/index';
 import { SparklesCore } from './Sparkles';
 
 interface CompareProps {

@@ -1,8 +1,8 @@
 import { PropsWithChildren, Suspense } from 'react';
 import App from '@/App';
-import Portals from '@layouts/Portals';
-import SiteHeader from '@layouts/SiteHeader';
-import PreLoader from '@/components/PreLoader';
+import Portals from '@Layouts/Portals';
+import SiteHeader from '@Layouts/SiteHeader';
+import PreLoader from '@Components/PreLoader';
 
 const MainSite = ({ children }: PropsWithChildren) => {
   return (

@@ -1,19 +1,18 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 // Tailwind css
-import './App.css';
-import './assets/css/locomotive.css';
+import '@/App.css';
+import '@Assets/css/locomotive.css';
 
 // Router
 import { RouterProvider } from 'react-router-dom';
-import router from './router/index';
 
 // Redux
 import { Provider } from 'react-redux';
 import { store } from '@/store';
 import { ThemeProvider } from '@/ThemeProvider';
-// import { MobileProvider } from '@utils/deviceDetection/MobileContext';
+import router from '@/router';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

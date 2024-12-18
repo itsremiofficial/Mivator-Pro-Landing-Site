@@ -1,15 +1,16 @@
-import BackgroundLines from '@components/BackgroundLines';
-import Hero from '@pages/sections/Hero.js';
-import MarqueeText from '@components/MarqueeText.js';
-import ConnectedIcons from '@components/ConnectedIcons.js';
-import { FeaturesSection } from '@/pages/sections/FeaturesBento/FeaturesSection.js';
+import BackgroundLines from '@Components/BackgroundLines';
+import Hero from '@Sections/Hero.js';
+import MarqueeText from '@Components/MarqueeText.js';
+import ConnectedIcons from '@Components/ConnectedIcons.js';
+import { FeaturesSection } from '@Sections/FeaturesBento/FeaturesSection.js';
 import { useState } from 'react';
-import useLocoScroll from '@/utils/useLocoScroll';
-import { HowItWorks } from './sections/HowItWorks/HowItWorks';
-import WhyPro from './sections/WhyPro/WhyPro';
-import Footer from './sections/Footer/Footer';
-import CTA from './sections/CTA';
-import { MivatorText } from './sections/Footer/MivatorText';
+import useLocoScroll from '@Utils/useLocoScroll';
+import { HowItWorks } from '@Sections/HowItWorks/HowItWorks';
+import WhyPro from '@Sections/WhyPro/WhyPro';
+import Footer from '@Sections/Footer/Footer';
+import CTA from '@Sections/CTA';
+import MivatorFooterText from '@Sections/Footer/MivatorText';
+
 const Home = () => {
   const [startScroll, setStartScroll] = useState(true);
   useLocoScroll(startScroll, '[data-scroll-container]');
@@ -21,14 +22,18 @@ const Home = () => {
         <BackgroundLines />
         <Hero />
         <MarqueeText />
-        <FeaturesSection />
-        <ConnectedIcons />
-        <WhyPro />
-        <HowItWorks />
-        <CTA />
-        <div className="relative flex items-center justify-center w-screen">
-          <MivatorText text="MIVATOR" />
+        <div id="features">
+          <FeaturesSection />
         </div>
+        <ConnectedIcons />
+        <div id="why-pro">
+          <WhyPro />
+        </div>
+        <div id="how-it-works">
+          <HowItWorks />
+        </div>
+        <CTA />
+        <MivatorFooterText />
         <Footer />
       </main>
     </>

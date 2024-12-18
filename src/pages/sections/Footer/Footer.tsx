@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="mt-8 w-full flex justify-center dark:text-primary-700/30 border-t py-12 dark:border-white/5 font-nippo font-medium group-hover/footer:text-primary transition-colors duration-500">
-        Mivator © 2024  -  All Rights Reserved
+        Mivator © 2024{'  '}-{'  '}All Rights Reserved
       </p>
     </footer>
   );

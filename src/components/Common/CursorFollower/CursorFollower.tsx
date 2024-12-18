@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { CursorFollowerProps, MouseTrackerProps } from '@components/Common/CursorFollower/CursorFollowerTypes';
+import { CursorFollowerProps, MouseTrackerProps } from '@Common/CursorFollower/CursorFollowerTypes';
 
 const CursorFollower: React.FC<CursorFollowerProps> = ({ children, containerRef: externalContainerRef, className, MouseTrackerElement }) => {
   const internalContainerRef = useRef<HTMLDivElement>(null);

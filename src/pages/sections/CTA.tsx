@@ -1,4 +1,4 @@
-import AnimatedButton from '@/components/AnimatedButton';
+import AnimatedButton from '@Common/AnimatedButton';
 import { IRootState } from '@/store';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';

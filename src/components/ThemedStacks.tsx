@@ -1,7 +1,7 @@
 'use client';
 
 import { Clock01Icon, Message02Icon, MessageMultiple01Icon, Mic01Icon, SpotifyIcon, UserIcon, VolumeHighIcon } from 'hugeicons-react';
-import { CardStack } from '@components/Common/CardStack';
+import { CardStack } from '@Common/CardStack';
 import { useMemo } from 'react';
 import { getThemeNames, getThemeTitle, ThemeName, constants } from '@/colorSchemes';
 

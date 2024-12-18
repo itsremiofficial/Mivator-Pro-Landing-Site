@@ -1,4 +1,4 @@
-import { IconsAnimationCard } from '@/components/Common/Cards/IconsAnimationCard';
+import { IconsAnimationCard } from '@Common/Cards/IconsAnimationCard';
 
 const SecurityIcons = () => {
   return (

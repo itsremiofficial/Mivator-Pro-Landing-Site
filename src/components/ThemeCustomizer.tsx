@@ -1,23 +1,20 @@
 import React, { memo, useCallback, useRef, useMemo, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
-import { toggleColorScheme, toggleTheme } from '../store/themeConfigSlice';
+import { toggleColorScheme, toggleTheme } from '@Store/themeConfigSlice';
 import { IRootState } from '@/store';
 import { getThemeTitle, ThemeName } from '@/colorSchemes';
-import { useOutsideClick, useToggle } from '@/utils/outsideClick';
+import { useOutsideClick, useToggle } from '@Utils/outsideClick';
 
-// Lazy load heavy components
-const IconClose = lazy(() => import('../components/Icon/IconClose'));
-const ColorUiWindow = lazy(() => import('./ThemedStacks/ColorUiWindow'));
+const IconClose = lazy(() => import('@Icons/IconClose'));
+const ColorUiWindow = lazy(() => import('@ThemedStacks/ColorUiWindow'));
 
-// Memoized selector using createSelector to prevent unnecessary rerenders
 const selectThemeConfig = createSelector(
   (state: IRootState) => state.themeConfig.theme,
   (state: IRootState) => state.themeConfig.colorScheme,
   (theme, colorScheme) => ({ theme, colorScheme })
 );
 
-// Type definition for props
 interface ThemeCustomizerProps {
   className?: string;
 }
@@ -26,16 +23,13 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = memo(({ className }) => 
   const dispatch = useDispatch();
   const { theme, colorScheme } = useSelector(selectThemeConfig);
 
-  // Memoized toggle state and outside click handler
   const [showCustomizer, toggleCustomizer] = useToggle(false);
   const drawerRef = useRef<HTMLDivElement | null>(null);
 
-  // Optimized outside click handler
   useOutsideClick(drawerRef, () => {
     if (showCustomizer) toggleCustomizer();
   });
 
-  // Highly optimized theme change handler with memoization
   const handleThemeChange = useCallback(
     (themeKey: ThemeName) => {
       const themeAction = themeKey === 'mivatorsilver' ? toggleTheme('light') : toggleTheme('dark');
@@ -46,7 +40,6 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = memo(({ className }) => 
     [dispatch]
   );
 
-  // Memoized theme button style
   const themeButtonStyle = useMemo(
     () => ({
       backgroundColor: `var(--${colorScheme}-700)`,
@@ -54,12 +47,11 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = memo(({ className }) => 
     [colorScheme]
   );
 
-  // Memoized button classes to prevent unnecessary rerenders
   const buttonClasses = useMemo(
     () =>
       `
     !transition-colors !duration-300 
-    bg-light-300 hover:bg-light-400 
+    bg-light-400 hover:bg-light-500 
     border-light-300 hover:border-light-400 
     dark:border-primary-1000 dark:hover:border-primary-900
     dark:bg-primary-1000 dark:hover:bg-primary-900

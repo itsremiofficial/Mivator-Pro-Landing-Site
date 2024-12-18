@@ -781,14 +781,6 @@
 }
 
 @layer base {
-  /* *,
-  *::before,
-  *::after {
-    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
-    transition-timing-function: var(--transition-timing);
-    transition-duration: var(--transition-duration);
-  } */
-
   html,
   body {
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
@@ -799,6 +791,71 @@
   main::after {
     content: '';
     @apply absolute !z-[-1] top-0 left-0 w-full dark:bg-primary;
+  }
+
+  .grain {
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+  .grain:after {
+    animation: grain 10s steps(10) infinite;
+    background-image: url(../grain.webp);
+    content: '';
+    height: 400vh;
+    left: -200vw;
+    position: fixed;
+    top: -200vh;
+    width: 400vw;
+    opacity: 0.5;
+  }
+
+  @keyframes grain {
+    0%,
+    to {
+      transform: translate(0);
+    }
+
+    10% {
+      transform: translate(-3%, -8%);
+    }
+
+    20% {
+      transform: translate(-12%, 6%);
+    }
+
+    30% {
+      transform: translate(10%, -20%);
+    }
+
+    40% {
+      transform: translate(-8%, 20%);
+    }
+
+    50% {
+      transform: translate(-14%, 12%);
+    }
+
+    60% {
+      transform: translate(16%, 2%);
+    }
+
+    70% {
+      transform: translate(1%, 13%);
+    }
+
+    80% {
+      transform: translate(4%, 30%);
+    }
+
+    90% {
+      transform: translate(-7%, 8%);
+    }
   }
 
   /* BACKGROUND LINES */
@@ -855,6 +912,56 @@
   }
 
   /* MENU BUTTON */
+  .wrapper-menu {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 0.4s ease-out;
+  }
+
+  .wrapper-menu.open {
+    transform: rotate(-45deg);
+  }
+
+  .line-menu {
+    @apply dark:bg-primary-700 dark:group-hover/button:bg-primary-400 bg-light-primary group-hover/button:bg-secondary transition-colors duration-400;
+    border-radius: 5px;
+    width: 100%;
+    height: 2.5px;
+  }
+
+  .line-menu.half {
+    width: 50%;
+  }
+
+  .line-menu.start {
+    transition: transform 800ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+    transform-origin: right;
+  }
+
+  .open .line-menu.start {
+    transform: rotate(-90deg) translateX(2px);
+    transition: transform 800ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  }
+
+  .line-menu.end {
+    align-self: flex-end;
+    transition: transform 800ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+    transform-origin: left;
+  }
+
+  .open .line-menu.end {
+    transform: rotate(-90deg) translateX(-2px);
+    transition: transform 800ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  }
+
+  .open .line-menu {
+    @apply dark:bg-primary-600 dark:group-hover/button:bg-primary-400 bg-light-800 group-hover/button:bg-secondary transition-colors duration-400;
+  }
+
   .header_button {
     width: 90px;
     height: 50px;
@@ -863,12 +970,11 @@
     transition: width 0.8s cubic-bezier(0.5, 0, 0.15, 1), height 0.8s cubic-bezier(0.5, 0, 0.15, 1), border-radius 0.8s cubic-bezier(0.5, 0, 0.15, 1), background-color 0.3s ease;
   }
   .header_button.expanded {
-    width: 240px;
-    height: 280px;
+    width: 400px;
+    height: 450px;
     border-radius: 2rem;
     transition: width 0.8s cubic-bezier(0.5, 0, 0.15, 1), height 0.8s cubic-bezier(0.5, 0, 0.15, 1), border-radius 0.8s cubic-bezier(0.5, 0, 0.15, 1), background-color 0.3s ease;
   }
-
   /* PRO BUTTON */
   .ProButton {
     --h-button: 48px;

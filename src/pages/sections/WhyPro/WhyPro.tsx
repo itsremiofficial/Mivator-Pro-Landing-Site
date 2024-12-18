@@ -1,4 +1,4 @@
-import { Compare } from '../ProFeatures/Compare';
+import { Compare } from "@Sections/ProFeatures/Compare";
 
 const WhyPro = () => {
   return (
@@ -547,7 +547,6 @@ const WhyPro = () => {
                 secondImageClassname="object-cover object-left-top"
                 className="w-[500px] h-[580px]"
                 slideMode="hover"
-                autoplay={true}
               />
             </div>
           </div>

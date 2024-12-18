@@ -1,5 +1,5 @@
 import { IRootState } from '@/store';
-import { toggleColorScheme } from '@/store/themeConfigSlice';
+import { toggleColorScheme } from '@Store/themeConfigSlice';
 import React, { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as THREE from 'three';

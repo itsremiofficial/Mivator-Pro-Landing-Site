@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import IconPremium from '@components/Icon/IconPremium';
-import AnimatedButton from '@components/AnimatedButton';
-import { IconArrowRight, IconDashboard } from '@components/Icon';
+import IconPremium from '@Icons/IconPremium';
+import AnimatedButton from '@Common/AnimatedButton';
+import { IconArrowRight, IconDashboard } from '@Icons/index';
 
 const Hero = () => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });

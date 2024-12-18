@@ -1,24 +1,24 @@
-import { lazy } from "react";
-import IconsPage from "../pages/IconsPage";
-const Home = lazy(() => import("../pages/Home"));
-const ERROR404 = lazy(() => import("../pages/Error404"));
+import { lazy } from 'react';
+import IconsPage from '@Pages/IconsPage';
+const Home = lazy(() => import('@Pages/Home'));
+const ERROR404 = lazy(() => import('@Pages/Error404'));
 
 const routes = [
   // dashboard
   {
-    path: "/",
+    path: '/',
     element: <Home />,
-    layout: "site",
+    layout: 'site',
   },
   {
-    path: "/icons",
+    path: '/icons',
     element: <IconsPage />,
-    layout: "site",
+    layout: 'site',
   },
   {
-    path: "*",
+    path: '*',
     element: <ERROR404 />,
-    layout: "site",
+    layout: 'site',
   },
 ];
 

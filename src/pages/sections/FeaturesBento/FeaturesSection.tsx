@@ -1,18 +1,17 @@
 'use client';
 import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IRootState } from '@store/index';
-import Balancer from 'react-wrap-balancer';
+import { IRootState } from '@Store/index';
 import SplitType from 'split-type';
 import gsap from 'gsap';
 
 // Lazy imports with named exports
-const CursorFollower = React.lazy(() => import('@components/Common/CursorFollower/CursorFollower'));
+const CursorFollower = React.lazy(() => import('@Common/CursorFollower/CursorFollower'));
 const ThreeJSCanvas = React.lazy(() => import('./Mivator360'));
 
 // External components and utilities
-import { getThemeNames, getThemeTitle, ThemeName } from '@/colorSchemes';
-import { toggleColorScheme, toggleTheme } from '@/store/themeConfigSlice';
+import { ThemeName } from '@/colorSchemes';
+import { toggleColorScheme, toggleTheme } from '@Store/themeConfigSlice';
 
 // SVG Imports
 import SpotifySvg from './svgs/SpotifySvg';
@@ -125,7 +124,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
       <CursorFollower
         key={index}
         containerRef={cardRefs.current[index]}
-        MouseTrackerElement={({ isHovering, position }) => (
+        MouseTrackerElement={({ isHovering, position }: { isHovering: boolean, position: { x: number, y: number } }) => (
           <div
             className={`cusror_tracker absolute inset-0 pointer-events-none !z-[2] scale-100 opacity-0 !transition-opacity !duration-500
             ${isHovering && 'opacity-100 !transition-opacity !duration-500'}
@@ -148,7 +147,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
   );
 
   return (
-    <section className="my-20 px-4 w-full feature_section" key={'FeaturesSection'}>
+    <section className="py-60 px-4 w-full feature_section" key={'FeaturesSection'}>
       <div className="w-full mx-auto flex flex-col items-center">
         <div className="max-w-screen-2xl text-center mb-10">
           <h2 className="features_title !text-[150px]">Features</h2>

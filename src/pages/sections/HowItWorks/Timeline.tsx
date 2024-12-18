@@ -1,30 +1,30 @@
 import React, { useEffect, useRef, useMemo, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import AnimatedButton from '@/components/AnimatedButton';
+import AnimatedButton from '@Common/AnimatedButton';
 
 interface TimelineEntry {
   title: string;
   content: React.ReactNode;
 }
 
-export const Timeline = React.memo(({ data }: { data: TimelineEntry[] }) => {
-  gsap.registerPlugin(ScrollTrigger);
-  // Register GSAP plugin inside the component
-  useEffect(() => {
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      gsap.killTweensOf('*');
-    };
-  }, []);
+gsap.registerPlugin(ScrollTrigger);
 
+export const Timeline = React.memo(({ data }: { data: TimelineEntry[] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
 
-  const entriesRefs = useRef<(HTMLDivElement | null)[]>(new Array(data.length).fill(null));
-  const circlesRefs = useRef<(HTMLDivElement | null)[]>(new Array(data.length).fill(null));
-  const titlesRefs = useRef<(HTMLDivElement | null)[]>(new Array(data.length).fill(null));
-  const circleBgRefs = useRef<(HTMLDivElement | null)[]>(new Array(data.length).fill(null));
+  const entriesRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const circlesRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const titlesRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const circleBgRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    entriesRefs.current = new Array(data.length).fill(null);
+    circlesRefs.current = new Array(data.length).fill(null);
+    titlesRefs.current = new Array(data.length).fill(null);
+    circleBgRefs.current = new Array(data.length).fill(null);
+  }, [data.length]);
 
   const createScrollAnimations = useCallback(() => {
     const container = containerRef.current;
@@ -115,6 +115,9 @@ export const Timeline = React.memo(({ data }: { data: TimelineEntry[] }) => {
 
   useEffect(() => {
     createScrollAnimations();
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, [createScrollAnimations]);
 
   return useMemo(
@@ -126,16 +129,13 @@ export const Timeline = React.memo(({ data }: { data: TimelineEntry[] }) => {
             <p className="md:text-base text-light-900 dark:text-primary-700/40 text-lg max-w-sm">Build Your Unique Discord Bot in Just 3 Easy Steps</p>
           </div>
           <AnimatedButton linkText1="Start Now!" className="btn btn-secondary py-6 px-10" />
-          {/* <a href='' className="btn btn-primary py-6 px-10">Start Now!</a> */}
         </div>
 
         <div className="relative max-w-7xl mx-auto pb-20 [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]">
           <div className="absolute md:left-8 left-8 top-0 h-full overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-secondary/10 dark:via-white/10 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_80%,transparent_90%)]">
             <div
               ref={lineRef}
-              className="absolute inset-x-0 top-0 w-[2px]
-              bg-gradient-to-t to-light-700 via-light-800 from-secondary
-              dark:from-primary-700 dark:via-primary-900 dark:to-transparent from-[0%] via-[10%] rounded-full [mask-image:linear-gradient(to_bottom,transparent_0%,black_40%,black_100%,transparent_100%)]"
+              className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t to-light-700 via-light-800 from-secondary dark:from-primary-700 dark:via-primary-900 dark:to-transparent from-[0%] via-[10%] rounded-full [mask-image:linear-gradient(to_bottom,transparent_0%,black_40%,black_100%,transparent_100%)]"
             />
           </div>
 
