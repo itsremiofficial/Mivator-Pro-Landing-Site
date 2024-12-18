@@ -32,7 +32,7 @@ const items = [
   </button>,
 ];
 
-export const InfiniteMovingCards = ({ direction = 'left', pauseOnHover = true, className }: { direction?: 'left' | 'right'; pauseOnHover?: boolean; className?: string }) => {
+export const InfiniteMovingCards = ({ direction = 'left', className }: { direction?: 'left' | 'right'; className?: string }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
@@ -40,7 +40,7 @@ export const InfiniteMovingCards = ({ direction = 'left', pauseOnHover = true, c
     addAnimation();
   }, []);
 
-  const [start, setStart] = useState(false);
+  const [_start, setStart] = useState(false);
 
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {

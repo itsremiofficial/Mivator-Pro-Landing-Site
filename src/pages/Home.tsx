@@ -10,14 +10,16 @@ import WhyPro from '@Sections/WhyPro/WhyPro';
 import Footer from '@Sections/Footer/Footer';
 import CTA from '@Sections/CTA';
 import MivatorFooterText from '@Sections/Footer/MivatorText';
+import SiteHeader from '@Layouts/SiteHeader';
 
 const Home = () => {
-  const [startScroll, setStartScroll] = useState(true);
+  const [startScroll, _setStartScroll] = useState(true);
   useLocoScroll(startScroll, '[data-scroll-container]');
   return (
     <>
       <div className="grain"></div>
 
+      <SiteHeader />
       <main data-scroll-container className="relative background flex flex-col items-center min-h-screen h-max">
         <BackgroundLines />
         <Hero />

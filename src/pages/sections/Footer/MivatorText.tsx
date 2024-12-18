@@ -53,11 +53,11 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
         <linearGradient id="textGradient" gradientUnits="userSpaceOnUse" cx="50%" cy="50%" r="25%">
           {hovered && (
             <>
-              <stop offset="0%" stopColor={`${isDark ? 'var(--color11)' : 'var(--color-secondary)'}`} />
-              <stop offset="25%" stopColor={`${isDark ? 'var(--color11)' : 'var(--color-secondary)'}`} />
-              <stop offset="50%" stopColor={`${isDark ? 'var(--color9)' : 'var(--color-secondary)'}`} />
+              <stop offset="0%" stopColor={`${isDark ? 'var(--color8)' : 'var(--color-secondary)'}`} />
+              <stop offset="25%" stopColor={`${isDark ? 'var(--color8)' : 'var(--color-secondary)'}`} />
+              <stop offset="50%" stopColor={`${isDark ? 'var(--color8)' : 'var(--color-secondary)'}`} />
               <stop offset="75%" stopColor={`${isDark ? 'var(--color8)' : 'var(--color-secondary)'}`} />
-              <stop offset="100%" stopColor={`${isDark ? 'var(--color7)' : 'var(--color-secondary)'}`} />
+              <stop offset="100%" stopColor={`${isDark ? 'var(--color8)' : 'var(--color-secondary)'}`} />
             </>
           )}
         </linearGradient>

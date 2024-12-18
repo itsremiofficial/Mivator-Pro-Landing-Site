@@ -112,7 +112,7 @@ const IconsPage = () => {
             <div className="flex items-center max-[600px]:justify-between flex-wrap gap-lg-5 gap-3 mb-5">
               {Object.entries(Iconss)
                 .filter(([name]) => name.toLowerCase().includes(searchQuery))
-                .map(([name, Icon], index) => (
+                .map(([name, Icon]) => (
                   <div key={name} className="grid place-content-center" onClick={() => copyIconCode(name, false)}>
                     <Icon className="w-16 h-16 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800/30 rounded-2xl text-2xl cursor-pointer text-gray-600 dark:text-brandsec-40 dark:hover:bg-gray-800/70 dark:hover:text-brand hover:text-brand transition-all duration-300 linear p-4" />
                   </div>
@@ -129,7 +129,7 @@ const IconsPage = () => {
             <div className="flex items-center max-[600px]:justify-between flex-wrap gap-lg-5 gap-3 mb-5">
               {Object.entries(Iconss)
                 .filter(([name]) => name.toLowerCase().includes(searchQuery))
-                .map(([name, Icon], index) => (
+                .map(([name, Icon]) => (
                   <div key={name} className="grid place-content-center" onClick={() => copyIconCode(name, true)}>
                     <Icon
                       className="w-16 h-16 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800/30 rounded-2xl text-2xl cursor-pointer text-gray-600 dark:text-brandsec-50 dark:hover:bg-gray-800/70 dark:hover:text-brand hover:text-brand transition-all duration-300 linear p-4"

@@ -21,7 +21,7 @@ interface ThemeCustomizerProps {
 
 const ThemeCustomizer: React.FC<ThemeCustomizerProps> = memo(({ className }) => {
   const dispatch = useDispatch();
-  const { theme, colorScheme } = useSelector(selectThemeConfig);
+  const { colorScheme } = useSelector(selectThemeConfig);
 
   const [showCustomizer, toggleCustomizer] = useToggle(false);
   const drawerRef = useRef<HTMLDivElement | null>(null);

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useState } from 'react';
+import { createContext, useContext } from 'react';
 
 export type ThemeName =
   | 'mivatorhotpink'

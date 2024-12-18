@@ -1,7 +1,6 @@
 import { PropsWithChildren, Suspense } from 'react';
 import App from '@/App';
 import Portals from '@Layouts/Portals';
-import SiteHeader from '@Layouts/SiteHeader';
 import PreLoader from '@Components/PreLoader';
 
 const MainSite = ({ children }: PropsWithChildren) => {
@@ -23,7 +22,6 @@ const MainSite = ({ children }: PropsWithChildren) => {
         <div className={`main-container text-secondary dark:text-white min-h-screen`}>
           {/* <Setting /> */}
           <div className="main-content flex flex-col min-h-screen">
-            <SiteHeader />
             {/* BEGIN CONTENT AREA */}
             <Suspense>{children}</Suspense>
             {/* END CONTENT AREA */}

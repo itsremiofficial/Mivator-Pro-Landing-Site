@@ -2,23 +2,14 @@ import React, { ReactNode, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import SplitType from 'split-type';
 
-// Define types for the icon props
-interface IconProps {
-  className?: string;
-  fill?: string | boolean;
-  duotone?: boolean;
-  width?: string | number;
-}
-
 interface AnimatedButtonProps {
   linkText1: string;
   linkText2?: string;
   className?: string;
   Icon?: ReactNode;
-  iconProps?: IconProps;
 }
 
-const AnimatedButton: React.FC<AnimatedButtonProps> = ({ linkText1, linkText2, className, Icon, iconProps }) => {
+const AnimatedButton: React.FC<AnimatedButtonProps> = ({ linkText1, linkText2, className, Icon }) => {
   const linkRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {

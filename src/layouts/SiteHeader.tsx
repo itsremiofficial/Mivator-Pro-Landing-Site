@@ -1,33 +1,44 @@
+import React, { useState, useCallback, useMemo, useRef } from 'react';
+import { gsap } from 'gsap';
 import AnimatedText from '@/components/Common/AnimatedText';
 import ProButton from '@Components/ProButton';
 import ThemeCustomizer from '@Components/ThemeCustomizer';
-import gsap from 'gsap';
-import { useEffect, useRef, useState } from 'react';
+import { useOutsideClick } from '@/utils/outsideClick';
 
-const SiteHeader = () => {
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+const MENU_ITEMS = [
+  { text: 'HOME', href: '/' },
+  { text: 'FEATURES', href: '#features' },
+  { text: 'WHY PRO?', href: '#why-pro' },
+  { text: 'HOW IT WORKS?', href: '#how-it-works' },
+  { text: 'GET STARTED', href: '#get-started' },
+  { text: 'LEGAL', href: '/legal' },
+];
 
-  const menuItemsRef = useRef<HTMLDivElement>(null);
+const SiteHeader: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleButtonClick = () => {
+  const toggleMenu = useCallback(() => {
     setIsExpanded((prev) => !prev);
-  };
+  }, []);
 
-  useEffect(() => {
-    if (menuItemsRef.current) {
-      const items = menuItemsRef.current.querySelectorAll('.menu_item');
+  const drawerRef = useRef<HTMLDivElement | null>(null);
+  useOutsideClick(drawerRef, () => {
+    if (isExpanded) toggleMenu();
+  });
 
+  const animateMenuItems = useCallback(
+    (items: NodeListOf<Element>) => {
       if (isExpanded) {
         gsap.fromTo(
           items,
           { opacity: 0, y: 20 },
           {
-            delay: 0.5,
             opacity: 1,
             y: 0,
             duration: 0.4,
-            stagger: 0.2,
+            stagger: 0.1,
             ease: 'power2.out',
+            delay: 0.5,
           }
         );
       } else {
@@ -35,73 +46,58 @@ const SiteHeader = () => {
           opacity: 0,
           y: 20,
           duration: 0.2,
-          stagger: 0.5,
+          stagger: 0.1,
           ease: 'power2.in',
         });
       }
+    },
+    [isExpanded]
+  );
+
+  const menuItemElements = useMemo(() => {
+    return MENU_ITEMS.map((item, index) => (
+      <a key={index} href={item.href} data-target={item.href} className="nav__Link_item">
+        <AnimatedText
+          linkText1={item.text}
+          className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
+        />
+      </a>
+    ));
+  }, []);
+
+  React.useEffect(() => {
+    const menuContainer = document.querySelector('.menu-items-container');
+    if (menuContainer) {
+      const items = menuContainer.querySelectorAll('.menu_item');
+      animateMenuItems(items);
     }
-  }, [isExpanded]);
+  }, [isExpanded, animateMenuItems]);
 
   return (
-    <header className="relative top-0 flex justify-center items-center w-screen py-6 px-40">
+    <header className="relative flex justify-center items-center w-screen py-6 px-40">
       <div className="flex justify-end w-full relative z-20">
-        {/* NAV MENU */}
         <div
-          className={`header_button absolute inset-y-0 overflow-hidden left-0 bg-light-500 dark:bg-primary-900 text-sm cursor-pointer group/button ${
+          ref={drawerRef}
+          className={`header_button py-3.5 absolute inset-y-0 overflow-hidden left-0 bg-light-500 dark:bg-primary-900 text-sm cursor-pointer group/button ${
             isExpanded ? 'expanded' : 'hover:bg-light-600 dark:hover:bg-primary-800'
           }`}
         >
-          <div className="w-full flex flex-col" ref={menuItemsRef}>
-            {/* HAMBURGER */}
-            <button
-              onClick={handleButtonClick}
-              className="flex gap-3 first_menu_item justify-center text-primary-700 group-hover/button:text-primary-400 cursor-pointer transition-colors duration-300 py-4 px-5"
-            >
-              <div className={`wrapper-menu ${isExpanded ? 'open' : ''}`}>
-                <div className="line-menu half start"></div>
-                <div className="line-menu"></div>
-                <div className="line-menu half end"></div>
-              </div>
-            </button>
-            {/* LINKS */}
-            <div className="h-full flex flex-col justify-between items-start gap-4 whitespace-nowrap font-nippo text-xl font-extrabold px-10 pt-4 pb-8">
-              <a href="#features">
-                <AnimatedText
-                  linkText1="HOME"
-                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
-                ></AnimatedText>
-              </a>
-              <a href="#features">
-                <AnimatedText
-                  linkText1="FEATURES"
-                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
-                ></AnimatedText>
-              </a>
-              <a href="#features">
-                <AnimatedText
-                  linkText1="WHY PRO?"
-                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
-                ></AnimatedText>
-              </a>
-              <a href="#features">
-                <AnimatedText
-                  linkText1="HOW IT WORKS?"
-                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
-                ></AnimatedText>
-              </a>
-              <a href="#features">
-                <AnimatedText
-                  linkText1="GET STARTED"
-                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
-                ></AnimatedText>
-              </a>
-              <a href="#features">
-                <AnimatedText
-                  linkText1="LEGAL"
-                  className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
-                ></AnimatedText>
-              </a>
+          <div className="w-full flex flex-col">
+            <div className="flex justify-center">
+              <button
+                onClick={toggleMenu}
+                className="flex gap-3 first_menu_item items-center justify-center text-primary-700 group-hover/button:text-primary-400 cursor-pointer transition-colors duration-300"
+              >
+                <div className={`wrapper-menu ${isExpanded ? 'open' : ''}`}>
+                  <div className="line-menu h-1 half start"></div>
+                  <div className="line-menu h-1 third center"></div>
+                  <div className="line-menu h-1 half end"></div>
+                </div>
+              </button>
             </div>
+            {isExpanded && (
+              <div className="menu-items-container h-full flex flex-col justify-between items-start gap-4 whitespace-nowrap font-nippo text-xl font-extrabold px-10 py-8">{menuItemElements}</div>
+            )}
           </div>
         </div>
         {/* RIGHT BUTTONS */}
@@ -111,7 +107,7 @@ const SiteHeader = () => {
         </div>
       </div>
 
-      {/* HEADERLOGO */}
+      {/* HEADER LOGO */}
       <div className="absolute inset-0 w-full flex justify-center z-10">
         <svg className="mivator_main_logo w-20" x="0px" y="0px" viewBox="0 0 500 500">
           <g className="mivator">

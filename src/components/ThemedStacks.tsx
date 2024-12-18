@@ -230,8 +230,6 @@ interface LogoThemesProps {
 }
 
 export const LogoThemes: React.FC<LogoThemesProps> = ({ className, onLogoClick }) => {
-  const storedTheme = localStorage.getItem('colorScheme');
-
   const handleThemeChange = (themeName: ThemeName) => {
     onLogoClick(themeName);
   };

@@ -4,7 +4,6 @@ import gsap from 'gsap';
 const PreLoader = () => {
   const loaderRef = useRef<SVGPathElement>(null);
   const loaderContainerRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
   const [startAnimation, setStartAnimation] = useState(false);
 
   // LOGO ANIMATION
@@ -60,7 +59,7 @@ const PreLoader = () => {
       '.counter-span.is--hundreds',
       {
         y: '-102.5%',
-        delay: windowLoadTime / 1.8,
+        delay: windowLoadTime / 1.6,
         duration: windowLoadTime / windowLoadTime,
         ease: customEase,
       },
@@ -253,8 +252,8 @@ const PreLoader = () => {
             <div className="counter relative flex flex-col w-full h-fit text-secondary dark:text-primary z-[1] leading-[0.8] font-counter">
               <div className="loader-counter flex items-stretch text-[15rem] justify-center h-[0.75em] overflow-hidden">
                 <div className="counter-span is--hundreds grid gap-0 text-right grid-rows-[max-content] grid-cols-1 auto-rows-[max-content] auto-cols-[1fr]">
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
+                  <div className="counter-digit relative top-2">0</div>
+                  <div className="counter-digit relative top-1">1</div>
                 </div>
                 <div className="counter-span is--tens grid gap-0 text-right grid-rows-[max-content] grid-cols-1 auto-rows-[max-content] auto-cols-[1fr] ">
                   <div className="counter-digit">0</div>
