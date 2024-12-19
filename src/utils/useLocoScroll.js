@@ -18,7 +18,6 @@ const useLocoScroll = (start, triggeredElem) => {
       smooth: true,
       lerp: 0.07,
       multiplier: 0.8,
-      touchMultiplier: 5,
       tablet: {
         smooth: false,
         breakpoint: 768,
