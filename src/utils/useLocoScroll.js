@@ -16,7 +16,7 @@ const useLocoScroll = (start, triggeredElem) => {
     const locoScroll = new LocomotiveScroll({
       el: scrollEl,
       smooth: true,
-      // lerp: 0.07,
+      lerp: 0.07,
       multiplier: 0.8,
       tablet: {
         smooth: true,
