@@ -4,6 +4,7 @@ import AnimatedText from '@/components/Common/AnimatedText';
 import ProButton from '@Components/ProButton';
 import ThemeCustomizer from '@Components/ThemeCustomizer';
 import { useOutsideClick } from '@/utils/outsideClick';
+import { DiscordIcon, InstagramIcon, NewTwitterIcon, YoutubeIcon } from 'hugeicons-react';
 
 const MENU_ITEMS = [
   { text: 'HOME', href: '/' },
@@ -56,12 +57,21 @@ const SiteHeader: React.FC = () => {
 
   const menuItemElements = useMemo(() => {
     return MENU_ITEMS.map((item, index) => (
-      <a key={index} href={item.href} data-target={item.href} className="nav__Link_item">
-        <AnimatedText
-          linkText1={item.text}
-          className="dark:text-primary-700 dark:hover:text-primary-400 text-light-primary hover:text-secondary transition-colors duration-300 font-nippo font-bold text-3xl menu_item"
-        />
-      </a>
+      <div
+        className="
+      flex items-center gap-3 dark:text-primary-500 dark:hover:text-primary-100
+      text-secondary
+      md:text-light-primary hover:text-secondary
+      transition-colors duration-300
+      font-nippo font-bold
+      text-lg sm:text-3xl
+      menu_item"
+      >
+        <div className="leading-none">{index + 1}.</div>
+        <a key={index} href={item.href} data-target={item.href} className="nav__Link_item flex items-center">
+          <AnimatedText linkText1={item.text} className="" />
+        </a>
+      </div>
     ));
   }, []);
 
@@ -74,19 +84,31 @@ const SiteHeader: React.FC = () => {
   }, [isExpanded, animateMenuItems]);
 
   return (
-    <header className="relative flex justify-center items-center w-screen py-6 px-40">
-      <div className="flex justify-end w-full relative z-20">
+    <header
+      className="
+      relative
+      w-screen
+      md:py-6
+      px-4 xl:px-12 lg:px-8
+      flex justify-center items-center"
+    >
+      <div
+        className="
+        w-full 2xl:max-w-screen-2xl xl:max-w-full
+        flex justify-end relative z-20 
+        h-12 lg:h-fit"
+      >
         <div
           ref={drawerRef}
-          className={`header_button py-3.5 absolute inset-y-0 overflow-hidden left-0 bg-light-500 dark:bg-primary-900 text-sm cursor-pointer group/button ${
+          className={`header_button absolute inset-y-0 overflow-hidden left-0 bg-light-500 dark:bg-primary-900 text-sm cursor-pointer group/button ${
             isExpanded ? 'expanded' : 'hover:bg-light-600 dark:hover:bg-primary-800'
           }`}
         >
-          <div className="w-full flex flex-col">
-            <div className="flex justify-center">
+          <div className="w-full flex flex-col size-full">
+            <div className="flex justify-between sm:w-full">
               <button
                 onClick={toggleMenu}
-                className="flex gap-3 first_menu_item items-center justify-center text-primary-700 group-hover/button:text-primary-400 cursor-pointer transition-colors duration-300"
+                className="flex h-12 w-full gap-3 first_menu_item items-center justify-center text-primary-700 group-hover/button:text-primary-400 cursor-pointer transition-colors duration-300 py-3.5"
               >
                 <div className={`wrapper-menu ${isExpanded ? 'open' : ''}`}>
                   <div className="line-menu h-1 half start"></div>
@@ -96,19 +118,79 @@ const SiteHeader: React.FC = () => {
               </button>
             </div>
             {isExpanded && (
-              <div className="menu-items-container h-full flex flex-col justify-between items-start gap-4 whitespace-nowrap font-nippo text-xl font-extrabold px-10 py-8">{menuItemElements}</div>
+              <div
+                className="flex flex-col
+              gap-7 px-5 sm:gap-10
+              sm:px-10 sm:pt-4 sm:pb-10"
+              >
+                <div className="flex flex-col gap-1 sm:gap-3">
+                  <h4
+                    className="
+                  select-none
+                  font-nippo font-medium tracking-[3px]
+                  dark:text-primary-700 text-light-primary
+                  sm:text-base text-xs
+                  "
+                  >
+                    MENU
+                  </h4>
+                  <div className="menu-items-container h-full flex flex-col justify-between items-start gap-4 sm:gap-6 whitespace-nowrap font-nippo text-xl font-extrabold">{menuItemElements}</div>
+                </div>
+
+                <div className="inline-flex flex-col md:hidden gap-1 sm:gap-3">
+                  <h4
+                    className="
+                  select-none
+                  font-nippo font-medium tracking-[3px]
+                  dark:text-primary-700 text-light-primary
+                  sm:text-base text-xs
+                  "
+                  >
+                    APPEARANCE
+                  </h4>
+                  <ThemeCustomizer className="w-48 justify-start" />
+                </div>
+
+                <div className="menu_item flex flex-col gap-1 sm:gap-3">
+                  <h4
+                    className="
+                  select-none
+                  font-nippo font-medium tracking-[3px]
+                  dark:text-primary-700 text-light-primary
+                  sm:text-base text-xs
+                  "
+                  >
+                    SOCIALS
+                  </h4>
+                  {/* SOCIAL ICONS */}
+                  <div className="social_icons flex justify-between">
+                    <a href="" className="social_icon mask mask-squircle">
+                      <DiscordIcon className="size-full" />
+                    </a>
+                    <a href="" className="social_icon mask mask-squircle">
+                      <YoutubeIcon className="size-full" />
+                    </a>
+                    <a href="" className="social_icon mask mask-squircle">
+                      <InstagramIcon className="size-full" />
+                    </a>
+                    <a href="" className="social_icon mask mask-squircle">
+                      <NewTwitterIcon className="size-full" />
+                    </a>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </div>
         {/* RIGHT BUTTONS */}
-        <div className="inline-flex gap-4 items-center">
+        <div className="hidden md:inline-flex gap-4 items-center">
           <ThemeCustomizer />
           <ProButton buttonTitle="Get Pro" className="py-3 px-5" />
         </div>
       </div>
 
       {/* HEADER LOGO */}
-      <div className="absolute inset-0 w-full flex justify-center z-10">
+      <div className="md:absolute inset-0 md:w-full flex justify-center z-10">
         <svg className="mivator_main_logo w-20" x="0px" y="0px" viewBox="0 0 500 500">
           <g className="mivator">
             <path

@@ -28,8 +28,8 @@ export function HowItWorks() {
     },
   ];
   return (
-    <div className="relative bg-light-200 dark:bg-primary-1200 w-screen pt-60 [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_90%,transparent_100%)]">
+    <section id="how-it-works" className="relative bg-light-200 dark:bg-primary-1200 w-screen pt-60 [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_90%,transparent_100%)]">
       <Timeline data={data} />
-    </div>
+    </section>
   );
 }

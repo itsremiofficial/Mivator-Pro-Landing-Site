@@ -27,7 +27,7 @@ const CTA = () => {
               </radialGradient>
             </defs>
           </svg>
-          <h2 className="text-3xl font-semibold tracking-tight text-balance text-light-100 dark:text-primary sm:text-8xl leading-snug font-nippo">Are You Ready?</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-balance text-light-100 dark:text-primary-400 sm:text-8xl leading-snug font-nippo">Are You Ready?</h2>
 
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <AnimatedButton linkText1="START NOW" className="btn btn-primary py-6 px-10" />

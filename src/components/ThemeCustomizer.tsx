@@ -66,8 +66,22 @@ const ThemeCustomizer: React.FC<ThemeCustomizerProps> = memo(({ className }) => 
     <div>
       {/* Theme Toggle Button */}
       <button type="button" className={buttonClasses} onClick={toggleCustomizer} tabIndex={0}>
-        <span className="w-5 h-5 rounded-full inline-block" style={themeButtonStyle} />
-        <h3 className="text-light-1000 group-hover:text-secondary text-[14px] tracking-wider leading-none dark:text-primary-700 dark:group-hover:text-primary-600 whitespace-nowrap !transition-colors !duration-300">
+        <span
+          className="
+          w-5 h-5
+          sm:w-7 sm:h-7
+          md:w-5 md:h-5
+          rounded-full inline-block"
+          style={themeButtonStyle}
+        />
+        <h3
+          className="
+          text-light-1000 group-hover:text-secondary 
+          dark:text-primary-700 dark:group-hover:text-primary-600
+          text-lg sm:text-[20px] md:text-[14px]
+          tracking-wider leading-none whitespace-nowrap
+          !transition-colors !duration-300"
+        >
           {getThemeTitle(colorScheme as ThemeName)}
         </h3>
       </button>

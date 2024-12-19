@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import IconPremium from '@Icons/IconPremium';
 import AnimatedButton from '@Common/AnimatedButton';
 import { IconArrowRight, IconDashboard } from '@Icons/index';
+import { isMobile } from 'react-device-detect';
 
 const Hero = () => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -41,12 +42,22 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // IMAGE ANIMATION PROPS
+  const animationProps = isMobile
+    ? {} // No animation for mobile
+    : {
+        animate: { x: imagePosition.x, y: imagePosition.y },
+        transition: { type: 'spring', stiffness: 300, damping: 20 },
+        whileHover: { y: -20 },
+        whileTap: { y: 0 },
+      };
+
   return (
     <div
       className="
-                w-full md:max-w-screen-2xl
-                px-4 md:px-8 lg:px-12
-                pt-28 md:pt-32 xl:pt-48
+                w-screen 2xl:max-w-screen-2xl
+                px-4 md:px-8 lg:px-12 2xl:px-0
+                py-28 md:py-24 2xl:py-40
                 flex flex-col-reverse md:flex-row
                 justify-between
                 relative
@@ -62,20 +73,23 @@ const Hero = () => {
         <span>
           <div
             className="
-                        px-6 py-1
+                        pl-1 pr-5 py-1
                         text-xs md:text-sm
                         inline-flex
-                        items-center
-                        border dark:border-pro dark:text-pro border-pro2 text-pro2 rounded-full w-max"
+                        items-center font-mont
+                        border-2 dark:border-pro dark:text-pro border-pro2 text-pro2 rounded-full w-max select-none font-medium"
           >
-            <IconPremium className="md:size-5 mr-2" />
+            <span className="flex gap-1 py-1 px-3 font-bold bg-pro text-secondary rounded-full mr-2">
+              <IconPremium className="md:size-5 p-0.5" />
+              PRO
+            </span>
             Build. Brand. Own—on your terms
           </div>
         </span>
         <div className="relative">
           <div
             className="
-                        text-[2.5rem] lg:text-7xl xl:text-7xl md:text-5xl
+                        text-[2.5rem] lg:text-6xl xl:text-7xl md:text-4xl
                         leading-tight font-syne font-extrabold relative text-secondary dark:text-primary-500 flex flex-col whitespace-nowrap"
           >
             <span className="hero-title scale-y-130 leading-relaxed">Take Full</span>
@@ -146,27 +160,13 @@ const Hero = () => {
           <source srcSet="/pro.webp" type="image/webp" />
           <motion.img
             ref={imageRef}
+            {...animationProps}
             src="/pro.avif"
             alt="Magnetic"
             style={{
               objectFit: 'cover',
             }}
             className="hero-image w-1/2 md:w-full"
-            animate={{
-              x: imagePosition.x,
-              y: imagePosition.y,
-            }}
-            transition={{
-              type: 'spring',
-              stiffness: 300,
-              damping: 20,
-            }}
-            whileHover={{
-              y: -20,
-            }}
-            whileTap={{
-              y: 0,
-            }}
             width={1090}
             height={1308}
           />

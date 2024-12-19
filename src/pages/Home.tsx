@@ -2,7 +2,7 @@ import BackgroundLines from '@Components/BackgroundLines';
 import Hero from '@Sections/Hero.js';
 import MarqueeText from '@Components/MarqueeText.js';
 import ConnectedIcons from '@Components/ConnectedIcons.js';
-import { FeaturesSection } from '@Sections/FeaturesBento/FeaturesSection.js';
+import { MivatorFeatures } from '@Sections/FeaturesBento/FeaturesSection.js';
 import { useState } from 'react';
 import useLocoScroll from '@Utils/useLocoScroll';
 import { HowItWorks } from '@Sections/HowItWorks/HowItWorks';
@@ -24,16 +24,10 @@ const Home = () => {
         <BackgroundLines />
         <Hero />
         <MarqueeText />
-        <div id="features">
-          <FeaturesSection />
-        </div>
+        <MivatorFeatures />
         <ConnectedIcons />
-        <div id="why-pro">
-          <WhyPro />
-        </div>
-        <div id="how-it-works">
-          <HowItWorks />
-        </div>
+        <WhyPro />
+        <HowItWorks />
         <CTA />
         <MivatorFooterText />
         <Footer />

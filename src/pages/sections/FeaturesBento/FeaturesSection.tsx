@@ -44,7 +44,7 @@ export const PlayerIcons = React.memo(() => (
   </>
 ));
 
-export const FeaturesSection: React.FC = React.memo(() => {
+export const MivatorFeatures: React.FC = React.memo(() => {
   const themeConfig = useSelector(
     (state: IRootState) => state.themeConfig,
     (prev, next) => prev.theme === next.theme
@@ -124,7 +124,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
       <CursorFollower
         key={index}
         containerRef={cardRefs.current[index]}
-        MouseTrackerElement={({ isHovering, position }: { isHovering: boolean, position: { x: number, y: number } }) => (
+        MouseTrackerElement={({ isHovering, position }: { isHovering: boolean; position: { x: number; y: number } }) => (
           <div
             className={`cusror_tracker absolute inset-0 pointer-events-none !z-[2] scale-100 opacity-0 !transition-opacity !duration-500
             ${isHovering && 'opacity-100 !transition-opacity !duration-500'}
@@ -147,7 +147,7 @@ export const FeaturesSection: React.FC = React.memo(() => {
   );
 
   return (
-    <section className="py-60 px-4 w-full feature_section" key={'FeaturesSection'}>
+    <section id="features" className="py-60 px-4 w-full feature_section" key={'FeaturesSection'}>
       <div className="w-full mx-auto flex flex-col items-center">
         <div className="max-w-screen-2xl text-center mb-10">
           <h2 className="features_title !text-[150px]">Features</h2>
@@ -197,4 +197,4 @@ export const FeaturesSection: React.FC = React.memo(() => {
     </section>
   );
 });
-export default React.memo(FeaturesSection);
+export default React.memo(MivatorFeatures);

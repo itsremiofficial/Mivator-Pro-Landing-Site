@@ -58,7 +58,7 @@ const ProButton: React.FC<ProButtonProps> = ({ buttonTitle, className }) => {
               <stop offset="50%" stopColor="#f28b0c" />
             </linearGradient>
           </defs>
-          <rect x="0" y="0" width="150" height="150" fill="url(#animated-gradient)" />
+          <rect x="-3" y="-3" width="133" height="55" fill="url(#animated-gradient)" />
         </svg>
         <span className="ProButtoninner">
           {buttonTitle}
