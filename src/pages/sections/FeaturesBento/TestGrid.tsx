@@ -159,19 +159,47 @@ export const MivatorFeatures: React.FC = React.memo(() => {
           <h2 className="features_title">Features</h2>
           <p className="text-light-900 dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
         </div>
-        <div className="relative feature_container w-full max-w-screen-2xl mx-auto group/bento">
-          {createCursorFollower(1, 'feature1 feature-card bg-gradient-to-br flex flex-col justify-between group/commands', <CommandsCount isDark={isDark} />)}
-          {createCursorFollower(2, 'feature2 bg-gradient-to-b feature-card flex flex-col items-center justify-center', <FastSpeed isDark={isDark} />)}
-          {createCursorFollower(3, 'feature3 feature-card bg-gradient-to-b', <ThemesCount />)}
-          {createCursorFollower(4, 'grow feature4 feature-card flex items-center justify-center bg-gradient-to-r', <SecurityCard />)}
-          {createCursorFollower(5,'feature7 feature-card flex items-center justify-center bg-gradient-to-r dark:from-primary-1100 dark:via-primary-900 dark:to-primary-1100 from-primary-400 via-light-100 to-light-400 !p-0', <SecurityIcons />)}
-          <div className="feature5 relative"><ThreeJSCanvas /></div>
-          {createCursorFollower(6, 'grow !h-full feature8  feature-card flex items-center justify-center bg-gradient-to-r', <MusicPlayer />)}
-          <a href="" className="feature9 feature-card p-0 bg-gradient-to-t group/scrolldown">
-            {createCursorFollower(7, 'h-full p-10', <ScrollDown />)}
-          </a>
-          <div className="flex feature10 gap-6"><PlayerIcons /></div>
-          {createCursorFollower(8, 'feature6 bg-gradient-to-l feature-card', <CardsUi />)}
+        <div className="relative w-full max-w-screen-2xl mx-auto group/bento">
+          <div className="grid grid-cols-4 xl:grid-cols-5 gap-6">
+            {/* Over 500 Commands */}
+            {createCursorFollower(1, 'col-span-5 xl:col-span-3 feature-card bg-gradient-to-br flex flex-col justify-between group/commands', <CommandsCount isDark={isDark} />)}
+            {/* 15 MS */}
+            {createCursorFollower(2, 'col-span-1 xl:col-span-1 bg-gradient-to-b feature-card flex flex-col items-center justify-center', <FastSpeed isDark={isDark} />)}
+            {/* 16 THEMES */}
+            {createCursorFollower(3, 'col-span-1 xl:col-span-1 feature-card bg-gradient-to-b', <ThemesCount />)}
+          </div>
+
+          {/* SECTION 02 */}
+          <div className="grid grid-cols-13 auto-rows-[minmax(200px,auto)] gap-6 mt-6">
+            <div className="col-span-8 grid grid-cols-8 auto-rows-2 gap-6">
+              <div className="col-span-8 row-span-1 grid grid-cols-8">
+                <div className="flex flex-col gap-6 w-full col-span-5">
+                  {createCursorFollower(4, 'grow col-span-5 feature-card flex items-center justify-center bg-gradient-to-r', <SecurityCard />)}
+                  {createCursorFollower(
+                    5,
+                    'col-span-5 feature-card flex items-center justify-center bg-gradient-to-r dark:from-primary-1100 dark:via-primary-900 dark:to-primary-1100 from-primary-400 via-light-100 to-light-400 !p-0',
+                    <SecurityIcons />
+                  )}
+                </div>
+                <div className="col-span-3 row-span-1 relative">
+                  <ThreeJSCanvas />
+                </div>
+              </div>
+              <div className="col-span-8 grid grid-cols-11 gap-6">
+                <div className="col-span-9 flex">{createCursorFollower(6, 'grow col-span-8 row-span-1 feature-card flex items-center justify-center bg-gradient-to-r', <MusicPlayer />)}</div>
+                <a href="" className="col-span-2 feature-card p-0 bg-gradient-to-t group/scrolldown">
+                  {createCursorFollower(7, 'h-full p-10', <ScrollDown />)}
+                </a>
+              </div>
+            </div>
+            <div className="col-span-5">
+              {createCursorFollower(8, 'col-span-5 bg-gradient-to-l feature-card', <CardsUi />)}
+              <div className="flex gap-6 mt-6">
+                {' '}
+                <PlayerIcons />{' '}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

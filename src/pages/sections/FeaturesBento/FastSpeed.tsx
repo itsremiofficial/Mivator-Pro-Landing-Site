@@ -17,7 +17,7 @@ const FastSpeed = ({ isDark }: { isDark: boolean }) => {
             </div>
           </div>
         </div>
-        <p className="feature-card-subtitle">Fast and Seamless</p>
+        <p className="feature-card-subtitle text-center">Fast and Seamless</p>
       </div>
     </div>
   );

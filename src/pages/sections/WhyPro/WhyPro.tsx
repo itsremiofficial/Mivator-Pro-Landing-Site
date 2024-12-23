@@ -4,7 +4,7 @@ const WhyPro = () => {
   return (
     <section id="why-pro" className="w-screen h-fit relative py-60">
       <div className="w-full text-center mb-10 flex flex-col justify-center">
-        <h2 className="features_title !text-[150px]">Why Pro?</h2>
+        <h2 className="features_title">Why Pro?</h2>
         <p className="text-light-900 dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
       </div>
       <div className="container px-4 mx-auto">

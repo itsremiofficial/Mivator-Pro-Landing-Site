@@ -17,7 +17,7 @@ const ThemesCount = () => {
             </div>
           </div>
         </div>
-        <p className="feature-card-subtitle">Customize Your Experience</p>
+        <p className="feature-card-subtitle text-center">Customize Your Experience</p>
       </div>
     </div>
   );

@@ -7,9 +7,9 @@ import { IconArrowRight, IconDashboard } from '@Icons/index';
 import { isMobile } from 'react-device-detect';
 
 const Hero = () => {
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [_cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
+  const [_isHovering, setIsHovering] = useState(false);
 
   const imageRef = React.useRef<HTMLImageElement | null>(null);
 
@@ -57,7 +57,7 @@ const Hero = () => {
       className="
                 w-screen 2xl:max-w-screen-2xl
                 px-4 md:px-8 lg:px-12 2xl:px-0
-                py-28 md:py-24 2xl:py-40
+                py-12 lg:py-24 2xl:py-40
                 flex flex-col-reverse md:flex-row
                 justify-between
                 relative
@@ -73,14 +73,22 @@ const Hero = () => {
         <span>
           <div
             className="
-                        pl-1 pr-5 py-1
-                        text-xs md:text-sm
+                        p-0.5 pr-3
+                        lg:pl-1 lg:pr-5 lg:py-1
+                        text-xs lg:text-base
                         inline-flex
                         items-center font-mont
-                        border-2 dark:border-pro dark:text-pro border-pro2 text-pro2 rounded-full w-max select-none font-medium"
+                        border lg:border-2 dark:border-pro dark:text-pro border-pro text-pro rounded-full w-max select-none font-medium"
           >
-            <span className="flex gap-1 py-1 px-3 font-bold bg-pro text-secondary rounded-full mr-2">
-              <IconPremium className="md:size-5 p-0.5" />
+            <span
+              className="
+            flex gap-1 items-center
+            py-0.5 px-1.5 lg:py-1 lg:px-3 mr-2
+            text-[12px] lg:text-sm
+            font-bold bg-pro text-secondary rounded-full
+            "
+            >
+              <IconPremium className="size-4 md:size-5 p-0.5" />
               PRO
             </span>
             Build. Brand. Own—on your terms
@@ -89,12 +97,12 @@ const Hero = () => {
         <div className="relative">
           <div
             className="
-                        text-[2.5rem] lg:text-6xl xl:text-7xl md:text-4xl
+                        text-[2rem] sm:text-[2.5rem] lg:text-6xl xl:text-7xl md:text-4xl
                         leading-tight font-syne font-extrabold relative text-secondary dark:text-primary-500 flex flex-col whitespace-nowrap"
           >
-            <span className="hero-title scale-y-130 leading-relaxed">Take Full</span>
-            <span className="hero-title scale-y-130 leading-relaxed">Control with</span>
-            <span className="hero-title scale-y-130 leading-relaxed">
+            <span className="hero-title scale-y-140 leading-relaxed">Take Full</span>
+            <span className="hero-title scale-y-140 leading-relaxed">Control with</span>
+            <span className="hero-title scale-y-140 leading-relaxed">
               Mivator <span className="text-pro dark:text-pro">Pro</span>
             </span>
           </div>
@@ -103,7 +111,7 @@ const Hero = () => {
           className="
                     text-sm lg:text-lg
                     text-light-900 dark:text-primary-700/50
-                    font-syne w-[70%]"
+                    font-syne text-balance"
         >
           Bring your vision to life with a custom Mivator Pro. From name to colors to complete ownership, it’s all yours.
         </div>
@@ -126,10 +134,19 @@ const Hero = () => {
             <a href="/Icons" data-scroll-speed="4" data-scroll-position="top" data-scroll className="group">
               <AnimatedButton
                 linkText1="Get Started"
-                className="btn-primary px-6 py-5 z-[10]"
+                className="btn-primary py-3 px-4 lg:px-6 lg:py-5 z-[10]"
                 Icon={
                   <IconArrowRight
-                    className="border !rounded-lg group-hover:ml-3 !transition-all duration-300 border-light-800 group-hover:border-light-100/5 group-hover:bg-light-100/15 dark:border-primary dark:group-hover:bg-primary-800  dark:text-primary-600 dark:group-hover:text-primary-500 dark:group-hover:border-primary-800 p-1 ml-2 size-7"
+                    className="
+                    border rounded-lg
+                    group-hover:ml-3
+                    !transition-all duration-300
+                    border-light-800 group-hover:border-light-100/5
+                    dark:border-primary dark:group-hover:border-primary-800
+                    dark:group-hover:bg-primary-800 
+                    dark:text-primary-600 dark:group-hover:text-primary-500 group-hover:bg-light-100/15
+                    p-1 ml-2
+                    size-6 lg:size-7"
                     fill
                     duotone={false}
                     width={2}
@@ -139,39 +156,36 @@ const Hero = () => {
             </a>
 
             <a href="/color" data-scroll-speed="1.5" data-scroll-position="top" data-scroll-delay="0.1" data-scroll>
-              <AnimatedButton linkText1="Dashboard" className="btn-secondary px-6 py-5" Icon={<IconDashboard className="ml-2 size-7" fill />} />
+              <AnimatedButton linkText1="Dashboard" className="btn-secondary py-3 px-4 lg:px-6 lg:py-5" Icon={<IconDashboard className="ml-2 lg:size-7 size-6" fill />} />
             </a>
           </div>
         </div>
       </div>
-      <div
+      <motion.picture
         className="
                 relative
                 flex
-                justify-center
-                items-start xl:items-center
+                justify-center items-center
                 lg:w-1/3 md:w-1/3 w-full
                 mb-12 md:mb-0
                 select-none
                 "
       >
-        <motion.picture>
-          <source srcSet="/pro.avif" type="image/avif" />
-          <source srcSet="/pro.webp" type="image/webp" />
-          <motion.img
-            ref={imageRef}
-            {...animationProps}
-            src="/pro.avif"
-            alt="Magnetic"
-            style={{
-              objectFit: 'cover',
-            }}
-            className="hero-image w-1/2 md:w-full"
-            width={1090}
-            height={1308}
-          />
-        </motion.picture>
-      </div>
+        <source srcSet="/pro.avif" type="image/avif" />
+        <source srcSet="/pro.webp" type="image/webp" />
+        <motion.img
+          ref={imageRef}
+          {...animationProps}
+          src="/pro.avif"
+          alt="Magnetic"
+          style={{
+            objectFit: 'cover',
+          }}
+          className="hero-image w-1/2 md:w-full"
+          width={1090}
+          height={1308}
+        />
+      </motion.picture>
     </div>
   );
 };

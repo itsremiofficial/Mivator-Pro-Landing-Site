@@ -5,7 +5,7 @@ const CardsUi = () => {
   return (
     <div className="flex flex-col justify-between h-full gap-5">
       <div className="flex flex-col items-start justify-end">
-        <div className="text-3xl feature-card-title leading-normal font-medium tracking-wide">
+        <div className="text-3xl feature-card-title leading-normal font-semibold tracking-wide">
           <div className="relative whitespace-nowrap overflow-hidden">
             <div hoverstagger="title" className="relative inline-block">
               Modern Design Cards
