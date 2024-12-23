@@ -1,19 +1,18 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 
 import LocomotiveScroll from 'locomotive-scroll';
 
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-const useLocoScroll = (start, triggeredElem) => {
+const useLocoScroll = (triggeredElem) => {
+  const locoScrollRef = useRef(null);
   gsap.registerPlugin(ScrollTrigger);
 
   useLayoutEffect(() => {
-    if (!start) return;
-
     const scrollEl = document.querySelector(triggeredElem);
 
-    const locoScroll = new LocomotiveScroll({
+    locoScrollRef.current = new LocomotiveScroll({
       el: scrollEl,
       smooth: true,
       lerp: 0.07,
@@ -27,12 +26,12 @@ const useLocoScroll = (start, triggeredElem) => {
       },
     });
 
-    locoScroll.on('scroll', ScrollTrigger.update);
+    locoScrollRef.current.on('scroll', ScrollTrigger.update);
 
     ScrollTrigger.scrollerProxy(scrollEl, {
       scrollTop(value) {
-        if (locoScroll) {
-          return arguments.length ? locoScroll.scrollTo(value, { duration: 0, disableLerp: true }) : locoScroll.scroll.instance.scroll.y;
+        if (locoScrollRef.current) {
+          return arguments.length ? locoScrollRef.current.scrollTo(value, { duration: 0, disableLerp: true }) : locoScrollRef.current.scroll.instance.scroll.y;
         }
         return null;
       },
@@ -48,12 +47,10 @@ const useLocoScroll = (start, triggeredElem) => {
     });
 
     const lsUpdate = () => {
-      if (locoScroll) {
-        locoScroll.update();
+      if (locoScrollRef.current) {
+        locoScrollRef.current.update();
       }
     };
-
-    // ScrollTrigger.defaults({ scroller: scrollEl });
 
     ScrollTrigger.defaults({
       scroller: document.documentElement.classList.contains('has-scroll-smooth') && scrollEl,
@@ -62,10 +59,21 @@ const useLocoScroll = (start, triggeredElem) => {
     ScrollTrigger.addEventListener('refresh', lsUpdate);
 
     return () => {
-      locoScroll.destroy();
+      locoScrollRef.current.destroy();
       ScrollTrigger.removeEventListener('refresh', lsUpdate);
     };
-  }, [start]);
+  }, [triggeredElem]);
+
+  const scrollToSection = (target) => {
+    const easing = [0.25, 0.0, 0.35, 1.0];
+    locoScrollRef.current?.scrollTo(target, {
+      duration: 2000,
+      easing: easing,
+      disableLerp: false,
+    });
+  };
+
+  return { scrollToSection };
 };
 
 export default useLocoScroll;

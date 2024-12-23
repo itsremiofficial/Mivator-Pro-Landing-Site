@@ -1,3 +1,4 @@
+import AnimatedTooltip from '@/components/Common/AnimatedTooltip';
 import { DiscordIcon, InstagramIcon, NewTwitterIcon, YoutubeIcon } from 'hugeicons-react';
 
 const Footer = () => {
@@ -128,29 +129,31 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-            <div>
-              <div className="px-10 pt-8">
-                <h4 className="my-3 ml-1 font-nippo font-medium tracking-[3px] text-primary-600 select-none text-base">SOCIALS</h4>
-                <div className="social_icons flex justify-between">
-                  <a href="" className="social_icon mask mask-squircle">
-                    <DiscordIcon className="size-full" />
-                  </a>
-                  <a href="" className="social_icon mask mask-squircle">
-                    <YoutubeIcon className="size-full" />
-                  </a>
-                  <a href="" className="social_icon mask mask-squircle">
-                    <InstagramIcon className="size-full" />
-                  </a>
-                  <a href="" className="social_icon mask mask-squircle">
-                    <NewTwitterIcon className="size-full" />
-                  </a>
-                </div>
+            {/* SOCIAL LINKS */}
+            <div className="px-10 pt-8 w-1/2 mx-auto">
+              <h4 className="my-3 ml-1 font-nippo font-medium tracking-[3px] text-primary-800 select-none text-base">SOCIALS</h4>
+              <div className="social_icons flex justify-between">
+                <a href="">
+                  <AnimatedTooltip id={1} className="social_icon mask mask-squircle" mains="Discord" Children={<DiscordIcon className="size-full" />} />
+                </a>
+
+                <a href="">
+                  <AnimatedTooltip id={2} className="social_icon mask mask-squircle" mains="YouTube" Children={<YoutubeIcon className="size-full" />} />
+                </a>
+
+                <a href="">
+                  <AnimatedTooltip id={3} className="social_icon mask mask-squircle" mains="Instagram" Children={<InstagramIcon className="size-full" />} />
+                </a>
+
+                <a href="">
+                  <AnimatedTooltip id={4} className="social_icon mask mask-squircle" mains="Twitter" Children={<NewTwitterIcon className="size-full" />} />
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <p className="mt-8 w-full flex justify-center dark:text-primary-700/30 border-t py-12 dark:border-white/5 font-nippo font-medium group-hover/footer:text-primary transition-colors duration-500">
+      <p className="mt-8 w-full flex justify-center dark:text-primary-700/30 text-light-800 border-t py-12 border-light-500 dark:border-white/5 font-nippo font-medium group-hover/footer:text-secondary group-hover/footer:dark:text-primary transition-colors duration-500">
         Mivator © 2024{'  '}-{'  '}All Rights Reserved
       </p>
     </footer>

@@ -7,15 +7,18 @@ import { useOutsideClick } from '@/utils/outsideClick';
 import { DiscordIcon, InstagramIcon, NewTwitterIcon, YoutubeIcon } from 'hugeicons-react';
 
 const MENU_ITEMS = [
-  { text: 'HOME', href: '/' },
+  { text: 'HOME', href: '#home' },
   { text: 'FEATURES', href: '#features' },
   { text: 'WHY PRO?', href: '#why-pro' },
   { text: 'HOW IT WORKS?', href: '#how-it-works' },
   { text: 'GET STARTED', href: '#get-started' },
   { text: 'LEGAL', href: '/legal' },
 ];
+interface SiteHeaderProps {
+  handleScroll: (sectionId: string) => void;
+}
 
-const SiteHeader: React.FC = () => {
+const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleMenu = useCallback(() => {
@@ -57,18 +60,9 @@ const SiteHeader: React.FC = () => {
 
   const menuItemElements = useMemo(() => {
     return MENU_ITEMS.map((item, index) => (
-      <div
-        className="
-      flex items-center gap-3 dark:text-primary-500 dark:hover:text-primary-100
-      text-secondary
-      md:text-light-primary hover:text-secondary
-      transition-colors duration-300
-      font-nippo font-bold
-      text-lg sm:text-3xl
-      menu_item"
-      >
+      <div className="menu_item_link menu_item" key={index}>
         <div className="leading-none">{index + 1}.</div>
-        <a key={index} href={item.href} data-target={item.href} className="nav__Link_item flex items-center">
+        <a className="nav__Link_item flex items-center" onClick={() => handleScroll(item.href)}>
           <AnimatedText linkText1={item.text} className="" />
         </a>
       </div>

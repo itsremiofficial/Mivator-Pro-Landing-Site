@@ -91,7 +91,6 @@ export const AnimatedTooltip = ({
                 exit={{ opacity: 0, y: 20, scale: 0.6 }}
                 style={{
                   translateX: translateX,
-
                   whiteSpace: 'nowrap',
                 }}
                 className="absolute -top-16 left-1/2 -translate-x-1/2

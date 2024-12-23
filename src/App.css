@@ -937,10 +937,12 @@
   }
 
   .line-menu {
-    @apply dark:bg-primary-700 dark:group-hover/button:bg-primary-400 bg-light-primary group-hover/button:bg-secondary transition-colors duration-400;
     border-radius: 2rem;
     width: 100%;
     height: 2.5px;
+    @apply bg-light-800 group-hover/button:bg-secondary;
+    @apply dark:bg-primary-700 dark:group-hover/button:bg-primary-400;
+    @apply transition-colors duration-400;
   }
 
   .line-menu.half {
@@ -977,8 +979,8 @@
   }
 
   .open .line-menu {
-    @apply dark:bg-primary-600 dark:group-hover/button:bg-primary-400;
     @apply bg-light-800 group-hover/button:bg-secondary;
+    @apply dark:bg-primary-600 group-hover/button:dark:bg-primary-400;
     @apply transition-colors duration-400;
   }
 
@@ -997,11 +999,18 @@
     border-radius: 2rem;
     transition: width var(--smooth-animation), height var(--smooth-animation), border-radius var(--smooth-animation), background-color 0.3s ease;
   }
+  .menu_item_link {
+    @apply flex items-center gap-3;
+    @apply font-nippo font-bold text-lg sm:text-3xl;
+    @apply text-secondary md:text-light-800 hover:text-secondary;
+    @apply dark:text-primary-500 dark:hover:text-primary-100;
+    @apply transition-colors duration-300;
+  }
   .social_icon {
     @apply w-12 h-12 p-3;
     @apply sm:w-16 sm:h-16 sm:p-4.5;
     @apply bg-light-700;
-    @apply text-secondary md:text-light-800 hover:text-secondary;
+    @apply text-secondary md:text-light-900 hover:text-secondary;
     @apply dark:bg-primary-1000 dark:hover:bg-primary-1100;
     @apply dark:text-primary-500 dark:hover:text-primary-700;
     @apply transition-colors duration-400;
