@@ -48,47 +48,26 @@ const PreLoader = () => {
 
   // COUNTER ANIMATION
 
-  const customEase = 'M0,0,C0.25,0,0.294,0.023,0.335,0.05,0.428,0.11,0.466,0.292,0.498,0.502,0.532,0.73,0.586,0.88,0.64,0.928,0.679,0.962,0.698,1,1,1';
   useLayoutEffect(() => {
-    const windowLoadTime = performance.now() / 1000;
     if (!startAnimation) return;
+
+    const windowLoadTime = performance.now() / 1000;
+    const customEase = 'M0,0,C0.25,0,0.294,0.023,0.335,0.05,0.428,0.11,0.466,0.292,0.498,0.502,0.532,0.73,0.586,0.88,0.64,0.928,0.679,0.962,0.698,1,1,1';
 
     const loaderTimeline = gsap.timeline();
 
-    loaderTimeline.to(
-      '.counter-span.is--hundreds',
-      {
-        y: '-102.5%',
-        delay: windowLoadTime / 1.6,
-        duration: windowLoadTime / windowLoadTime,
-        ease: customEase,
-      },
-      1.6
-    );
-    loaderTimeline.to(
-      '.counter-span.is--tens',
-      {
-        y: '-1062%',
-        duration: windowLoadTime,
-        ease: customEase,
-      },
-      0.2
-    );
-    loaderTimeline.to(
-      '.counter-span.is--ones',
-      {
-        y: '-10661.5%',
-        duration: windowLoadTime,
-        ease: customEase,
-      },
-      0
-    );
+    loaderTimeline.to('.counter-span.is--hundreds', { y: '-104.5%', delay: windowLoadTime / 1.6, duration: 1, ease: customEase }, 0.8);
+    loaderTimeline.to('.counter-span.is--tens', { y: '-1062.5%', duration: windowLoadTime, ease: customEase }, 0.2);
+    loaderTimeline.to('.counter-span.is--ones', { y: '-11729%', duration: windowLoadTime, ease: customEase }, 0);
   }, [startAnimation]);
+
+  const ones = Array.from({ length: 111 }, (_, i) => i % 10);
+  const tens = Array.from({ length: 11 }, (_, i) => i % 10);
 
   return (
     <div ref={loaderContainerRef} className="screen_loader fixed inset-0 bg-light-200 dark:bg-primary-1200 z-[60] grid place-content-center animate__animated">
-      <div className="flex flex-col items-center">
-        <svg id="mivator_logo" x="0px" y="0px" viewBox="0 0 324.5 348" className="enable-background loader" fill="none" width={250} height={250}>
+      <div className="flex flex-col items-center justify-center gap-20">
+        <svg viewBox="0 0 324.5 348" className="loader w-48 lg:w-64" fill="none">
           <path
             id="shadow"
             className="fill-white dark:fill-primary blur-3xl absolute top-0 bottom-0 left-0 right-0 w-full z-[-2]"
@@ -246,146 +225,35 @@ const PreLoader = () => {
           />
         </svg>
         {/* PROGRESS COUNTER 1 to 100 */}
-        <div className="flex w-full h-fit justify-center py-42 pt-16">
+        <div className="flex w-full h-fit justify-center">
           <div className="loader-wrapper w-max h-full relative py-2">
-            <div className="vertical-gradient h-full w-52 absolute left-1/2 transform -translate-x-1/2 top-0 z-[3]"></div>
+            <div className="pointer-events-none vertical-gradient h-full w-52 absolute left-1/2 transform -translate-x-1/2 top-0 z-[3]"></div>
             <div className="counter relative flex flex-col w-full h-fit text-secondary dark:text-primary z-[1] leading-[0.8] font-counter">
-              <div className="loader-counter flex items-stretch text-[15rem] justify-center h-[0.75em] overflow-hidden">
+              <div className="loader-counter relative -left-4 flex items-stretch text-[15rem] h-[0.75em] overflow-hidden ">
                 <div className="counter-span is--hundreds grid gap-0 text-right grid-rows-[max-content] grid-cols-1 auto-rows-[max-content] auto-cols-[1fr]">
                   <div className="counter-digit relative top-2">0</div>
                   <div className="counter-digit relative top-1">1</div>
                 </div>
                 <div className="counter-span is--tens grid gap-0 text-right grid-rows-[max-content] grid-cols-1 auto-rows-[max-content] auto-cols-[1fr] ">
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
-                  <div className="counter-digit">0</div>
+                  {tens.map((ten, index) => (
+                    <div key={index} className="counter-digit">
+                      {ten}
+                    </div>
+                  ))}
                 </div>
                 <div className="counter-span is--ones grid gap-0 text-right grid-rows-[max-content] grid-cols-1 auto-rows-[max-content] auto-cols-[1fr] ">
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
-                  <div className="counter-digit">0</div>
-                  <div className="counter-digit">1</div>
-                  <div className="counter-digit">2</div>
-                  <div className="counter-digit">3</div>
-                  <div className="counter-digit">4</div>
-                  <div className="counter-digit">5</div>
-                  <div className="counter-digit">6</div>
-                  <div className="counter-digit">7</div>
-                  <div className="counter-digit">8</div>
-                  <div className="counter-digit">9</div>
+                  {ones.map((one, index) => (
+                    <div key={index} className="counter-digit">
+                      {one}
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="counter-span is--percent grid gap-0 absolute bottom-4 -right-8">
-                <svg className="w-12" viewBox="0 0 1514 2107.3" fill="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px">
+              <div className="counter-span is--percent grid gap-0 absolute bottom-4 -right-4">
+                <svg className="w-12 " viewBox="0 0 1514 2107.3" fill="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px">
                   <path
                     id="bg"
-                    className="fill-light-200 dark:fill-primary-1100"
+                    className="fill-light-200 dark:fill-primary-1200"
                     d="M1514,1508v220.2c0,52.9-11.4,104.1-33.9,152.3c-21.2,45.4-51.3,86-89.4,120.5
 	c-37.1,33.7-80.1,60-127.7,78.2c-48.6,18.6-100,28.1-152.8,28.1s-104.2-9.4-152.8-28.1c-47.6-18.3-90.6-44.6-127.7-78.2
 	c-26.3-23.8-48.7-50.5-67.1-79.7l-15.2,74.1c-13.4,65.1-70.7,111.8-137.1,111.8H438c-42.1,0-81.9-18.9-108.5-51.6

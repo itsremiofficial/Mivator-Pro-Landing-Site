@@ -123,8 +123,8 @@ export const Timeline = React.memo(({ data }: { data: TimelineEntry[] }) => {
   return useMemo(
     () => (
       <div className="w-full font-mont !relative" ref={containerRef}>
-        <div className="max-w-7xl mx-auto py-10 flex items-end justify-between">
-          <div>
+        <div className="max-w-7xl mx-auto py-10 flex items-end justify-center md:justify-between flex-wrap gap-6">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <h2 className="features_title max-w-4xl">How it Works?</h2>
             <p className="md:text-base text-light-900 dark:text-primary-700/40 text-lg max-w-sm">Build Your Unique Discord Bot in Just 3 Easy Steps</p>
           </div>

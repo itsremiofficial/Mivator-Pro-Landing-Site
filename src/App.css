@@ -1297,9 +1297,6 @@
 
   .loader {
     overflow: visible;
-    height: fit-content;
-    width: fit-content;
-    padding: 20px;
     display: flex;
   }
 
@@ -1655,22 +1652,4 @@
         'ten ten ten ten ten ten ten ten ten ten ten';
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
