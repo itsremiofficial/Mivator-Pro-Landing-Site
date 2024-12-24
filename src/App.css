@@ -795,7 +795,7 @@
   body {
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     text-rendering: optimizeLegibility;
-    @apply bg-light-200 dark:bg-primary-1200;
+    @apply bg-light-200 dark:bg-primary-1200 max-w-screen overflow-x-hidden;
   }
 
   main::after {
@@ -994,7 +994,7 @@
   }
   .header_button.expanded {
     width: 400px;
-    height: 580px;
+    height: 530px;
     border-radius: 2rem;
     transition: width var(--smooth-animation), height var(--smooth-animation), border-radius var(--smooth-animation), background-color 0.3s ease;
   }
@@ -1017,21 +1017,21 @@
 
   @media screen and (max-width: 767.5px) {
     .header_button.expanded {
-      height: 720px;
+      height: 660px;
     }
   }
 
   @media screen and (max-width: 640px) {
     .header_button.expanded {
       width: 320px;
-      height: 480px;
+      height: 450px;
     }
   }
 
   @media screen and (max-width: 425px) {
     .header_button.expanded {
       width: calc(100vw - 32px);
-      height: 480px;
+      height: 450px;
     }
   }
   /* PRO BUTTON */
@@ -1385,20 +1385,31 @@
   }
 
   .feature-card {
-    @apply relative overflow-hidden p-10 rounded-[3rem] dark:inset-ring-3 inset-ring-1 select-none z-[1];
-    @apply from-light-300 to-light-400 dark:from-primary-1000 dark:to-primary-1100  dark:inset-ring-primary/5 inset-ring-secondary/5;
+    @apply relative overflow-hidden dark:inset-ring-3 inset-ring-1 select-none z-[1];
+    @apply p-4 md:p-6 xl:p-8 2xl:p-10;
+    @apply rounded-2xl xl:rounded-[3rem] md:rounded-[1.5rem];
+    @apply from-light-300 to-light-400 inset-ring-secondary/5;
+    @apply dark:from-primary-1000 dark:to-primary-1100 dark:inset-ring-primary/5;
+  }
+  .feature-card_small {
+    @apply relative overflow-hidden dark:inset-ring-3 inset-ring-1 select-none z-[1];
+    @apply p-4 md:p-6 xl:p-8 2xl:p-10;
+    @apply rounded-2xl xl:rounded-[2rem] md:rounded-[1rem];
+    @apply from-light-300 to-light-400 inset-ring-secondary/5;
+    @apply dark:from-primary-1000 dark:to-primary-1100 dark:inset-ring-primary/5;
   }
   .feature-card-subtitle {
     @apply dark:text-primary-800 group-hover/bento:dark:text-primary-700 text-light-800/70 group-hover/bento:text-light-1000;
     @apply tracking-wide transition-colors duration-1000 font-mont leading-snug text-left;
   }
   .feature-card-title {
-    @apply text-secondary dark:text-primary-600;
     @apply font-nippo font-extrabold leading-none overflow-hidden h-fit w-full;
+    @apply 2xl:text-3xl md:text-2xl;
+    @apply text-secondary dark:text-primary-600;
   }
 
   .infinite-scrolling-btns {
-    @apply transition-colors duration-500 rounded-xl pr-6 py-3 font-medium;
+    @apply transition-colors duration-500 rounded-xl xl:pr-6 xl:py-3 font-medium;
     @apply dark:bg-primary-900 hover:dark:bg-primary-800 bg-light-500 hover:bg-light-600 dark:text-primary-500 text-light-800 hover:text-light-1000 hover:dark:text-primary-300;
   }
   .jumper {
@@ -1442,10 +1453,16 @@
     }
   }
   .players_icon_text {
-    @apply font-nippo text-light-800 font-bold group-hover/bento:text-secondary dark:text-primary-800 group-hover/bento:dark:text-primary transition-colors duration-1000;
+    @apply font-nippo font-medium tracking-widest;
+    @apply text-light-800 group-hover/bento:text-secondary;
+    @apply dark:text-primary-800 group-hover/bento:dark:text-primary;
+    @apply transition-colors duration-1000;
   }
   .players_icon {
-    @apply fill-light-800 size-full group-hover/bento:fill-secondary dark:fill-primary-800 group-hover/bento:dark:fill-primary transition-colors duration-1000;
+    @apply size-12;
+    @apply fill-light-800 group-hover/bento:fill-secondary;
+    @apply dark:fill-primary-800 group-hover/bento:dark:fill-primary;
+    @apply transition-colors duration-1000;
   }
   .stackcards {
     padding: 0;
@@ -1548,10 +1565,11 @@
     fill: var(--color14);
   }
   .feature_container {
-    width: 1536px;
+    width: 100%;
+    max-width: 1536px;
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(11, minmax(10px, 1fr));
+    grid-template-columns: repeat(11, 1fr);
     grid-template-rows: auto;
     grid-template-areas:
       'one one one one one one one two two three three'
@@ -1592,12 +1610,6 @@
     &.feature10 {
       grid-area: ten;
     }
-    &.feature11 {
-      grid-area: eleven;
-    }
-    &.feature12 {
-      grid-area: twelve;
-    }
   }
 
   @media screen and (max-width: 1024px) {
@@ -1606,12 +1618,59 @@
         'one one one one one one one one one one one'
         'two two two three three three four four four four four'
         'two two two three three three seven seven seven seven seven'
-        'six six six six six nine nine eight eight eight eight'
-        'six six six six six nine nine ten ten ten ten'
-        ;
+        'six six six six six eight eight eight eight eight eight'
+        'six six six six six nine ten ten ten ten ten';
     }
     .feature5 {
       display: none;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    .feature_container {
+      grid-template-areas:
+        'one one one one one one one one one one one'
+        'two two two three three three ten ten ten ten ten'
+        'two two two three three three ten ten ten ten ten'
+        'four four four four four four four four four four four'
+        'five five five five five five five five five five five'
+        'six six six six six six six six six six six'
+        'seven seven seven seven seven seven seven seven seven seven seven'
+        'eight eight eight eight eight eight eight eight eight eight eight'
+        'nine nine nine nine nine nine nine nine nine nine nine';
+    }
+  }
+  @media screen and (max-width: 640px) {
+    .feature_container {
+      grid-template-areas:
+        'one one one one one one one one one one one'
+        'two two two two two two two two two two two'
+        'three three three three three three three three three three three'
+        'four four four four four four four four four four four'
+        'five five five five five five five five five five five'
+        'six six six six six six six six six six six'
+        'seven seven seven seven seven seven seven seven seven seven seven'
+        'eight eight eight eight eight eight eight eight eight eight eight'
+        'nine nine nine nine nine nine nine nine nine nine nine'
+        'ten ten ten ten ten ten ten ten ten ten ten';
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

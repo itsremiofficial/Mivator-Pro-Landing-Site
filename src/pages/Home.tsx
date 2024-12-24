@@ -1,4 +1,3 @@
-import BackgroundLines from '@Components/BackgroundLines';
 import Hero from '@Sections/Hero.js';
 import MarqueeText from '@Components/MarqueeText.js';
 import { MivatorFeatures } from '@Sections/FeaturesBento/FeaturesSection.js';
@@ -10,7 +9,7 @@ import CTA from '@Sections/CTA';
 import MivatorFooterText from '@Sections/Footer/MivatorText';
 import SiteHeader from '@Layouts/SiteHeader';
 import NeutralFeatures from '@/components/NeutralFeatures';
-import TestGrid from './sections/FeaturesBento/TestGrid';
+import BackgroundLines from '@/components/BackgroundLines';
 
 const Home = () => {
   const { scrollToSection } = useLocoScroll('[data-scroll-container]');
@@ -20,8 +19,8 @@ const Home = () => {
 
       <SiteHeader handleScroll={scrollToSection} />
       <main id="home" data-scroll-container className="relative background flex flex-col items-center min-h-screen h-max">
-        <BackgroundLines />
         {/* <TestGrid /> */}
+        <BackgroundLines />
         <Hero />
         <MarqueeText />
         <MivatorFeatures />
@@ -30,7 +29,7 @@ const Home = () => {
         <HowItWorks />
         <CTA />
         <MivatorFooterText />
-        <Footer />
+        <Footer handleScroll={scrollToSection} />
       </main>
     </>
   );

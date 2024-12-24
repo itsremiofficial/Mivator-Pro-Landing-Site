@@ -2,20 +2,30 @@ import { Compare } from '@Sections/ProFeatures/Compare';
 
 const WhyPro = () => {
   return (
-    <section id="why-pro" className="w-screen h-fit relative py-60">
+    <section id="why-pro" className="w-screen h-fit relative py-48">
       <div className="w-full text-center mb-10 flex flex-col justify-center">
         <h2 className="features_title">Why Pro?</h2>
         <p className="text-light-900 dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
       </div>
-      <div className="container px-4 mx-auto">
+      <div className="px-6 lg:px-0 mx-auto max-w-screen-2xl">
         {/* ITEM 01 */}
-        <div className="flex flex-wrap items-center justify-between py-10 group/whypro">
-          <div className="w-full md:w-1/2 p-8 flex flex-col">
-            <h2 className="mb-6 text-6xl md:text-7xl font-extrabold font-syne leading-tight dark:text-primary-700 text-secondary">Full Bot Ownership</h2>
-            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg">Gain complete control. With Mivator Pro, the bot is entirely yours to manage.</p>
+        <div className="flex flex-wrap items-center justify-center lg:justify-between py-10 group/whypro gap-8">
+          <div className="w-full lg:w-1/2 xl:p-8 flex flex-col items-center lg:items-start">
+            <h2
+              className="
+                mb-6 
+                text-4xl md:text-6xl xl:text-7xl 
+                font-extrabold font-syne leading-tight text-center lg:text-left
+                dark:text-primary-700 text-secondary"
+            >
+              Full Bot Ownership
+            </h2>
+            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg text-center lg:text-left">
+              Gain complete control. With Mivator Pro, the bot is entirely yours to manage.
+            </p>
           </div>
           <div className="">
-            <svg className="w-full h-[580px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2661.3 2417.8">
+            <svg className="xl:w-[600px] sm:w-[450px] w-[350px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2661.3 2417.8">
               <g>
                 <g>
                   <path
@@ -531,35 +541,51 @@ const WhyPro = () => {
         </div>
 
         {/* ITEM 02 */}
-        <div className="flex flex-wrap flex-row-reverse items-center justify-between py-10 group/whypro">
-          <div className="w-full md:w-1/2 p-8 flex flex-col items-end">
-            <h2 className="mb-6 text-6xl md:text-7xl font-extrabold font-syne leading-tight dark:text-primary-700 text-secondary text-right">Custom Branding</h2>
-            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg text-right">
+        <div className="flex flex-wrap flex-row-reverse items-center justify-center lg:justify-between py-10 group/whypro gap-8">
+          <div className="w-full lg:w-1/2 xl:p-8 flex flex-col items-center lg:items-start">
+            <h2
+              className="
+                mb-6 
+                text-4xl md:text-6xl xl:text-7xl 
+                font-extrabold font-syne leading-tight text-center lg:text-left
+                dark:text-primary-700 text-secondary"
+            >
+              Custom Branding
+            </h2>
+            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg text-center lg:text-left">
               Make your bot as unique as your community. Name it, own it, and watch it shine.
             </p>
           </div>
-          <div className="">
-            <div className="relative p-4 border-2 rounded-3xl dark:bg-white/5 bg-light-400 border-light-500 dark:border-white/5 px-4">
-              <Compare
-                firstImage="/whypro/profile"
-                secondImage="/whypro/profilealt"
-                firstImageClassName="object-cover object-left-top"
-                secondImageClassname="object-cover object-left-top"
-                className="w-[500px] h-[580px]"
-                slideMode="hover"
-              />
-            </div>
+          <div className="relative p-4 border-2 rounded-3xl dark:bg-white/5 bg-light-400 border-light-500 dark:border-white/5 px-4">
+            <Compare
+              firstImage="/whypro/profile"
+              secondImage="/whypro/profilealt"
+              firstImageClassName="object-cover object-left-top"
+              secondImageClassname="object-cover object-left-top"
+              className="xl:w-[500px] xl:h-[580px] w-[340px]"
+              slideMode="hover"
+            />
           </div>
         </div>
 
         {/* ITEM 03 */}
-        <div className="flex flex-wrap items-center justify-between py-10">
-          <div className="w-full md:w-1/2 p-8">
-            <h2 className="mb-6 text-6xl md:text-7xl font-extrabold font-syne leading-tight dark:text-primary-700 text-secondary">Reliable Hosting</h2>
-            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg">We ensure your bot is online 24/7 with secure and seamless hosting.</p>
+        <div className="flex flex-wrap items-center justify-center lg:justify-between py-10 group/whypro gap-8">
+          <div className="w-full lg:w-1/2 xl:p-8 flex flex-col items-center lg:items-start">
+            <h2
+              className="
+                mb-6 
+                text-4xl md:text-6xl xl:text-7xl 
+                font-extrabold font-syne leading-tight text-center lg:text-left
+                dark:text-primary-700 text-secondary"
+            >
+              Reliable Hosting
+            </h2>
+            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg text-center lg:text-left">
+              We ensure your bot is online 24/7 with secure and seamless hosting.
+            </p>
           </div>
           <div className="">
-            <svg className="w-full h-[580px]" id="reliable_hosting" data-name="reliable_hosting" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3295.61 3120">
+            <svg className="xl:w-[600px] sm:w-[450px] w-[350px]" id="reliable_hosting" data-name="reliable_hosting" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3295.61 3120">
               <g>
                 <g>
                   <path className="rh-color4" d="M2598.23,2586.6l-49.26,160.93,11.06,54.69-199.33-3.25c-5.5,0-9.97-4.19-9.97-9.37h0c0-3.88,2.54-7.35,6.39-8.74l90.07-47.14,45.4-161.89,105.64,14.77Z" />
@@ -1233,15 +1259,23 @@ const WhyPro = () => {
         </div>
 
         {/* ITEM 04 */}
-        <div className="flex flex-wrap flex-row-reverse items-center justify-between py-10">
-          <div className="w-full md:w-1/2 p-8 flex flex-col items-end">
-            <h2 className="mb-6 text-6xl md:text-7xl font-extrabold font-syne leading-tight dark:text-primary-700 text-secondary text-right">YouTube Player Module</h2>
-            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg text-right">
+        <div className="flex flex-wrap flex-row-reverse items-center justify-center lg:justify-between py-10 group/whypro gap-8">
+          <div className="w-full lg:w-1/2 xl:p-8 flex flex-col items-center lg:items-start">
+            <h2
+              className="
+                mb-6 
+                text-4xl md:text-6xl xl:text-7xl 
+                font-extrabold font-syne leading-tight text-center lg:text-left
+                dark:text-primary-700 text-secondary"
+            >
+              YouTube Player Module
+            </h2>
+            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg text-center lg:text-left">
               Stream music seamlessly in your server with our integrated YouTube music player.
             </p>
           </div>
           <div className="">
-            <svg className="w-full h-[580px]" id="reliable_hosting" data-name="reliable_hosting" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1733.7 1557.46">
+            <svg className="xl:w-[600px] sm:w-[450px] w-[350px]" id="reliable_hosting" data-name="reliable_hosting" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1733.7 1557.46">
               <g id="man_pointing_to_logo-2" data-name="man pointing to logo">
                 <g id="man_pointing_to_logo-3" data-name="man pointing to logo">
                   <g>
@@ -1544,13 +1578,18 @@ const WhyPro = () => {
         </div>
 
         {/* ITEM 05 */}
-        <div className="flex flex-wrap items-center justify-between py-10">
-          <div className="w-full md:w-1/2 p-8">
-            <h2 className="mb-6 text-6xl md:text-7xl font-extrabold font-syne leading-tight dark:text-primary-700 text-secondary">Reliable Hosting</h2>
-            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg">We ensure your bot is online 24/7 with secure and seamless hosting.</p>
+        <div className="flex flex-wrap items-center justify-center lg:justify-between py-10 group/whypro gap-8">
+          <div className="w-full lg:w-1/2 xl:p-8 flex flex-col items-center lg:items-start">
+            <h2 className="mb-6 
+                text-4xl md:text-6xl xl:text-7xl 
+                font-extrabold font-syne leading-tight text-center lg:text-left
+                dark:text-primary-700 text-secondary">Your Rules</h2>
+            <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg text-center lg:text-left">
+              No limitations, no cooldowns. Scale your bot without restrictions and let your creativity shine.
+            </p>
           </div>
           <div className="">
-            <svg className="w-full h-[540px]" id="reliable_hosting" data-name="reliable_hosting" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3226.26 2328.58">
+            <svg className="xl:w-[600px] sm:w-[450px] w-[350px]" id="reliable_hosting" data-name="reliable_hosting" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3226.26 2328.58">
               <g>
                 <g>
                   <path

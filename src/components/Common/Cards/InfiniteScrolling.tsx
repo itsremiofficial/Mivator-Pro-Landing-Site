@@ -69,7 +69,7 @@ export const InfiniteMovingCards = ({ direction = 'left', className }: { directi
   };
   return (
     <div ref={containerRef} className={`scroller relative z-20 max-w-7xl [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] ${className}`}>
-      <ul ref={scrollerRef} className={`flex min-w-full shrink-0 gap-4 w-max flex-nowrap animate-scroll hover:[animation-play-state:paused]`}>
+      <ul ref={scrollerRef} className={`flex min-w-full shrink-0 gap-2 xl:gap-4 w-max flex-nowrap animate-scroll hover:[animation-play-state:paused]`}>
         {items.map((item, idx) => (
           <li className="max-w-full relative flex-shrink-0" key={idx}>
             {item}

@@ -11,8 +11,6 @@ const MENU_ITEMS = [
   { text: 'FEATURES', href: '#features' },
   { text: 'WHY PRO?', href: '#why-pro' },
   { text: 'HOW IT WORKS?', href: '#how-it-works' },
-  { text: 'GET STARTED', href: '#get-started' },
-  { text: 'LEGAL', href: '/legal' },
 ];
 interface SiteHeaderProps {
   handleScroll: (sectionId: string) => void;
@@ -94,7 +92,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
       >
         <div
           ref={drawerRef}
-          className={`header_button absolute inset-y-0 overflow-hidden left-0 bg-light-500 dark:bg-primary-900 text-sm cursor-pointer group/button ${
+          className={`header_button absolute inset-y-0 overflow-hidden left-0 bg-light-500 dark:bg-primary-900 text-sm group/button ${
             isExpanded ? 'expanded' : 'hover:bg-light-600 dark:hover:bg-primary-800'
           }`}
         >
@@ -128,7 +126,15 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
                   >
                     MENU
                   </h4>
-                  <div className="menu-items-container h-full flex flex-col justify-between items-start gap-4 sm:gap-6 whitespace-nowrap font-nippo text-xl font-extrabold">{menuItemElements}</div>
+                  <div className="menu-items-container h-full flex flex-col justify-between items-start gap-4 sm:gap-6 whitespace-nowrap font-nippo text-xl font-extrabold">
+                    {menuItemElements}
+                    <div className="menu_item_link menu_item">
+                      <div className="leading-none">5.</div>
+                      <a href='/legal' className="nav__Link_item flex items-center">
+                        <AnimatedText linkText1="LEGAL" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="inline-flex flex-col md:hidden gap-1 sm:gap-3">
@@ -145,7 +151,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
                   <ThemeCustomizer className="w-48 justify-start" />
                 </div>
 
-                <div className="menu_item flex flex-col gap-1 sm:gap-3">
+                <div className="flex flex-col gap-1 sm:gap-3">
                   <h4
                     className="
                   select-none

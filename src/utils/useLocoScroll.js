@@ -16,7 +16,7 @@ const useLocoScroll = (triggeredElem) => {
       el: scrollEl,
       smooth: true,
       lerp: 0.07,
-      multiplier: 0.8,
+      multiplier: 1,
       tablet: {
         smooth: false,
         breakpoint: 768,

@@ -34,20 +34,16 @@ const NeutralFeatures: React.FC = () => {
 
   // Memoized icon rendering
   const renderIcon = React.useCallback(
-    ({ Icon, label, alignment }: IconConfig) => (
-      <div key={label} className={`flex ${alignment === 'start' ? '' : alignment === 'end' ? 'justify-end' : 'flex-col items-center'}`}>
-        <div className="flex flex-col items-center drop-shadow-[0px_8px_24px_rgba(7,7,10,0.1)] dark:drop-shadow-[0px_8px_24px_rgba(7,7,10,0.7)]">
-          <div className="mask mask-squircle">
-            <div className="connection_icon">
-              <span className="text-secondary dark:text-primary-600">
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  <Icon className="size-16" />
-                </React.Suspense>
-              </span>
-            </div>
+    ({ Icon, label }: IconConfig) => (
+      <div key={label} className="w-1/3 lg:w-1/4 py-10 lg:py-20 flex flex-col items-center grow drop-shadow-[0px_8px_24px_rgba(7,7,10,0.1)] dark:drop-shadow-[0px_8px_24px_rgba(7,7,10,0.7)]">
+        <div className="mask mask-squircle">
+          <div className="connection_icon">
+            <span className="text-secondary dark:text-primary-600">
+              <Icon className="size-16" />
+            </span>
           </div>
-          <p className="connection_text" dangerouslySetInnerHTML={{ __html: label.replace('&', '&amp;') }} />
         </div>
+        <p className="connection_text" dangerouslySetInnerHTML={{ __html: label.replace('&', '&amp;') }} />
       </div>
     ),
     []
@@ -55,9 +51,7 @@ const NeutralFeatures: React.FC = () => {
 
   return (
     <div className="w-screen flex justify-center items-center px-4 iconscontainer py-32">
-      <div className="relative w-screen max-w-5xl z-[1] flex flex-col justify-between">
-        <div className="relative grid grid-cols-3 gap-y-40 !mt-auto w-full px-12 z-[5]">{iconGrid.map(renderIcon)}</div>
-      </div>
+      <div className="relative z-[1] flex flex-wrap gap-12 justify-between">{iconGrid.map(renderIcon)}</div>
     </div>
   );
 };

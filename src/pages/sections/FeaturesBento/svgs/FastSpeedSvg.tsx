@@ -6,7 +6,7 @@ interface FastSpeedSvgProps {
 
 const FastSpeedSvg: FC<FastSpeedSvgProps> = ({ isDark }) => {
   return (
-    <svg className="h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 644.41 933.15">
+    <svg className="w-36" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 644.41 933.15">
       <defs>
         <linearGradient id="gradient-fill2" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor={isDark ? `var(--color-primary)` : 'var(--color-secondary)'} />

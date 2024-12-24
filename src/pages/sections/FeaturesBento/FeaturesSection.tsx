@@ -27,23 +27,6 @@ import ScrollDown from './ScrollDown';
 import MusicPlayer from './MusicPlayer';
 import CardsUi from './CardsUi';
 
-// Memoized sub-components to prevent unnecessary re-renders
-export const PlayerIcons = React.memo(() => (
-  <>
-    {[
-      { Icon: SpotifySvg, name: 'Spotify' },
-      { Icon: SoundCloudSvg, name: 'SoundCloud' },
-      { Icon: DeezerSvg, name: 'Deezer' },
-      { Icon: BandCampSvg, name: 'Bandcamp' },
-    ].map(({ Icon, name }) => (
-      <div key={name} className="col-span-8 feature-card bg-gradient-to-tr flex flex-col items-center justify-center p-6 !size-32">
-        <Icon />
-        <span className="players_icon_text">{name}</span>
-      </div>
-    ))}
-  </>
-));
-
 export const MivatorFeatures: React.FC = React.memo(() => {
   const themeConfig = useSelector(
     (state: IRootState) => state.themeConfig,
@@ -164,13 +147,21 @@ export const MivatorFeatures: React.FC = React.memo(() => {
           {createCursorFollower(2, 'feature2 bg-gradient-to-b feature-card flex flex-col items-center justify-center', <FastSpeed isDark={isDark} />)}
           {createCursorFollower(3, 'feature3 feature-card bg-gradient-to-b', <ThemesCount />)}
           {createCursorFollower(4, 'grow feature4 feature-card flex items-center justify-center bg-gradient-to-r', <SecurityCard />)}
-          {createCursorFollower(5,'feature7 feature-card flex items-center justify-center bg-gradient-to-r dark:from-primary-1100 dark:via-primary-900 dark:to-primary-1100 from-primary-400 via-light-100 to-light-400 !p-0', <SecurityIcons />)}
-          <div className="feature5 relative"><ThreeJSCanvas /></div>
+          {createCursorFollower(
+            5,
+            'feature7 feature-card flex items-center justify-center bg-gradient-to-r dark:from-primary-1100 dark:via-primary-900 dark:to-primary-1100 from-primary-400 via-light-100 to-light-400 !p-0 grow',
+            <SecurityIcons />
+          )}
+          <div className="feature5 relative">
+            <ThreeJSCanvas />
+          </div>
           {createCursorFollower(6, 'grow !h-full feature8  feature-card flex items-center justify-center bg-gradient-to-r', <MusicPlayer />)}
-          <a href="" className="feature9 feature-card p-0 bg-gradient-to-t group/scrolldown">
+          <a href="" className="feature9 feature-card_small p-0 bg-gradient-to-t group/scrolldown">
             {createCursorFollower(7, 'h-full p-10', <ScrollDown />)}
           </a>
-          <div className="flex feature10 gap-6"><PlayerIcons /></div>
+          <div className="flex feature10 gap-4 flex-wrap">
+            <PlayerIcons />
+          </div>
           {createCursorFollower(8, 'feature6 bg-gradient-to-l feature-card', <CardsUi />)}
         </div>
       </div>
@@ -178,3 +169,22 @@ export const MivatorFeatures: React.FC = React.memo(() => {
   );
 });
 export default React.memo(MivatorFeatures);
+
+// Memoized sub-components to prevent unnecessary re-renders
+export const PlayerIcons = React.memo(() => (
+  <>
+    {[
+      { Icon: SpotifySvg, name: 'Spotify' },
+      { Icon: SoundCloudSvg, name: 'SoundCloud' },
+      { Icon: DeezerSvg, name: 'Deezer' },
+      { Icon: BandCampSvg, name: 'Bandcamp' },
+    ].map(({ Icon, name }, idx) => {
+      return (
+        <div key={name} className={`feature-card_small bg-gradient-to-tr flex flex-col items-center justify-center p-6 grow md:w-28 md:h-28 text-center`}>
+          <Icon />
+          <span className="players_icon_text">{name}</span>
+        </div>
+      );
+    })}
+  </>
+));

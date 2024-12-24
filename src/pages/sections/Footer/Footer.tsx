@@ -1,12 +1,15 @@
 import AnimatedTooltip from '@/components/Common/AnimatedTooltip';
 import { DiscordIcon, InstagramIcon, NewTwitterIcon, YoutubeIcon } from 'hugeicons-react';
 
-const Footer = () => {
+interface FooterProps {
+  handleScroll: (sectionId: string) => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ handleScroll }) => {
   return (
-    <footer className="bg-gray-100 dark:bg-primary-1200 w-screen py-24 group/footer relative h-max">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center ">
-          <div className="pb-9">
+    <footer className="bg-gray-100 dark:bg-primary-1200 w-screen pt-24 group/footer relative h-max flex flex-col items-center">
+      <div className="container px-4 relative z-10 mx-auto">
+        <div className="max-w-4xl text-center mx-auto pb-9 flex flex-col items-center">
             <a className="inline-block mb-20" href="#">
               <svg className="mivator_main_logo w-32" x="0px" y="0px" viewBox="0 0 500 500">
                 <g className="mivator">
@@ -108,17 +111,22 @@ const Footer = () => {
               </svg>
             </a>
             <div className="flex flex-wrap -mx-4 -mb-4 justify-center items-center">
-              <div className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
+              <div onClick={() => handleScroll('#home')} className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
+                <a className="inline-block text-xs tracking-widest font-bold font-nippo uppercase dark:text-primary-700/50 hover:text-primary transition-colors duration-500" href="#">
+                  Home
+                </a>
+              </div>
+              <div onClick={() => handleScroll('#features')} className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
                 <a className="inline-block text-xs tracking-widest font-bold font-nippo uppercase dark:text-primary-700/50 hover:text-primary transition-colors duration-500" href="#">
                   Features
                 </a>
               </div>
-              <div className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
+              <div onClick={() => handleScroll('#why-pro')} className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
                 <a className="inline-block text-xs tracking-widest font-bold font-nippo uppercase dark:text-primary-700/50 hover:text-primary transition-colors duration-500" href="#">
                   Why Mivator Pro?
                 </a>
               </div>
-              <div className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
+              <div onClick={() => handleScroll('#how-it-works')} className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
                 <a className="inline-block text-xs tracking-widest font-bold font-nippo uppercase dark:text-primary-700/50 hover:text-primary transition-colors duration-500" href="#">
                   How it Works?
                 </a>
@@ -130,7 +138,7 @@ const Footer = () => {
               </div>
             </div>
             {/* SOCIAL LINKS */}
-            <div className="px-10 pt-8 w-1/2 mx-auto">
+            <div className="lg:px-10 lg:pt-8 px-4 pt-4 w-full md:w-1/2">
               <h4 className="my-3 ml-1 font-nippo font-medium tracking-[3px] text-primary-800 select-none text-base">SOCIALS</h4>
               <div className="social_icons flex justify-between">
                 <a href="">
@@ -150,7 +158,6 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-          </div>
         </div>
       </div>
       <p className="mt-8 w-full flex justify-center dark:text-primary-700/30 text-light-800 border-t py-12 border-light-500 dark:border-white/5 font-nippo font-medium group-hover/footer:text-secondary group-hover/footer:dark:text-primary transition-colors duration-500">
