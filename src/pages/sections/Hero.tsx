@@ -131,7 +131,7 @@ const Hero = () => {
                         gap-4
                         justify-center md:justify-start"
           >
-            <a href="/Icons" data-scroll-speed="4" data-scroll-position="top" data-scroll className="group">
+            <a href="/Setup" data-scroll-speed="4" data-scroll-position="top" data-scroll className="group">
               <AnimatedButton
                 linkText1="Get Started"
                 className="btn-primary py-3 px-4 lg:px-6 lg:py-5 z-[10]"

@@ -2,8 +2,12 @@ import { PropsWithChildren, Suspense } from 'react';
 import App from '@/App';
 import Portals from '@Layouts/Portals';
 import PreLoader from '@Components/PreLoader';
+import useLocoScroll from '@/utils/useLocoScroll';
+import SiteHeader from './SiteHeader';
+import Footer from '@/pages/sections/Footer/Footer';
 
 const MainSite = ({ children }: PropsWithChildren) => {
+  const { scrollToSection } = useLocoScroll('[data-scroll-container]');
   return (
     <App>
       {/* BEGIN MAIN CONTAINER */}
@@ -21,9 +25,13 @@ const MainSite = ({ children }: PropsWithChildren) => {
 
         <div className={`main-container text-secondary dark:text-white min-h-screen`}>
           {/* <Setting /> */}
-          <div className="main-content flex flex-col min-h-screen">
+          <SiteHeader handleScroll={scrollToSection} />
+          <div data-scroll-container className="main-content flex flex-col min-h-screen">
             {/* BEGIN CONTENT AREA */}
+
             <Suspense>{children}</Suspense>
+
+            <Footer handleScroll={scrollToSection} />
             {/* END CONTENT AREA */}
             <Portals />
           </div>
