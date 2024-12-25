@@ -1,6 +1,4 @@
-import React from 'react';
 import { useStepper } from '../context/StepperContext';
-import { Background } from './Background';
 import { HeroSection } from './HeroSection';
 import { ActivityCard } from './ActivityCard';
 import { OwnersCard } from './OwnersCard';
@@ -12,18 +10,16 @@ export function BotProfile() {
 
   return (
     <div className="relative min-h-screen">
-      <Background />
-      
       <div className="relative py-8 px-4">
         <div className="max-w-4xl mx-auto space-y-6">
-          <HeroSection 
-            botName={formData.botName}
-            botId={formData.botId}
-            botStatus={formData.botStatus}
-            botSecret={formData.botSecret}
-            botToken={formData.botToken}
+          <HeroSection
+            botName={formData.botName || ''}
+            botId={formData.botId || 0}
+            botStatus={formData.botStatus || 'online'}
+            botSecret={formData.botSecret || ''}
+            botToken={formData.botToken || ''}
           />
-          <ActivityCard activity={formData.botActivity} />
+          <ActivityCard activity={formData.botActivity || ''} />
           <OwnersCard owners={formData.owners || []} />
           <MembersCard members={formData.members || []} />
           <DashboardButton />

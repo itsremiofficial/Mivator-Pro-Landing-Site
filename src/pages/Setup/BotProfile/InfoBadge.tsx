@@ -1,3 +1,5 @@
+import { cn } from '@/utils/utils';
+import { ViewIcon, ViewOffSlashIcon } from 'hugeicons-react';
 import React, { useState } from 'react';
 
 interface InfoBadgeProps {
@@ -8,29 +10,23 @@ interface InfoBadgeProps {
 
 export function InfoBadge({ label, value, secure = false }: InfoBadgeProps) {
   const [show, setShow] = useState(false);
-  
+
   return (
-    <div className="group px-4 py-2.5 bg-gray-50/80 backdrop-blur-sm rounded-2xl border border-gray-100/50 flex items-center gap-3 hover:bg-gray-50 transition-all duration-300">
-      <span className="text-xs font-medium text-gray-500 group-hover:text-gray-700 transition-colors">{label}:</span>
-      <span className="text-sm font-mono text-gray-700">
-        {secure && !show ? '••••••••' : value}
-      </span>
-      {secure && (
-        <button
-          onClick={() => setShow(!show)}
-          className="ml-1 text-gray-400 hover:text-gray-600 transition-colors"
-        >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d={show ? "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                : "M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"} 
-            />
-          </svg>
-        </button>
-      )}
+    <div className="group flex flex-col gap-1">
+      <span className="text-xs tracking-widest uppercase font-medium font-nippo text-secondary dark:text-primary-600 transition-colors pl-2">{label}</span>
+      <div className="px-3 py-2.5 flex items-center justify-between pr-5 gap-3 transition-all duration-300  dark:bg-primary-700/20 backdrop-blur-sm rounded-2xl border border-secondary/10 dark:text-primary-500 dark:border-primary-700/50">
+        <span className={cn('text-sm font-mono text-light-800 dark:text-primary-700 whitespace-nowrap truncate max-w-lg', { 'text-secondary dark:text-primary-500': show })}>
+          {secure && !show ? '•'.repeat(value.length) : value}
+        </span>
+        {secure && (
+          <button
+            onClick={() => setShow(!show)}
+            className={cn('ml-1 cursor-pointer text-light-800 hover:text-secondary dark:text-primary hover:dark:text-primary-500 transition-colors', { 'text-secondary dark:text-primary-500': show })}
+          >
+            {show ? <ViewIcon className="size-5 stroke-2" /> : <ViewOffSlashIcon className="size-5 stroke-2" />}
+          </button>
+        )}
+      </div>
     </div>
   );
 }

@@ -47,7 +47,7 @@ export const MultiSelect = forwardRef<any, MultiSelectProps>(({ label, error, op
             control: (state) =>
               cn(
                 '!bg-transparent !rounded-2xl !border !border-primary !px-2 !py-4 !min-h-0 !z-10',
-                'hover:!border-blue-300',
+                'hover:!border-blue-300 !cursor-pointer ',
                 state.isFocused && '!border-blue-400 !ring-1 !ring-blue-100 ',
                 error && '!border-red-200 !ring-red-100'
               ),
@@ -59,14 +59,15 @@ export const MultiSelect = forwardRef<any, MultiSelectProps>(({ label, error, op
                 state.isSelected && 'dark:!bg-primary-900 !bg-light-500 dark:!text-primary-400 !text-secondary'
               ),
             placeholder: () => 'dark:!text-primary !text-primary',
-            multiValue: () => 'dark:!bg-light-500 !rounded-lg !flex !gap-1.5 !items-center !overflow-hidden',
-            multiValueLabel: () => 'dark:!text-primary-500 !text-secondary !font-nippo !font-medium !tracking-wide !text-sm !pl-3',
-            multiValueRemove: () => '!bg-red-100 !text-red-400 hover:!bg-red-200 hover:!text-red-600 !cursor-pointer size-8 flex items-center justify-center !transition-colors !duration-300',
+            multiValue: () => '!bg-light-500 dark:!bg-primary-900 !rounded-lg !flex !gap-1.5 !items-center !overflow-hidden',
+            multiValueLabel: () => 'dark:!text-primary-600 !text-secondary !font-nippo !font-medium !tracking-wide !text-sm !pl-3',
+            multiValueRemove: () =>
+              '!bg-red-100 dark:!bg-red-500/20 dark:hover:!bg-red-700/20 dark:hover:!text-red-500 !text-red-400 hover:!bg-red-200 hover:!text-red-600 !cursor-pointer size-8 flex items-center justify-center !transition-colors !duration-300',
             valueContainer: () => '!gap-1',
             indicatorsContainer: () => '!gap-1',
             clearIndicator: () => '!p-1 !text-primary hover:!text-primary-700 !cursor-pointer',
             dropdownIndicator: () => '!p-1 !text-primary hover:!text-primary-700 !cursor-pointer',
-            indicatorSeparator: () => '!bg-gray-200',
+            indicatorSeparator: () => '!hidden',
           }}
         />
       </div>

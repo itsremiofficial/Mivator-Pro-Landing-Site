@@ -12,7 +12,7 @@ export function MembersCard({ members }: MembersCardProps) {
   if (!members?.length) return null;
 
   return (
-    <Card className="backdrop-blur-xl bg-white/90 hover:shadow-2xl transition-shadow duration-300">
+    <Card className="backdrop-blur-xl dark:bg-primary-900 bg-transparent transition-all duration-500 dark:border-primary-900 border-light-500">
       <ProfileSection 
         title="Members" 
         subtitle={`${members.length} members`}

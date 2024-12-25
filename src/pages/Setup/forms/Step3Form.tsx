@@ -1,7 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useStepper } from '../context/StepperContext';
 import { Button } from '../ui/Button';
 import { OwnerInput } from './OwnerInput';
@@ -72,7 +70,7 @@ export function Step3Form() {
 
           <div className="space-y-4">
             {owners.map((owner, index) => (
-              <OwnerInput key={index} index={index} value={owner} onChange={(value) => updateOwner(index, value)} onRemove={() => removeOwner(index)} showRemove={owners.length > 1} />
+              <OwnerInput key={index} index={index} value={owner} onChange={(value) => updateOwner(index, value)} onRemove={() => removeOwner(index)} showRemove={index > 0} />
             ))}
           </div>
         </div>

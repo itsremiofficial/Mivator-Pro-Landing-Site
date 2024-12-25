@@ -15,21 +15,17 @@ export function StepperProvider({ children }: { children: React.ReactNode }) {
   const [formData, setFormData] = useState<Partial<BotFormData>>({});
 
   const updateFormData = (data: Partial<BotFormData>) => {
-    setFormData(prev => ({ ...prev, ...data }));
+    setFormData((prev) => ({ ...prev, ...data }));
   };
 
   const value = {
     currentStep,
     setCurrentStep,
     formData,
-    updateFormData
+    updateFormData,
   };
 
-  return (
-    <StepperContext.Provider value={value}>
-      {children}
-    </StepperContext.Provider>
-  );
+  return <StepperContext.Provider value={value}>{children}</StepperContext.Provider>;
 }
 
 export function useStepper() {

@@ -46,7 +46,7 @@ export const Select = forwardRef<any, SelectProps>(({ label, error, options, cla
             indicatorsContainer: () => '!gap-1',
             clearIndicator: () => '!p-1 !text-gray-400 hover:!text-gray-600',
             dropdownIndicator: () => '!p-1 !text-primary hover:!text-primary-700',
-            indicatorSeparator: () => '!bg-gray-200',
+            indicatorSeparator: () => '!hidden',
           }}
           {...props}
         />

@@ -19,7 +19,7 @@ export function StepIndicator({ step, label }: StepIndicatorProps) {
           'w-10 h-10 rounded-full flex items-center justify-center text-sm font-nippo font-medium border-2 transition-all duration-300',
           isActive && 'border-secondary bg-secondary text-light-200 dark:border-primary dark:bg-primary dark:text-primary-200',
           isCompleted && 'border-green-500 bg-green-50 text-green-600',
-          !isActive && !isCompleted && 'border-gray-300 text-gray-500'
+          !isActive && !isCompleted && 'dark:border-primary-900 border-light-600 dark:text-primary-900 text-light-600'
         )}
       >
         {isCompleted ? (
@@ -35,7 +35,7 @@ export function StepIndicator({ step, label }: StepIndicatorProps) {
           'mt-2 text-xs tracking-wider font-bold uppercase font-nippo transition-colors duration-300',
           isActive && 'text-secondary dark:text-primary',
           isCompleted && 'text-green-500 font-medium',
-          !isActive && !isCompleted && 'text-gray-500'
+          !isActive && !isCompleted && 'dark:text-primary-900 text-light-600'
         )}
       >
         {label}

@@ -9,7 +9,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, className, ...props }, ref) => {
   return (
     <div className="space-y-2">
-      {label && <label className="block text-sm font-medium text-secondary dark:text-primary-600 font-nippo tracking-widest">{label}</label>}
+      {label && <label className="block pl-2 text-sm font-medium text-secondary dark:text-primary-600 font-nippo tracking-widest">{label}</label>}
       <div className="relative group">
         {/* <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-900 to-primary-1000 rounded-2xl opacity-0 group-hover:opacity-10 transition duration-300" /> */}
         <input

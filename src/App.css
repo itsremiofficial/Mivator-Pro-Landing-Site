@@ -1188,15 +1188,16 @@
   }
 
   /* CUSTOM SCROLLBAR */
+  .css-1nmdiq5-menu > div,
   .perfect-scrollbar {
     @apply !overflow-y-auto !overflow-x-hidden 
-    [&::-webkit-scrollbar]:w-2
+    [&::-webkit-scrollbar]:!w-2
     [&::-webkit-scrollbar-thumb]:!rounded-full
     [&::-webkit-scrollbar-track]:!my-4
     [&::-webkit-scrollbar-track]:!bg-transparent
-    [&::-webkit-scrollbar-track]:rounded-full
-    [&::-webkit-scrollbar-thumb]:bg-secondary
-    dark:[&::-webkit-scrollbar-thumb]:bg-primary;
+    [&::-webkit-scrollbar-track]:!rounded-full
+    [&::-webkit-scrollbar-thumb]:!bg-secondary
+    dark:[&::-webkit-scrollbar-thumb]:!bg-primary;
   }
 
   .btn {
@@ -1663,18 +1664,6 @@
 
   .animate-slide-in {
     animation: slide-in 0.5s ease-out;
-  }
-
-  .step-connector {
-    @apply flex-1 h-0.5 bg-gradient-to-r from-gray-200 to-gray-300;
-  }
-
-  .step-connector-active {
-    @apply from-blue-400 to-blue-500;
-  }
-
-  .step-connector-completed {
-    @apply from-green-400 to-green-500;
   }
 
   @keyframes fade-in {
