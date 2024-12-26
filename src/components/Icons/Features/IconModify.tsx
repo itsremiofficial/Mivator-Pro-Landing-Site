@@ -4,10 +4,9 @@ interface IconModifyProps {
   className?: string;
   fill?: boolean;
   duotone?: boolean;
-  width?: string | number;
 }
 
-const IconModify: FC<IconModifyProps> = ({ className, fill = false, duotone = true, width = '1.5' }) => {
+const IconModify: FC<IconModifyProps> = ({ className, fill = false, duotone = true }) => {
   return (
     <>
       {!fill ? (

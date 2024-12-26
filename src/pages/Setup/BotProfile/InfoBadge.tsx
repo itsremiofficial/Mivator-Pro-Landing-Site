@@ -1,6 +1,6 @@
 import { cn } from '@/utils/utils';
 import { ViewIcon, ViewOffSlashIcon } from 'hugeicons-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 interface InfoBadgeProps {
   label: string;

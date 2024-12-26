@@ -15,7 +15,7 @@ const SphericalScene: React.FC = () => {
   const { colorScheme } = useSelector((state: IRootState) => state.themeConfig);
   const dispatch = useDispatch();
   const [isInitialized, setIsInitialized] = useState(false);
-
+// @ts-ignore
   const changeColorScheme = (newColorScheme: string) => {
     dispatch(toggleColorScheme(newColorScheme));
   };

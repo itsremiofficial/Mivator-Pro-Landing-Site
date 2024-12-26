@@ -44,7 +44,7 @@ const ThemeCard = ({ themeKey, isColorScheme, onThemeChange, className, isTheme 
     </div>
   </div>
 );
-
+// @ts-ignore
 const ThemeOverlay = ({ themeKey, isTheme }: { themeKey: ThemeName; isTheme: string }) => (
   <div style={{ backgroundColor: `var(--${themeKey}-900)` }} className="absolute !size-full opacity-0 hover:opacity-[0.08] transition-opacity duration-300 z-10 left-0 top-0 right-0 bottom-0" />
 );
@@ -55,7 +55,7 @@ const MockupWindow = ({ themeKey, isTheme }: { themeKey: ThemeName; isTheme: str
     <WindowContent themeKey={themeKey} isTheme={isTheme} />
   </div>
 );
-
+// @ts-ignore
 const WindowToolbar = ({ themeKey, isTheme }: { themeKey: ThemeName; isTheme?: string }) => (
   <div
     className="mockup-window-toolbar py-2 inline-flex w-full items-center pr-6 rounded-t-lg"
@@ -101,7 +101,7 @@ const MainContent = ({ themeKey, isTheme }: { themeKey: ThemeName; isTheme: stri
     <ChatBubbles themeKey={themeKey} isTheme={isTheme} />
   </div>
 );
-
+// @ts-ignore
 const ChatBubbles = ({ themeKey, isTheme }: { themeKey: ThemeName; isTheme: string }) => (
   <div className="flex flex-col gap-2">
     {[1, 0.3].map((opacity, i) => (

@@ -24,6 +24,7 @@ const PreLoader = () => {
         ease: 'power2.out',
         onUpdate: function () {
           const currentDashoffset = parseFloat(loader.style.strokeDashoffset || '0');
+          // @ts-ignore
           const progressValue = Math.round(((maxStrokeValue - currentDashoffset) / (maxStrokeValue - minStrokeValue)) * 100);
         },
         onStart: function () {

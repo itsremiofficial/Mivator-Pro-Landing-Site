@@ -4,10 +4,9 @@ interface IconUiProps {
   className?: string;
   fill?: boolean;
   duotone?: boolean;
-  width?: string | number;
 }
 
-const IconUi: FC<IconUiProps> = ({ className, fill = false, duotone = true, width = '1.5' }) => {
+const IconUi: FC<IconUiProps> = ({ className, fill = false, duotone = true }) => {
   return (
     <>
       {!fill ? (

@@ -3,11 +3,10 @@ import { FC } from 'react';
 interface IconCloseProps {
   className?: string;
   fill?: boolean;
-  duotone?: boolean;
   width?: string | number;
 }
 
-const IconClose: FC<IconCloseProps> = ({ className, fill = false, duotone = true, width = '1.5' }) => {
+const IconClose: FC<IconCloseProps> = ({ className, fill = false, width = '1.5' }) => {
   return (
     <>
       {!fill ? (

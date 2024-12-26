@@ -91,7 +91,7 @@ export const MivatorFeatures: React.FC = React.memo(() => {
   }, [setupTextAnimation]);
 
   // Memoized dispatch and theme handlers
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // @ts-ignore
   const handleThemeChange = useCallback(
     (themeKey: ThemeName) => {
       const isDarkTheme = themeKey !== 'mivatorsilver';
@@ -172,7 +172,7 @@ export const PlayerIcons = React.memo(() => (
       { Icon: SoundCloudSvg, name: 'SoundCloud' },
       { Icon: DeezerSvg, name: 'Deezer' },
       { Icon: BandCampSvg, name: 'Bandcamp' },
-    ].map(({ Icon, name }, idx) => {
+    ].map(({ Icon, name }, _idx) => {
       return (
         <div key={name} className={`feature-card_small bg-gradient-to-tr flex flex-col items-center justify-center p-6 grow md:w-28 md:h-28 text-center`}>
           <Icon />

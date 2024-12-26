@@ -108,7 +108,7 @@ export const MivatorFeatures: React.FC = React.memo(() => {
   }, [setupTextAnimation]);
 
   // Memoized dispatch and theme handlers
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // @ts-ignore
   const handleThemeChange = useCallback(
     (themeKey: ThemeName) => {
       const isDarkTheme = themeKey !== 'mivatorsilver';

@@ -3,11 +3,10 @@ import { FC } from 'react';
 interface IconFeaturesProps {
   className?: string;
   fill?: boolean;
-  duotone?: boolean;
-  width?: string | number;
+  duotone?: boolean; 
 }
 
-const IconFeatures: FC<IconFeaturesProps> = ({ className, fill = false, duotone = true, width = '1.5' }) => {
+const IconFeatures: FC<IconFeaturesProps> = ({ className, fill = false, duotone = true }) => {
   return (
     <>
       {!fill ? (

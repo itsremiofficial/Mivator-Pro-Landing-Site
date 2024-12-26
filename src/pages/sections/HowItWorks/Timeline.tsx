@@ -147,7 +147,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               </div>
               <div className="relative">
                 <h3 className="relative hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-light-500 dark:text-primary-1100">{item.title}</h3>
-                <h3 ref={(el) => (subtitlesRef.current[index] = el)} className="absolute inset-y-0 hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-secondary dark:text-primary">
+                <h3 ref={(el) => (titlesRef.current[index] = el)} className="absolute inset-y-0 hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-secondary dark:text-primary">
                   {item.title}
                 </h3>
               </div>
@@ -155,7 +155,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
             <div className="relative pl-20 pr-4 md:pl-4 w-full">
               <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-light-500 dark:text-primary-1100">{item.title}</h3>
-              <h3 className="md:hidden block absolute inset-y-0 text-2xl mb-4 text-left font-bold text-secondary dark:text-primary-700" ref={(el) => (titlesRef.current[index] = el)}>
+              <h3 className="md:hidden block absolute inset-y-0 text-2xl mb-4 text-left font-bold text-secondary dark:text-primary-700" ref={(el) => (subtitlesRef.current[index] = el)}>
                 {item.title}
               </h3>
               {item.content}

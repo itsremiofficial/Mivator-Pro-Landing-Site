@@ -4,10 +4,9 @@ interface IconFeatureFastProps {
   className?: string;
   fill?: boolean;
   duotone?: boolean;
-  width?: string | number;
 }
 
-const IconFeatureFast: FC<IconFeatureFastProps> = ({ className, fill = false, duotone = true, width = '1.5' }) => {
+const IconFeatureFast: FC<IconFeatureFastProps> = ({ className, fill = false, duotone = true }) => {
   return (
     <>
       {!fill ? (

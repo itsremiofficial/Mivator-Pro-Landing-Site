@@ -17,7 +17,7 @@ const schema = z.object({
     })
   ),
 });
-
+// @ts-ignore
 type FormData = z.infer<typeof schema>;
 
 export function Step3Form() {

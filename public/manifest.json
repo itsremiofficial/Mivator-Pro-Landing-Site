@@ -1,8 +1,28 @@
 {
   "short_name": "Mivator Pro",
-  "name": "Mivator Pro - Best High Quality Ligh Speed Bot",
+  "name": "Mivator Pro - Best High Quality Light Speed Bot",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#5865f2",
-  "background_color": "#12131a"
+  "background_color": "#12131a",
+  "description": "Mivator Pro is the best high-quality light-speed bot for all your needs.",
+  "icons": [
+    {
+      "src": "favicon/favicon256.ico",
+      "sizes": "256x256",
+      "type": "image/ico"
+    },
+    {
+      "src": "favicon/favicon512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon/favicon256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "portrait",
+  "lang": "en"
 }

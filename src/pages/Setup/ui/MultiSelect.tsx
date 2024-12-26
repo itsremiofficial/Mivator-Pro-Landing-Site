@@ -1,6 +1,6 @@
 import { cn } from '@/utils/utils';
 import { Delete03Icon } from 'hugeicons-react';
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import ReactSelect, { components, MultiValueRemoveProps } from 'react-select';
 
 interface SelectOption {
