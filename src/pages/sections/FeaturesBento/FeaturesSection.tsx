@@ -130,13 +130,7 @@ export const MivatorFeatures: React.FC = React.memo(() => {
   );
 
   return (
-    <section
-      id="features"
-      className="
-      py-32 2xl:py-48 px-4 w-full feature_section
-      "
-      key={'FeaturesSection'}
-    >
+    <section id="features" className="section_padding px-4 w-full feature_section" key={'FeaturesSection'}>
       <div className="w-full mx-auto flex flex-col items-center">
         <div className="max-w-screen-2xl text-center mb-10">
           <h2 className="features_title">Features</h2>

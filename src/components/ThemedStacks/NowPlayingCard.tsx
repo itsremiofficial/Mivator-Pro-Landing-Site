@@ -15,14 +15,14 @@ export const NowPlayingCard = () => {
     [themeNames]
   );
 
-  return <CardStack items={CARDS} speed={9} offset={4} scaleFactor={0.07} containerClass="absolute size-full rounded-4xl xl:rounded-[3rem] flex items-center p-3 xl:p-4 gap-2 xl:gap-0 text-white" />;
+  return <CardStack items={CARDS} speed={9} offset={4} scaleFactor={0.07} containerClass="absolute size-full rounded-4xl xl:rounded-[3rem] p-3 xl:p-4 text-white" />;
 };
 
 const NowPlayingContent = () => (
-  <>
+  <div className="relative flex h-full items-center justify-between gap-2 ">
     <AlbumCover />
     <SongInfo />
-  </>
+  </div>
 );
 
 const AlbumCover = () => (
@@ -55,7 +55,7 @@ const SongTitle = () => <div className="text-xl xl:text-3xl font-syne font-bold 
 const ArtistInfo = () => (
   <div className="flex justify-between font-nippo font-medium tracking-wider xl:font-semibold text-left text-[12px]">
     <div className="flex items-center gap-1 xl:gap-2">
-      <Mic01Icon className="size-[14px] xl:size-5" /> Richard Judge
+      <Mic01Icon className="size-[14px] xl:size-5" /> Richard
     </div>
     <div className="flex items-center gap-1 xl:gap-2 w-20">
       <SpotifyIcon className="size-[14px] xl:size-5" /> Spotify

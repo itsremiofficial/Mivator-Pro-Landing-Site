@@ -8,10 +8,10 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ handleScroll }) => {
   return (
-    <footer className="bg-gray-100 dark:bg-primary-1200 w-screen py-24 group/footer relative h-max flex flex-col items-center">
+    <footer className="bg-gray-100 dark:bg-primary-1200 w-screen lg:py-24 group/footer relative h-max flex flex-col items-center">
       <div className="container px-4 relative z-10 mx-auto">
         <div className="max-w-4xl text-center mx-auto pb-9 flex flex-col items-center">
-          <a className="inline-block mb-20" href="#">
+          <a className="inline-block xl:mb-20" href="#">
             <svg className="mivator_main_logo w-32" x="0px" y="0px" viewBox="0 0 500 500">
               <g className="mivator">
                 <path
@@ -111,28 +111,28 @@ const Footer: React.FC<FooterProps> = ({ handleScroll }) => {
               </g>
             </svg>
           </a>
-          <div className="flex flex-wrap -mx-4 -mb-4 justify-center items-center">
-            <div onClick={() => handleScroll('#home')} className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
+          <div className="flex flex-col lg:flex-row flex-wrap -mx-4 -mb-4 justify-center items-center">
+            <div onClick={() => handleScroll('#home')} className="w-fit xs:w-1/2 md:w-auto md:px-4 xl:px-8 mb-4">
               <div className="btn rounded-none p-0 text-xs tracking-widest font-bold dark:text-primary-700/50 hover:text-primary">
                 <AnimatedText linkText1="Home" className="uppercase" />
               </div>
             </div>
-            <div onClick={() => handleScroll('#features')} className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
+            <div onClick={() => handleScroll('#features')} className="w-fit xs:w-1/2 md:w-auto md:px-4 xl:px-8 mb-4">
               <div className="btn rounded-none p-0 text-xs tracking-widest font-bold dark:text-primary-700/50 hover:text-primary uppercase">
                 <AnimatedText linkText1="FEATURES" className="uppercase" />
               </div>
             </div>
-            <div onClick={() => handleScroll('#why-pro')} className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
+            <div onClick={() => handleScroll('#why-pro')} className="w-fit xs:w-1/2 md:w-auto md:px-4 xl:px-8 mb-4">
               <div className="btn rounded-none p-0 text-xs tracking-widest font-bold dark:text-primary-700/50 hover:text-primary">
                 <AnimatedText linkText1="Why Pro?" className="uppercase" />
               </div>
             </div>
-            <div onClick={() => handleScroll('#how-it-works')} className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
+            <div onClick={() => handleScroll('#how-it-works')} className="w-fit xs:w-1/2 md:w-auto md:px-4 xl:px-8 mb-4">
               <div className="btn rounded-none p-0 text-xs tracking-widest font-bold dark:text-primary-700/50 hover:text-primary">
                 <AnimatedText linkText1="How it Works?" className="uppercase" />
               </div>
             </div>
-            <div className="w-full xs:w-1/2 md:w-auto px-4 xl:px-8 mb-4">
+            <div className="w-fit xs:w-1/2 md:w-auto md:px-4 xl:px-8 mb-4">
               <a href="/legal" className="btn rounded-none p-0 text-xs tracking-widest font-bold dark:text-primary-700/50 hover:text-primary">
                 <AnimatedText linkText1="Legal" className="uppercase" />
               </a>

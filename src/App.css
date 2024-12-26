@@ -1034,6 +1034,10 @@
       height: 450px;
     }
   }
+
+  .section_padding {
+    @apply py-24 2xl:py-32 2xl:px-0 px-4;
+  }
   /* PRO BUTTON */
   .ProButton {
     --h-button: 48px;
@@ -1385,14 +1389,14 @@
   .feature-card {
     @apply relative overflow-hidden dark:inset-ring-3 inset-ring-1 select-none z-[1];
     @apply p-4 md:p-6 xl:p-8 2xl:p-10;
-    @apply rounded-2xl xl:rounded-[3rem] md:rounded-[1.5rem];
+    @apply rounded-3xl xl:rounded-[3rem] md:rounded-[1.5rem];
     @apply from-light-300 to-light-400 inset-ring-secondary/5;
     @apply dark:from-primary-1000 dark:to-primary-1100 dark:inset-ring-primary/5;
   }
   .feature-card_small {
     @apply relative overflow-hidden dark:inset-ring-3 inset-ring-1 select-none z-[1];
     @apply p-4 md:p-6 xl:p-8 2xl:p-10;
-    @apply rounded-2xl xl:rounded-[2rem] md:rounded-[1rem];
+    @apply rounded-3xl xl:rounded-[2rem] md:rounded-[1rem];
     @apply from-light-300 to-light-400 inset-ring-secondary/5;
     @apply dark:from-primary-1000 dark:to-primary-1100 dark:inset-ring-primary/5;
   }
@@ -1402,7 +1406,7 @@
   }
   .feature-card-title {
     @apply font-nippo font-extrabold leading-none overflow-hidden h-fit w-full;
-    @apply 2xl:text-3xl md:text-2xl;
+    @apply 2xl:text-3xl md:text-2xl text-xl;
     @apply text-secondary dark:text-primary-600;
   }
 

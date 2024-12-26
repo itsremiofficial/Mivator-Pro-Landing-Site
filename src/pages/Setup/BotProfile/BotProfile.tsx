@@ -63,7 +63,7 @@ export function BotProfile() {
             <Loader loadingStates={loadingStates} loading={loading} duration={2000} />
 
             {loading && (
-              <button className="btn btn-primary aspect-square p-3 fixed top-4 right-4 text-black dark:text-white z-[120]" onClick={() => setLoading(false)}>
+              <button className="btn btn-primary aspect-square p-3 fixed top-4 right-4 z-[120]" onClick={() => setLoading(false)}>
                 <Cancel01Icon className="h-5 w-5" />
               </button>
             )}

@@ -17,10 +17,10 @@ const CardsUi = () => {
         </div>
         <p className="feature-card-subtitle"> Code generated stunning cards effortlessly with dynamic, visually striking designs.</p>
       </div>
-      <div className="h-32 w-[380px] xl:h-44 xl:w-full relative mx-auto">
+      <div className="h-32 w-full max-w-[380px] xl:max-w-[480px] xl:h-44 relative mx-auto">
         <NowPlayingCard />
       </div>
-      <div className="h-36 w-[380px] mt-5 xl:h-48 xl:w-[480px] relative mx-auto">
+      <div className="h-36 w-full max-w-[380px] xl:max-w-[480px] mt-5 xl:h-48 relative mx-auto">
         <RankCard />
       </div>
     </div>

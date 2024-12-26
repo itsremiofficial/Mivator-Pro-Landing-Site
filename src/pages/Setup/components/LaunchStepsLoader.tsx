@@ -3,12 +3,6 @@ import { cn } from '@/utils/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
-const LaunchStepsLoader = () => {
-  return <div>LaunchStepsLoader</div>;
-};
-
-export default LaunchStepsLoader;
-
 const CheckIcon = ({ className }: { className?: string }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={cn('w-6 h-6 ', className)}>
@@ -43,16 +37,16 @@ const LoaderCore = ({ loadingStates, value = 0 }: { loadingStates: LoadingState[
         return (
           <motion.div
             key={index}
-            className={cn('text-left flex gap-2 mb-4')}
+            className={cn('text-left flex items-center gap-2 mb-4')}
             initial={{ opacity: 0, y: -(value * 40) }}
             animate={{ opacity: opacity, y: -(value * 40) }}
             transition={{ duration: 0.5 }}
           >
             <div>
-              {index > value && <CheckIcon className="text-black dark:text-white" />}
-              {index <= value && <CheckFilled className={cn('text-black dark:text-white', value === index && 'text-black dark:text-lime-500 opacity-100')} />}
+              {index > value && <CheckIcon className={cn('text-light-700 dark:text-primary-800')} />}
+              {index <= value && <CheckFilled className={cn('text-green-600 dark:text-green-400', value === index && 'text-secondary dark:text-primary-600 opacity-100')} />}
             </div>
-            <span className={cn('text-black dark:text-white', value === index && 'text-black dark:text-lime-500 opacity-100')}>{loadingState.text}</span>
+            <span className={cn('font-nippo font-medium', 'text-light-700 dark:text-primary-800', value === index && 'text-secondary dark:text-primary-600 opacity-100', value > index && 'text-green-600 dark:text-green-400')}>{loadingState.text}</span>
           </motion.div>
         );
       })}
@@ -87,13 +81,13 @@ export const Loader = ({ loadingStates, loading, duration = 2000, loop = true }:
           exit={{
             opacity: 0,
           }}
-          className="h-screen fixed inset-0 !z-10 flex items-center justify-center backdrop-blur-2xl overflow-hidden"
+          className="h-screen bg-primary-1200/80 fixed inset-0 !z-10 flex items-center justify-center backdrop-blur-2xl overflow-hidden"
         >
           <div className="h-96 relative">
             <LoaderCore value={currentState} loadingStates={loadingStates} />
           </div>
 
-          <div className="bg-gradient-to-t inset-x-0 z-20 bottom-0 bg-white dark:bg-black h-full absolute [mask-image:radial-gradient(900px_at_center,transparent_30%,white)]" />
+          <div className="bg-gradient-to-t inset-x-0 z-20 bottom-0 bg-light-400 dark:bg-primary-1300 h-full absolute [mask-image:radial-gradient(900px_at_center,transparent_30%,white)]" />
         </motion.div>
       )}
     </AnimatePresence>

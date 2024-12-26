@@ -28,8 +28,8 @@ const CommandsCount = ({ isDark }: { isDark: boolean }) => {
           </div>
         </div>
 
-        <div className="absolute z-[2] inset-0 flex flex-col justify-end w-full">
-          <div className="text-6xl feature-card-title">
+        <div className="relative z-[2] inset-0 flex flex-col justify-end w-full py-8 md:py-0">
+          <div className="2xl:text-6xl xl:text-5xl md:text-5xl text-3xl feature-card-title">
             <div className="relative overflow-hidden z-[1] w-full">
               <div hoverstagger="title" className="relative inline-block w-full">
                 Commands

@@ -2,10 +2,10 @@ import { Compare } from '@Sections/ProFeatures/Compare';
 
 const WhyPro = () => {
   return (
-    <section id="why-pro" className="w-screen h-fit relative py-48">
+    <section id="why-pro" className="w-screen h-fit relative section_padding">
       <div className="w-full text-center mb-10 flex flex-col justify-center">
         <h2 className="features_title">Why Pro?</h2>
-        <p className="text-light-900 dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
+        <p className="text-light-900 dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Explore groundbreaking innovation redefined through technology and creativity.</p>
       </div>
       <div className="px-6 lg:px-0 mx-auto max-w-screen-2xl">
         {/* ITEM 01 */}

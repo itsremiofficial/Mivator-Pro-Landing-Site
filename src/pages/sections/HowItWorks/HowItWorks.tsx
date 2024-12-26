@@ -30,7 +30,7 @@ export function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative bg-light-200 dark:bg-primary-1200 w-screen pt-48 [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_90%,transparent_100%)] px-4 xl:px-20"
+      className="relative bg-light-200 dark:bg-primary-1200 w-screen section_padding [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_90%,transparent_100%)]"
     >
       <Timeline data={data} />
     </section>

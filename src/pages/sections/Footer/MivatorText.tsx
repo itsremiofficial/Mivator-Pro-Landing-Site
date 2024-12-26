@@ -32,7 +32,6 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
     }
   }, [cursor]);
 
-
   // STROKE DASHED OFFSET ANIMATION ON ENTRANCE INTO VIEW
   useEffect(() => {
     if (svgRef.current) {
@@ -60,12 +59,12 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
       ref={svgRef}
       width="100%"
       height="100%"
-      viewBox="0 0 400 100"
+      viewBox="0 0 380 70"
       xmlns="http://www.w3.org/2000/svg"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
-      className="select-none leading-0.5"
+      className="select-none leading-0.5 overflow-hidden"
     >
       <defs>
         <linearGradient id="textGradient" gradientUnits="userSpaceOnUse" cx="50%" cy="50%" r="25%">
@@ -94,7 +93,7 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="1"
-        className="font-nippo font-bold stroke-light-300 dark:stroke-primary-300/[0.04] fill-transparent text-7xl leading-0.5"
+        className="font-nippo font-bold stroke-light-300 dark:stroke-primary-300/[0.04] fill-transparent text-7xl leading-[0]"
         style={{ opacity: hovered ? 0.1 : 0 }}
       >
         {text}
@@ -105,7 +104,7 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="1"
-        className="font-nippo font-bold fill-transparent text-7xl leading-0.5 stroke-light-300 dark:stroke-primary-300/[0.04]"
+        className="font-nippo font-bold fill-transparent text-7xl leading-[0] stroke-light-300 dark:stroke-primary-300/[0.04]"
       >
         {text}
       </text>
@@ -117,7 +116,7 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
         stroke="url(#textGradient)"
         strokeWidth="1"
         mask="url(#textMask)"
-        className="font-nippo font-bold fill-transparent text-7xl leading-0.5"
+        className="font-nippo font-bold fill-transparent text-7xl h-fit leading-[0]"
       >
         {text}
       </text>
@@ -127,7 +126,7 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
 
 const MivatorFooterText = () => {
   return (
-    <div className="relative flex items-center justify-center w-screen">
+    <div className="relative hidden md:flex items-center justify-center w-screen section_padding">
       <MivatorText text="MIVATOR" />
     </div>
   );

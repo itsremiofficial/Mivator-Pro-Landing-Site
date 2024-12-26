@@ -102,7 +102,7 @@ const StatItem = ({ icon, label, value }: StatItemProps) => (
 );
 
 const RankNumber = ({ theme }: RankCardContentProps) => (
-  <div style={{ color: `var(--${theme}-1200)` }} className="text-4xl xl:text-6xl font-mont flex font-black leading-[0.8]">
+  <div style={{ color: `var(--${theme}-1200)` }} className="absolute right-2 top-5 xl:right-5 text-4xl xl:text-6xl font-mont flex font-black leading-[0.8]">
     97<span className="text-xl font-normal">#</span>
   </div>
 );

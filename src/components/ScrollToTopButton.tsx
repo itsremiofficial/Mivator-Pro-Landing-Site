@@ -48,9 +48,9 @@ const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({ isVisible, onClic
     };
   }, [isVisible]);
   return (
-    <div ref={buttonRef} onClick={onClick} className={cn('scrollTop opacity-0', 'fixed bottom-10 right-10 z-100 group')}>
+    <div ref={buttonRef} onClick={onClick} className={cn('scrollTop opacity-0', 'fixed bottom-20 right-5 lg:bottom-10 lg:right-10 z-100 group')}>
       <div
-        className={cn('absolute inset-1 top-4', 'blur-lg group-hover:!blur-xl saturate-150', 'rounded-[1.3rem] overflow-visible', 'bg-secondary dark:bg-primary-900', 'transition-all duration-300')}
+        className={cn('absolute inset-1 top-4', 'blur-lg group-hover:!blur-xl saturate-150', 'rounded-[1.3rem] overflow-visible', 'bg-secondary dark:bg-primary-1000', 'transition-all duration-300')}
       ></div>
       <div className="mask mask-squircle size-12 ">
         <AnimatedText

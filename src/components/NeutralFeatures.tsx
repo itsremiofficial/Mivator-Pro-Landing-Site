@@ -50,7 +50,7 @@ const NeutralFeatures: React.FC = () => {
   );
 
   return (
-    <div className="w-screen flex justify-center items-center px-4 iconscontainer py-32">
+    <div className="w-screen flex justify-center items-center px-4 iconscontainer section_padding">
       <div className="relative z-[1] flex flex-wrap gap-12 justify-between">{iconGrid.map(renderIcon)}</div>
     </div>
   );
