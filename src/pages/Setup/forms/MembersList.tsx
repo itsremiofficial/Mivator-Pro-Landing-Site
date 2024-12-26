@@ -47,7 +47,7 @@ export function MembersList({ members, onChange }: MembersListProps) {
       <div className="space-y-4">
         {members.map((member, index) => (
           <MemberInput
-            key={member.id}
+            key={member.id / index}
             index={index}
             value={member.id}
             permissions={member.permissions}

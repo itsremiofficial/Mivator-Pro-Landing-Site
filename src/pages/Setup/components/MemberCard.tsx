@@ -28,7 +28,7 @@ export function MemberCard({ member, index }: MemberCardProps) {
 
         <div className="flex flex-wrap gap-2">
           {member.permissions.map((permission, pIndex) => (
-            <span key={pIndex} className="bg-light-500 dark:bg-primary dark:text-primary-400 text-secondary px-2 py-1 rounded-md">
+            <span key={pIndex} className="bg-light-500 dark:bg-primary-900 dark:text-primary-500 text-secondary px-2 py-1 rounded-md">
               {permission
                 .split('_')
                 .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

@@ -25,15 +25,3 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     </Provider>
   </React.StrictMode>
 );
-
-// import DeviceDetector from 'react-device-detector';
-
-// function App() {
-//   const deviceDetector = new DeviceDetector();
-
-//   return (
-//     <div>
-//       {deviceDetector.getDeviceType() === 'Mobile' ? 'Mobile device detected' : 'Desktop device detected'}
-//     </div>
-//   );
-// }

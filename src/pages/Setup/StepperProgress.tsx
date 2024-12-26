@@ -13,7 +13,7 @@ export function StepperProgress() {
       <StepConnector isActive={currentStep === 3} isCompleted={currentStep > 3} />
       <StepIndicator step={3} label="Access" />
       <StepConnector isActive={currentStep === 4} isCompleted={currentStep > 4} />
-      <StepIndicator step={4} label="Summary" />
+      <StepIndicator step={4} label="Launch" />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import ProButton from '@Components/ProButton';
 import ThemeCustomizer from '@Components/ThemeCustomizer';
 import { useOutsideClick } from '@/utils/outsideClick';
 import { DiscordIcon, InstagramIcon, NewTwitterIcon, YoutubeIcon } from 'hugeicons-react';
+import AnimatedTooltip from '@/components/Common/AnimatedTooltip';
 
 const MENU_ITEMS = [
   { text: 'HOME', href: '#home' },
@@ -60,9 +61,13 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
     return MENU_ITEMS.map((item, index) => (
       <div className="menu_item_link menu_item" key={index}>
         <div className="leading-none">{index + 1}.</div>
-        <a className="nav__Link_item flex items-center" onClick={() => handleScroll(item.href)}>
+        <div
+          className="
+        nav__Link_item flex items-center"
+          onClick={() => handleScroll(item.href)}
+        >
           <AnimatedText linkText1={item.text} className="" />
-        </a>
+        </div>
       </div>
     ));
   }, []);
@@ -76,7 +81,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
   }, [isExpanded, animateMenuItems]);
 
   return (
-    <header
+    <header id='top'
       className="
       relative
       w-screen
@@ -130,7 +135,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
                     {menuItemElements}
                     <div className="menu_item_link menu_item">
                       <div className="leading-none">5.</div>
-                      <a href='/legal' className="nav__Link_item flex items-center">
+                      <a href="/legal" className="nav__Link_item flex items-center">
                         <AnimatedText linkText1="LEGAL" />
                       </a>
                     </div>
@@ -164,17 +169,20 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
                   </h4>
                   {/* SOCIAL ICONS */}
                   <div className="social_icons flex justify-between">
-                    <a href="" className="social_icon mask mask-squircle">
-                      <DiscordIcon className="size-full" />
+                    <a href="">
+                      <AnimatedTooltip id={1} className="social_icon mask mask-squircle" mains="Discord" Children={<DiscordIcon className="size-full" />} />
                     </a>
-                    <a href="" className="social_icon mask mask-squircle">
-                      <YoutubeIcon className="size-full" />
+
+                    <a href="">
+                      <AnimatedTooltip id={2} className="social_icon mask mask-squircle" mains="YouTube" Children={<YoutubeIcon className="size-full" />} />
                     </a>
-                    <a href="" className="social_icon mask mask-squircle">
-                      <InstagramIcon className="size-full" />
+
+                    <a href="">
+                      <AnimatedTooltip id={3} className="social_icon mask mask-squircle" mains="Instagram" Children={<InstagramIcon className="size-full" />} />
                     </a>
-                    <a href="" className="social_icon mask mask-squircle">
-                      <NewTwitterIcon className="size-full" />
+
+                    <a href="">
+                      <AnimatedTooltip id={4} className="social_icon mask mask-squircle" mains="Twitter" Children={<NewTwitterIcon className="size-full" />} />
                     </a>
                   </div>
                 </div>

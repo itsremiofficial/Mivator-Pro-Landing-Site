@@ -5,9 +5,14 @@ import { StepperProvider } from './context/StepperContext';
 export function Stepper() {
   return (
     <StepperProvider>
-      <div className="w-3xl mx-auto px-4 py-48 min-h-[120vh] h-full">
-        <StepperProgress />
-        <StepContent />
+      <div className="w-3xl mx-auto h-screen flex items-center justify-center">
+        <div>
+          <StepperProgress />
+          <StepContent />
+          <a href="/" className="btn btn-secondary mt-10 py-4">
+            Go Back Home
+          </a>
+        </div>
       </div>
     </StepperProvider>
   );

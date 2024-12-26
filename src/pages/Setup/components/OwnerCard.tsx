@@ -12,8 +12,8 @@ export function OwnerCard({ owner, index }: OwnerCardProps) {
       <div className="relative p-6 bg-light-300 dark:bg-primary-800/50 border-light-500 dark:border-primary-800/70 rounded-2xl border transition-all duration-300">
         <div className="flex items-center gap-4">
           <div
-            className="w-12 h-12 bg-light-600 dark:bg-primary
-            rounded-xl flex items-center justify-center group-hover:scale-105 transition-all duration-300"
+            className="w-12 h-12 bg-light-600 !aspect-square dark:bg-primary
+            rounded-xl flex items-center justify-center transition-all duration-300"
           >
             <span className="text-xl font-nippo font-medium dark:text-primary-400 text-secondary">{index + 1}</span>
           </div>

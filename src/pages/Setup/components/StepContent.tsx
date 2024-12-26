@@ -1,4 +1,3 @@
-import React from 'react';
 import { useStepper } from '../context/StepperContext';
 import { Step1Form } from '../forms/Step1Form';
 import { Step2Form } from '../forms/Step2Form';
@@ -24,5 +23,5 @@ export function StepContent() {
     }
   };
 
-  return <div className={cn('w-full animate-fade-in')}>{renderStep()}</div>;
+  return <div className={cn('w-2xl animate-fade-in')}>{renderStep()}</div>;
 }

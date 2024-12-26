@@ -1,12 +1,11 @@
-import { useLayoutEffect, useRef } from 'react';
-
+import { useLayoutEffect, useRef, useState } from 'react';
 import LocomotiveScroll from 'locomotive-scroll';
-
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 const useLocoScroll = (triggeredElem) => {
   const locoScrollRef = useRef(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
   gsap.registerPlugin(ScrollTrigger);
 
   useLayoutEffect(() => {
@@ -26,7 +25,16 @@ const useLocoScroll = (triggeredElem) => {
       },
     });
 
-    locoScrollRef.current.on('scroll', ScrollTrigger.update);
+    locoScrollRef.current.on('scroll', (args) => {
+      // Update ScrollTrigger
+      ScrollTrigger.update();
+
+      // Calculate scroll progress
+      const totalHeight = args.limit.y;
+      const currentScroll = args.scroll.y;
+      const progress = (currentScroll / totalHeight) * 100;
+      setScrollProgress(Math.min(Math.max(progress, 0), 100));
+    });
 
     ScrollTrigger.scrollerProxy(scrollEl, {
       scrollTop(value) {
@@ -70,10 +78,11 @@ const useLocoScroll = (triggeredElem) => {
       duration: 2000,
       easing: easing,
       disableLerp: false,
+      offset: -100,
     });
   };
 
-  return { scrollToSection };
+  return { scrollToSection, scrollProgress };
 };
 
 export default useLocoScroll;

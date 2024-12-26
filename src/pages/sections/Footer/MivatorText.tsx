@@ -1,14 +1,14 @@
 'use client';
 import React, { useRef, useEffect, useState, useMemo } from 'react';
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useSelector } from 'react-redux';
 import { IRootState } from '@/store';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export const MivatorText = ({ text, duration }: { text: string; duration?: number; automatic?: boolean }) => {
   const svgRef = useRef<SVGSVGElement>(null);
-  const controls = useAnimation();
-  const isInView = useInView(svgRef, { margin: '0px', once: true });
-
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
   const [maskPosition, setMaskPosition] = useState({ cx: '50%', cy: '50%' });
@@ -19,6 +19,7 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
 
   const isDark = useMemo(() => themeConfig.theme === 'dark', [themeConfig.theme]);
 
+  // MOUSE MOVE SPOTLIGHT ANIMATION
   useEffect(() => {
     if (svgRef.current && cursor.x !== null && cursor.y !== null) {
       const svgRect = svgRef.current.getBoundingClientRect();
@@ -31,11 +32,28 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
     }
   }, [cursor]);
 
+
+  // STROKE DASHED OFFSET ANIMATION ON ENTRANCE INTO VIEW
   useEffect(() => {
-    if (isInView) {
-      controls.start({ strokeDashoffset: 0 });
+    if (svgRef.current) {
+      gsap.fromTo(
+        svgRef.current,
+        { strokeDashoffset: 1000, strokeDasharray: 1000 },
+        {
+          strokeDashoffset: 0,
+          duration: duration || 4,
+          ease: 'power2.inOut',
+          scrollTrigger: {
+            trigger: svgRef.current,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
+            scrub: false,
+          },
+        }
+      );
     }
-  }, [isInView, controls]);
+  }, [duration]);
 
   return (
     <svg
@@ -62,10 +80,10 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
           )}
         </linearGradient>
 
-        <motion.radialGradient id="revealMask" gradientUnits="userSpaceOnUse" r="20%" animate={maskPosition} transition={{ duration: duration ?? 0, ease: 'easeOut' }}>
+        <radialGradient id="revealMask" gradientUnits="userSpaceOnUse" r="20%" cx={maskPosition.cx} cy={maskPosition.cy}>
           <stop offset="0%" stopColor="white" />
           <stop offset="100%" stopColor="black" />
-        </motion.radialGradient>
+        </radialGradient>
         <mask id="textMask">
           <rect x="0" y="0" width="100%" height="100%" fill="url(#revealMask)" />
         </mask>
@@ -81,19 +99,16 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
       >
         {text}
       </text>
-      <motion.text
+      <text
         x="50%"
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="1"
         className="font-nippo font-bold fill-transparent text-7xl leading-0.5 stroke-light-300 dark:stroke-primary-300/[0.04]"
-        initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
-        animate={controls}
-        transition={{ duration: 4, ease: 'easeInOut' }}
       >
         {text}
-      </motion.text>
+      </text>
       <text
         x="50%"
         y="50%"

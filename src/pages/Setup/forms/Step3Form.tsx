@@ -82,7 +82,7 @@ export function Step3Form() {
             Previous
           </Button>
           <Button type="submit" className="flex-1">
-            Next Step
+            Finish
           </Button>
         </div>
       </form>
