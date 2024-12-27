@@ -22,8 +22,3 @@ export function MembersCard({ members }: MembersCardProps) {
     </Card>
   );
 }
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
