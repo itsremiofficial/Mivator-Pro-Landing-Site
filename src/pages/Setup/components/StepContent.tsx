@@ -23,5 +23,5 @@ export function StepContent() {
     }
   };
 
-  return <div className={cn('w-2xl animate-fade-in')}>{renderStep()}</div>;
+  return <div className={cn('w-3xl animate-fade-in')}>{renderStep()}</div>;
 }

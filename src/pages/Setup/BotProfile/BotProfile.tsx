@@ -45,8 +45,8 @@ export function BotProfile() {
   };
 
   return (
-    <div className="relative ">
-      <div className="relative py-8 px-4">
+    <div className="relative">
+      <div className="relative py-8">
         <div className="max-w-4xl mx-auto space-y-6">
           <HeroSection
             botName={formData.botName || ''}
@@ -55,7 +55,7 @@ export function BotProfile() {
             botSecret={formData.botSecret || ''}
             botToken={formData.botToken || ''}
           />
-          <ActivityCard activity={formData.botActivity || ''} />
+          <ActivityCard activity={formData.botActivity || ''} activityType={formData.botActivityType || ''} />
           <OwnersCard owners={formData.owners || []} />
           <MembersCard members={formData.members || []} />
           <DashboardButton onClick={handleClick} />

@@ -10,7 +10,8 @@ import { Card } from '../ui/Card';
 
 const schema = z.object({
   botName: z.string().min(1, 'Bot Name is required'),
-  botStatus: z.enum(['online', 'idle', 'dnd', 'streaming'] as const),
+  botStatus: z.enum(['online', 'idle', 'dnd'] as const),
+  botActivityType: z.enum(['playing', 'watching', 'listening', 'streaming', 'custom', 'competing'] as const),
   botActivity: z.string().min(1, 'Bot Activity is required'),
 });
 
@@ -21,6 +22,14 @@ const statusOptions = [
   { value: 'idle', label: 'Idle' },
   { value: 'dnd', label: 'Do Not Disturb' },
   { value: 'streaming', label: 'Streaming' },
+];
+const activityOptions = [
+  { value: 'playing', label: 'Playing' },
+  { value: 'watching', label: 'Watching' },
+  { value: 'listening', label: 'Listening' },
+  { value: 'streaming', label: 'Streaming' },
+  { value: 'custom', label: 'Custom' },
+  { value: 'competing', label: 'Competing' },
 ];
 
 export function Step2Form() {
@@ -55,6 +64,21 @@ export function Step2Form() {
                 value={statusOptions.find((option) => option.value === field.value)}
                 onChange={(option) => field.onChange(option?.value)}
                 error={errors.botStatus?.message}
+                placeholder="Select bot status"
+              />
+            )}
+          />
+
+          <Controller
+            name="botActivityType"
+            control={control}
+            render={({ field }) => (
+              <Select
+                label="Activity Type"
+                options={activityOptions}
+                value={activityOptions.find((option) => option.value === field.value)}
+                onChange={(option) => field.onChange(option?.value)}
+                error={errors.botActivityType?.message}
                 placeholder="Select bot status"
               />
             )}

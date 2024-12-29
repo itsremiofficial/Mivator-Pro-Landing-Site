@@ -1,4 +1,5 @@
-export type BotStatus = 'online' | 'idle' | 'dnd' | 'streaming';
+export type BotStatus = 'online' | 'idle' | 'dnd';
+export type ActivityType = 'playing' | 'watching' | 'listening' | 'streaming' | 'custom' | 'competing';
 
 export interface Member {
   id: number;
@@ -14,6 +15,7 @@ export interface BotFormData {
   // Step 2
   botName: string;
   botStatus: BotStatus;
+  botActivityType: ActivityType;
   botActivity: string;
 
   // Step 3

@@ -6,7 +6,7 @@ interface DashboardButtonProps {
 
 export function DashboardButton({ onClick }: DashboardButtonProps) {
   return (
-    <Button variant="primary" type="button" className="w-full uppercase !py-6 flex gap-2" onClick={onClick}>
+    <Button variant="primary" type="button" className="w-full uppercase !py-6 flex gap-2 m-0" onClick={onClick}>
       Launch <Rocket01Icon />
     </Button>
   );

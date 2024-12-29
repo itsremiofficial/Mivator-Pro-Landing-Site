@@ -1,11 +1,8 @@
-import useLocoScroll from '@/utils/useLocoScroll';
 import { Stepper } from './Setup/Stepper';
 
 const Setup = () => {
-  // @ts-ignore
-  const { scrollToSection } = useLocoScroll('[data-scroll-container]');
   return (
-    <div data-scroll-container>
+    <div className="w-screen h-max flex justify-center perfect-scrollbar py-24">
       <Stepper />
     </div>
   );

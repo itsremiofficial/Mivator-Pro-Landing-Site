@@ -27,12 +27,12 @@ export const Select = forwardRef<any, SelectProps>(({ label, error, options, cla
           classNames={{
             control: (state) =>
               cn(
-                '!bg-transparent !rounded-2xl !border !border-primary !px-2 !py-4 !min-h-0 !z-10',
+                '!bg-transparent !rounded-2xl !border !border-primary !px-2 !py-4 !min-h-0 relative',
                 'hover:!border-primary !cursor-pointer !font-nippo !font-medium !tracking-wider',
                 state.isFocused && '!border-primary !ring-1 !ring-primary ',
                 error && '!bg-red-500/10 !border-red-400 focus:!border-red-400 focus:!ring-red-400 placeholder:!text-red-400'
               ),
-            menu: () => 'dark:!bg-primary-1100 !bg-light-300 !rounded-2xl !border-none !mt-2 !overflow-hidden !p-3 !pt-0',
+            menu: () => 'dark:!bg-primary-1100 !bg-light-300 !rounded-2xl !border-none !mt-2 !overflow-hidden !p-3 !pt-0 z-100',
             option: (state) =>
               cn(
                 '!px-4 !py-4 !text-sm rounded-xl mt-2 font-nippo tracking-wide font-medium !cursor-pointer dark:!text-primary-700 !text-secondary',

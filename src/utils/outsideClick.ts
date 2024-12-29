@@ -18,3 +18,7 @@ export const useOutsideClick = (ref: RefObject<HTMLElement>, handler: () => void
     return () => document.removeEventListener('mousedown', listener);
   }, [ref, handler]);
 };
+
+export const capitalizeEachWord = (str: string): string => {
+  return str.replace(/\b\w/g, (char) => char.toUpperCase());
+};
