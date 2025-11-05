@@ -1,4 +1,4 @@
-import { cn } from '@/utils/utils';
+import { cn } from '@/utils';
 import { ViewIcon, ViewOffSlashIcon } from 'hugeicons-react';
 import { useState } from 'react';
 

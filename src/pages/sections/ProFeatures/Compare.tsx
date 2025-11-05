@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { cn } from '@Utils/utils';
+import { cn } from '@/utils';
 import { IconThreeDots } from '@Icons/index';
 import { SparklesCore } from './Sparkles';
 

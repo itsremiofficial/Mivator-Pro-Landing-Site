@@ -126,7 +126,7 @@ export const MivatorText = ({ text, duration }: { text: string; duration?: numbe
 
 const MivatorFooterText = () => {
   return (
-    <div className="relative hidden md:flex items-center justify-center w-screen section_padding">
+    <div className="relative hidden max-w-7xl md:flex items-center justify-center w-screen ">
       <MivatorText text="MIVATOR" />
     </div>
   );

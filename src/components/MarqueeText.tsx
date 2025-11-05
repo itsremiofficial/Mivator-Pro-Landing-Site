@@ -37,7 +37,7 @@ const MarqueeText = () => {
   return (
     <section
       className="
-          py-10 md:py-14 xl:py-48
+          py-10 md:py-14 xl:py-18
           select-none antialiased"
     >
       <div

@@ -1,7 +1,7 @@
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
 import { Delete03Icon } from 'hugeicons-react';
-import { cn } from '@/utils/utils';
+import { cn } from '@/utils';
 
 interface OwnerInputProps {
   index: number;

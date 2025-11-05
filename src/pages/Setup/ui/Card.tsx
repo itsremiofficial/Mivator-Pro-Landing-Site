@@ -1,4 +1,4 @@
-import { cn } from '@/utils/utils';
+import { cn } from '@/utils';
 import React from 'react';
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -7,12 +7,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function Card({ children, className, ...props }: CardProps) {
   return (
-    <div className={cn(
-      'rounded-3xl p-6 transition-all duration-300 shadow-2xl',
-      'border border-primary',
-      'shadow-primary/15',
-      'animate-fade-in',
-      className)} {...props}>
+    <div className={cn('rounded-3xl p-6 transition-all duration-300 shadow-2xl', 'border border-primary', 'shadow-primary/15', 'animate-fade-in', className)} {...props}>
       {children}
     </div>
   );

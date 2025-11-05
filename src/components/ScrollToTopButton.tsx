@@ -1,4 +1,4 @@
-import { cn } from '@/utils/utils';
+import { cn } from '@/utils';
 import { useEffect, useRef } from 'react';
 import AnimatedText from './Common/AnimatedText';
 import gsap from 'gsap';

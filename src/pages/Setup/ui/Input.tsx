@@ -1,4 +1,4 @@
-import { cn } from '@/utils/utils';
+import { cn } from '@/utils';
 import React, { forwardRef } from 'react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -21,9 +21,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error, c
             'placeholder:text-light-primary placeholder:dark:text-primary-500',
             'text-secondary dark:text-primary-400',
             'focus:outline-none focus:ring-1 focus:ring-offset-0',
-            error ?
-            'bg-red-500/10 border-red-400 focus:border-red-400 focus:ring-red-400 placeholder:text-red-400' :
-            'border-primary focus:border-primary focus:ring-primary-700',
+            error ? 'bg-red-500/10 border-red-400 focus:border-red-400 focus:ring-red-400 placeholder:text-red-400' : 'border-primary focus:border-primary focus:ring-primary-700',
             className
           )}
           {...props}

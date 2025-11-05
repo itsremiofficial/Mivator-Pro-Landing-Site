@@ -1,5 +1,5 @@
 'use client';
-import { cn } from '@/utils/utils';
+import { cn } from '@/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
@@ -46,7 +46,16 @@ const LoaderCore = ({ loadingStates, value = 0 }: { loadingStates: LoadingState[
               {index > value && <CheckIcon className={cn('text-light-700 dark:text-primary-800')} />}
               {index <= value && <CheckFilled className={cn('text-green-600 dark:text-green-400', value === index && 'text-secondary dark:text-primary-600 opacity-100')} />}
             </div>
-            <span className={cn('font-nippo font-medium', 'text-light-700 dark:text-primary-800', value === index && 'text-secondary dark:text-primary-600 opacity-100', value > index && 'text-green-600 dark:text-green-400')}>{loadingState.text}</span>
+            <span
+              className={cn(
+                'font-nippo font-medium',
+                'text-light-700 dark:text-primary-800',
+                value === index && 'text-secondary dark:text-primary-600 opacity-100',
+                value > index && 'text-green-600 dark:text-green-400'
+              )}
+            >
+              {loadingState.text}
+            </span>
           </motion.div>
         );
       })}

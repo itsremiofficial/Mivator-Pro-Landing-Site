@@ -3,7 +3,7 @@ import { Step1Form } from '../forms/Step1Form';
 import { Step2Form } from '../forms/Step2Form';
 import { Step3Form } from '../forms/Step3Form';
 import { BotProfile } from '../BotProfile/BotProfile';
-import { cn } from '@/utils/utils';
+import { cn } from '@/utils';
 
 export function StepContent() {
   const { currentStep } = useStepper();

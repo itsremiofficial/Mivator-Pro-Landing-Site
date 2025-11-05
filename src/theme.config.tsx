@@ -33,7 +33,6 @@ export class ThemeConfigManager {
       const storedConfig = {
         theme: localStorage.getItem('theme'),
         colorScheme: localStorage.getItem('colorScheme'),
-        locale: localStorage.getItem('i18nextLng'),
         isDarkMode: localStorage.getItem('isDarkMode') === 'true',
       };
 

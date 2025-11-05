@@ -1,4 +1,4 @@
-import { cn } from '@/utils/utils';
+import { cn } from '@/utils';
 import { Member } from '../types/bot';
 import { Button } from '../ui/Button';
 import { MemberInput } from './MemberInput';

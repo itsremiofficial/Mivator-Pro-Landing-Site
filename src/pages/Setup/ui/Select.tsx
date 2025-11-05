@@ -1,4 +1,4 @@
-import { cn } from '@/utils/utils';
+import { cn } from '@/utils';
 import { forwardRef } from 'react';
 import ReactSelect, { Props as ReactSelectProps } from 'react-select';
 

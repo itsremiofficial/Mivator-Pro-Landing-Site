@@ -2,7 +2,7 @@ import { Input } from '../ui/Input';
 import { MultiSelect } from '../ui/MultiSelect';
 import { Button } from '../ui/Button';
 import { Delete03Icon } from 'hugeicons-react';
-import { cn } from '@/utils/utils';
+import { cn } from '@/utils';
 
 interface MemberInputProps {
   index: number;
@@ -21,15 +21,7 @@ export function MemberInput({ index, value, permissions, availablePermissions, o
     <div className={cn('space-y-4 p-6 rounded-3xl', 'bg-light-300 dark:bg-primary-1000/50')}>
       <div className="flex gap-2 items-start">
         <div className="flex-1">
-        <Input
-            type="number"
-            value={value || ''}
-            onChange={(e) => onChange(parseInt(e.target.value, 10))}
-            placeholder={`Member ID #${index + 1}`}
-            error={error}
-            min={1}
-            required
-          />
+          <Input type="number" value={value || ''} onChange={(e) => onChange(parseInt(e.target.value, 10))} placeholder={`Member ID #${index + 1}`} error={error} min={1} required />
         </div>
         {showRemove && (
           <Button
