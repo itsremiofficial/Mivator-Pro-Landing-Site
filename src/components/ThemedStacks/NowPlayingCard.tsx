@@ -2,6 +2,7 @@ import { getThemeNames } from '@/colorSchemes';
 import { useMemo } from 'react';
 import { CardStack } from '@Common/CardStack';
 import { Clock01Icon, Mic01Icon, SpotifyIcon, UserIcon } from 'hugeicons-react';
+import githubPagesBase from '@/assets/CONSTANTS';
 export const NowPlayingCard = () => {
   const themeNames = getThemeNames().slice(0, 4);
 
@@ -12,7 +13,7 @@ export const NowPlayingCard = () => {
         themeKey: theme,
         content: <NowPlayingContent />,
       })),
-    [themeNames]
+    [themeNames],
   );
 
   return <CardStack items={CARDS} speed={9} offset={4} scaleFactor={0.07} containerClass="absolute size-full rounded-4xl xl:rounded-[3rem] p-3 xl:p-4 text-white" />;
@@ -27,7 +28,7 @@ const NowPlayingContent = () => (
 
 const AlbumCover = () => (
   <div className="xl:size-36 size-24 flex items-center justify-center overflow-hidden mask mask-squircle">
-    <img className="object-cover w-full h-full" src="/inthedust.jpeg" alt="In The Dust" />
+    <img className="object-cover w-full h-full" src={`/${githubPagesBase}inthedust.jpeg`} alt="In The Dust" />
   </div>
 );
 
