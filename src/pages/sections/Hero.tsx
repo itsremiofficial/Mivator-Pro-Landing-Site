@@ -172,12 +172,12 @@ const Hero = () => {
                 select-none
                 "
       >
-        <source srcSet={`${githubPagesBase}pro.avif`} type="image/avif" />
-        <source srcSet={`${githubPagesBase}pro.webp`} type="image/webp" />
+        <source srcSet={`/${githubPagesBase}pro.avif`} type="image/avif" />
+        <source srcSet={`/${githubPagesBase}pro.webp`} type="image/webp" />
         <motion.img
           ref={imageRef}
           {...animationProps}
-          src={`${githubPagesBase}pro.avif`}
+          src={`/${githubPagesBase}pro.avif`}
           alt="Magnetic"
           style={{
             objectFit: 'cover',

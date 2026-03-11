@@ -8,8 +8,8 @@ export function HowItWorks() {
       content: (
         <div className="grid grid-cols-1 xl:w-xl">
           <picture>
-            <source srcSet={`${githubPagesBase}steps/pay.webp`} type="image/webp" />
-            <img src={`${githubPagesBase}steps/pay.avif`} alt="Step Pay" className="rounded-lg object-cover w-full" width={300} height={300} />
+            <source srcSet={`/${githubPagesBase}steps/pay.webp`} type="image/webp" />
+            <img src={`/${githubPagesBase}steps/pay.avif`} alt="Step Pay" className="rounded-lg object-cover w-full" width={300} height={300} />
           </picture>
         </div>
       ),
@@ -19,8 +19,8 @@ export function HowItWorks() {
       content: (
         <div className="grid grid-cols-1 xl:w-xl">
           <picture>
-            <source srcSet={`${githubPagesBase}steps/configure.webp`} type="image/webp" />
-            <img src={`${githubPagesBase}steps/configure.avif`} alt="Step Configure" className="rounded-lg object-cover w-full" width={300} height={300} />
+            <source srcSet={`/${githubPagesBase}steps/configure.webp`} type="image/webp" />
+            <img src={`/${githubPagesBase}steps/configure.avif`} alt="Step Configure" className="rounded-lg object-cover w-full" width={300} height={300} />
           </picture>
         </div>
       ),
@@ -30,8 +30,8 @@ export function HowItWorks() {
       content: (
         <div className="grid grid-cols-1 xl:w-xl">
           <picture>
-            <source srcSet={`${githubPagesBase}steps/launch.webp`} type="image/webp" />
-            <img src={`${githubPagesBase}steps/launch.avif`} alt="Step Launch" className="rounded-lg object-cover w-full" width={300} height={300} />
+            <source srcSet={`/${githubPagesBase}steps/launch.webp`} type="image/webp" />
+            <img src={`/${githubPagesBase}steps/launch.avif`} alt="Step Launch" className="rounded-lg object-cover w-full" width={300} height={300} />
           </picture>
         </div>
       ),

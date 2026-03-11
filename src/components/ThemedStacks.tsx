@@ -58,7 +58,7 @@ export const RankCard = () => {
           <div className="px-4 flex gap-6 justify-between w-full">
             <div className="flex flex-col items-center justify-center gap-2">
               <div className="size-24 overflow-hidden mask mask-squircle">
-                <img className="object-cover w-full h-full" src={`${githubPagesBase}avatar.avif`} alt="In The Dust" />
+                <img className="object-cover w-full h-full" src={`/${githubPagesBase}avatar.avif`} alt="In The Dust" />
               </div>
               <div className="font-mont text-xs uppercase">Level</div>
               <div className={`py-1 px-5 w-full rounded-xl leading-none tracking-widest font-mont text-2xl text-center font-extrabold bg-black/25`}>33</div>

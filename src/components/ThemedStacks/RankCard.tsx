@@ -40,7 +40,7 @@ const ProfileSection = () => (
 
 const Avatar = () => (
   <div className="size-16 xl:size-24 overflow-hidden mask mask-squircle">
-    <img className="object-cover w-full h-full" src={`${githubPagesBase}avatar.avif`} alt="User Avatar" />
+    <img className="object-cover w-full h-full" src={`/${githubPagesBase}avatar.avif`} alt="User Avatar" />
   </div>
 );
 

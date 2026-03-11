@@ -193,10 +193,10 @@ export const Compare = ({
               transition={{ duration: 0 }}
             >
               <picture>
-                <source srcSet={`${githubPagesBase}${firstImage}.avif`} type="image/avif" />
+                <source srcSet={`/${githubPagesBase}${firstImage}.avif`} type="image/avif" />
                 <img
                   alt="first image"
-                  src={`${githubPagesBase}${firstImage}.webp`}
+                  src={`/${githubPagesBase}${firstImage}.webp`}
                   className={cn('absolute inset-0 z-20 rounded-2xl flex-shrink-0 w-full h-full select-none', firstImageClassName)}
                   draggable={false}
                 />
@@ -209,11 +209,11 @@ export const Compare = ({
       <AnimatePresence initial={false}>
         {secondImage ? (
           <picture>
-            <source srcSet={`${githubPagesBase}${secondImage}.avif`} type="image/avif" />
+            <source srcSet={`/${githubPagesBase}${secondImage}.avif`} type="image/avif" />
             <img
               className={cn('absolute top-0 left-0 z-[19]  rounded-2xl w-full h-full select-none', secondImageClassname)}
               alt="second image"
-              src={`${githubPagesBase}${secondImage}.avif`}
+              src={`/${githubPagesBase}${secondImage}.avif`}
               draggable={false}
             />
           </picture>
