@@ -111,7 +111,7 @@ const Hero = () => {
           className="
                     text-sm lg:text-lg
                     text-light-900 dark:text-primary-400/50
-                    font-syne text-balance"
+                    font-mont text-balance"
         >
           Bring your vision to life with a custom Mivator Pro. From name to colors to complete ownership, it’s all yours.
         </div>

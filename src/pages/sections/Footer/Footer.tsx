@@ -140,7 +140,7 @@ const Footer: React.FC<FooterProps> = ({ handleScroll }) => {
           </div>
           {/* SOCIAL LINKS */}
           <div className="lg:px-10 lg:pt-8 px-4 pt-4 w-full md:w-1/2">
-            <h4 className="my-3 ml-1 font-nippo font-medium tracking-[3px] text-primary-800 select-none text-base">SOCIALS</h4>
+            <h4 className="my-4 font-nippo font-medium tracking-[3px] text-primary-800 select-none text-base">SOCIALS</h4>
             <div className="social_icons flex justify-between">
               <a href="">
                 <AnimatedTooltip id={1} className="social_icon mask mask-squircle" mains="Discord" Children={<DiscordIcon className="size-full" />} />

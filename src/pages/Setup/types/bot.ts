@@ -1,4 +1,4 @@
-export type BotStatus = 'online' | 'idle' | 'dnd';
+export type BotStatus = 'online' | 'idle' | 'dnd' | 'streaming';
 export type ActivityType = 'playing' | 'watching' | 'listening' | 'streaming' | 'custom' | 'competing';
 
 export interface Member {

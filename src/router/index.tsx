@@ -11,6 +11,7 @@ const finalRoutes = routes.map((route) => {
 });
 
 const router = createBrowserRouter(finalRoutes, {
+  basename: '/Mivator-Pro-Landing-Site',
   future: {
     v7_skipActionErrorRevalidation: true,
     v7_startTransition: true,
