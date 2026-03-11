@@ -54,8 +54,8 @@ const SphericalScene: React.FC = () => {
     if (!isInitialized) return;
 
     const updateTextures = () => {
-      const themedImg1 = `/${githubPagesBase}spheric/${colorScheme}1.png`;
-      const themedImg2 = `/${githubPagesBase}spheric/${colorScheme}2.png`;
+      const themedImg1 = `${githubPagesBase}spheric/${colorScheme}1.png`;
+      const themedImg2 = `${githubPagesBase}spheric/${colorScheme}2.png`;
 
       const textureLoader = new THREE.TextureLoader();
 
