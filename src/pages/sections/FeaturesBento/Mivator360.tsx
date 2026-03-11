@@ -1,3 +1,4 @@
+import githubPagesBase from '@/assets/CONSTANTS';
 import { IRootState } from '@/store';
 import { toggleColorScheme } from '@Store/themeConfigSlice';
 import React, { useRef, useEffect, useState } from 'react';
@@ -15,7 +16,7 @@ const SphericalScene: React.FC = () => {
   const { colorScheme } = useSelector((state: IRootState) => state.themeConfig);
   const dispatch = useDispatch();
   const [isInitialized, setIsInitialized] = useState(false);
-// @ts-ignore
+  // @ts-ignore
   const changeColorScheme = (newColorScheme: string) => {
     dispatch(toggleColorScheme(newColorScheme));
   };
@@ -53,8 +54,8 @@ const SphericalScene: React.FC = () => {
     if (!isInitialized) return;
 
     const updateTextures = () => {
-      const themedImg1 = `/spheric/${colorScheme}1.png`;
-      const themedImg2 = `/spheric/${colorScheme}2.png`;
+      const themedImg1 = `/${githubPagesBase}spheric/${colorScheme}1.png`;
+      const themedImg2 = `/${githubPagesBase}spheric/${colorScheme}2.png`;
 
       const textureLoader = new THREE.TextureLoader();
 
@@ -68,7 +69,7 @@ const SphericalScene: React.FC = () => {
           }
         },
         undefined,
-        (err) => console.error('Error loading texture 1:', err)
+        (err) => console.error('Error loading texture 1:', err),
       );
 
       textureLoader.load(
@@ -81,7 +82,7 @@ const SphericalScene: React.FC = () => {
           }
         },
         undefined,
-        (err) => console.error('Error loading texture 2:', err)
+        (err) => console.error('Error loading texture 2:', err),
       );
     };
 
