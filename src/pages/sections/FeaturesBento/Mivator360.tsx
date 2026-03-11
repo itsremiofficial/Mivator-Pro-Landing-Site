@@ -1,8 +1,8 @@
 import githubPagesBase from '@/assets/CONSTANTS';
 import { IRootState } from '@/store';
-import { toggleColorScheme } from '@Store/themeConfigSlice';
+// import { toggleColorScheme } from '@Store/themeConfigSlice';
 import React, { useRef, useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import * as THREE from 'three';
 
 const SphericalScene: React.FC = () => {
@@ -14,12 +14,12 @@ const SphericalScene: React.FC = () => {
   const mesh2Ref = useRef<THREE.Mesh | null>(null);
 
   const { colorScheme } = useSelector((state: IRootState) => state.themeConfig);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [isInitialized, setIsInitialized] = useState(false);
-  // @ts-ignore
-  const changeColorScheme = (newColorScheme: string) => {
-    dispatch(toggleColorScheme(newColorScheme));
-  };
+
+  // const changeColorScheme = (newColorScheme: string) => {
+  //   dispatch(toggleColorScheme(newColorScheme));
+  // };
 
   useEffect(() => {
     if (!canvasRef.current) return;
