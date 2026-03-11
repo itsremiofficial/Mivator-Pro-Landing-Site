@@ -26,4 +26,15 @@ export default defineConfig({
   optimizeDeps: {
     include: ['@gsap/react', 'locomotive-scroll', 'split-type'],
   },
+  build: {
+    cssMinify: 'esbuild',
+  },
+  css: {
+    devSourcemap: true,
+  },
+  esbuild: {
+    logOverride: {
+      'css-syntax-error': 'silent',
+    },
+  },
 });
