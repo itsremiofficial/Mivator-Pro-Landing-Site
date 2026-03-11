@@ -5,6 +5,7 @@ import IconPremium from '@Icons/IconPremium';
 import AnimatedButton from '@Common/AnimatedButton';
 import { IconArrowRight, IconDashboard } from '@Icons/index';
 import { isMobile } from 'react-device-detect';
+import githubPagesBase from '@/assets/CONSTANTS';
 
 const Hero = () => {
   const [_cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -171,12 +172,12 @@ const Hero = () => {
                 select-none
                 "
       >
-        <source srcSet="/pro.avif" type="image/avif" />
-        <source srcSet="/pro.webp" type="image/webp" />
+        <source srcSet={`${githubPagesBase}pro.avif`} type="image/avif" />
+        <source srcSet={`${githubPagesBase}pro.webp`} type="image/webp" />
         <motion.img
           ref={imageRef}
           {...animationProps}
-          src="/pro.avif"
+          src={`${githubPagesBase}pro.avif`}
           alt="Magnetic"
           style={{
             objectFit: 'cover',

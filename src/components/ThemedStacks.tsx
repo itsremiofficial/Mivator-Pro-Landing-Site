@@ -4,6 +4,7 @@ import { Clock01Icon, Message02Icon, MessageMultiple01Icon, Mic01Icon, SpotifyIc
 import { CardStack } from '@Common/CardStack';
 import { useMemo } from 'react';
 import { getThemeNames, getThemeTitle, ThemeName, constants } from '@/colorSchemes';
+import githubPagesBase from '@/assets/CONSTANTS';
 
 const themeNames = getThemeNames();
 // NOW PLAYING CARDS
@@ -41,7 +42,7 @@ export const NowPlayingCard = () => {
           </>
         ),
       })),
-    [themeNames]
+    [themeNames],
   );
   return <CardStack items={CARDS} speed={7.5} containerClass="absolute size-full rounded-[3rem] flex items-center !p-4" />;
 };
@@ -57,7 +58,7 @@ export const RankCard = () => {
           <div className="px-4 flex gap-6 justify-between w-full">
             <div className="flex flex-col items-center justify-center gap-2">
               <div className="size-24 overflow-hidden mask mask-squircle">
-                <img className="object-cover w-full h-full" src="/avatar.avif" alt="In The Dust" />
+                <img className="object-cover w-full h-full" src={`${githubPagesBase}avatar.avif`} alt="In The Dust" />
               </div>
               <div className="font-mont text-xs uppercase">Level</div>
               <div className={`py-1 px-5 w-full rounded-xl leading-none tracking-widest font-mont text-2xl text-center font-extrabold bg-black/25`}>33</div>
@@ -119,7 +120,7 @@ export const RankCard = () => {
           </div>
         ),
       })),
-    [themeNames]
+    [themeNames],
   );
   return <CardStack items={CARDS} speed={9} containerClass="absolute size-full rounded-[3rem] flex items-center !p-4" />;
 };
@@ -210,7 +211,7 @@ export const ColorUiWindow: React.FC<ColorUiWindowProps> = ({ className, onTheme
           </div>
         );
       }),
-    [themeNames, storedTheme]
+    [themeNames, storedTheme],
   );
 
   return (
@@ -343,7 +344,7 @@ export const LogoThemes: React.FC<LogoThemesProps> = ({ className, onLogoClick }
           </div>
         ),
       })),
-    [themeNames]
+    [themeNames],
   );
 
   return <CardStack items={mivatorLogos} speed={12} noBg offset={5} containerClass="absolute inset-0 flex items-center justify-center rounded-[3rem]" />;

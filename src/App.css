@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: 'Nippo';
-  src: url('/fonts/nippo-demibold.ttf') format('truetype');
+  src: url('/Mivator-Pro-Landing-Site/fonts/nippo-demibold.ttf') format('truetype');
   font-display: swap;
   font-style: normal;
   font-weight: 500;
@@ -11,7 +11,7 @@
 }
 @font-face {
   font-family: 'Nippo';
-  src: url('/fonts/nippo-extrabold.ttf') format('truetype');
+  src: url('/Mivator-Pro-Landing-Site/fonts/nippo-extrabold.ttf') format('truetype');
   font-display: swap;
   font-style: normal;
   font-optical-sizing: auto;
@@ -19,35 +19,35 @@
 }
 @font-face {
   font-family: 'Nippo';
-  src: url('/fonts/nippo-regular.ttf') format('truetype');
+  src: url('/Mivator-Pro-Landing-Site/fonts/nippo-regular.ttf') format('truetype');
   font-display: swap;
   font-style: normal;
   font-optical-sizing: auto;
 }
 @font-face {
   font-family: 'Nippo';
-  src: url('/fonts/nippo-light.ttf') format('truetype');
+  src: url('/Mivator-Pro-Landing-Site/fonts/nippo-light.ttf') format('truetype');
   font-display: swap;
   font-style: normal;
   font-optical-sizing: auto;
 }
 @font-face {
   font-family: 'Porlane';
-  src: url('/fonts/Porlane.woff') format('woff');
+  src: url('/Mivator-Pro-Landing-Site/fonts/Porlane.woff') format('woff');
   font-display: swap;
   font-style: normal;
   font-optical-sizing: auto;
 }
 @font-face {
   font-family: 'Syne';
-  src: url('/fonts/syne.ttf') format('truetype');
+  src: url('/Mivator-Pro-Landing-Site/fonts/syne.ttf') format('truetype');
   font-display: swap;
   font-style: normal;
   font-optical-sizing: auto;
 }
 @font-face {
   font-family: 'Mont';
-  src: url('/fonts/OpenSans.ttf') format('truetype');
+  src: url('/Mivator-Pro-Landing-Site/fonts/OpenSans.ttf') format('truetype');
   font-style: normal;
   font-optical-sizing: auto;
 }
@@ -990,13 +990,21 @@
     height: 48px;
     @apply flex justify-center grow;
     border-radius: 2rem;
-    transition: width var(--smooth-animation), height var(--smooth-animation), border-radius var(--smooth-animation), background-color 0.3s ease;
+    transition:
+      width var(--smooth-animation),
+      height var(--smooth-animation),
+      border-radius var(--smooth-animation),
+      background-color 0.3s ease;
   }
   .header_button.expanded {
     width: 400px;
     height: 530px;
     border-radius: 2rem;
-    transition: width var(--smooth-animation), height var(--smooth-animation), border-radius var(--smooth-animation), background-color 0.3s ease;
+    transition:
+      width var(--smooth-animation),
+      height var(--smooth-animation),
+      border-radius var(--smooth-animation),
+      background-color 0.3s ease;
   }
   .menu_item_link {
     @apply flex items-center gap-3;
@@ -1175,7 +1183,9 @@
   }
   .ProButton:hover svg.icon {
     fill: transparent;
-    animation: dasharray 1s linear forwards, filled 0.1s linear forwards 0.95s;
+    animation:
+      dasharray 1s linear forwards,
+      filled 0.1s linear forwards 0.95s;
   }
   @keyframes dasharray {
     from {

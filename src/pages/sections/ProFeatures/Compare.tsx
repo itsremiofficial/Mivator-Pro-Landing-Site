@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/utils';
 import { IconThreeDots } from '@Icons/index';
 import { SparklesCore } from './Sparkles';
+import githubPagesBase from '@/assets/CONSTANTS';
 
 interface CompareProps {
   firstImage?: string;
@@ -88,7 +89,7 @@ export const Compare = ({
         setIsDragging(true);
       }
     },
-    [slideMode]
+    [slideMode],
   );
 
   const handleEnd = useCallback(() => {
@@ -109,7 +110,7 @@ export const Compare = ({
         });
       }
     },
-    [slideMode, isDragging]
+    [slideMode, isDragging],
   );
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => handleStart(e.clientX), [handleStart]);
@@ -122,7 +123,7 @@ export const Compare = ({
         handleStart(e.touches[0].clientX);
       }
     },
-    [handleStart, autoplay]
+    [handleStart, autoplay],
   );
 
   const handleTouchEnd = useCallback(() => {
@@ -137,7 +138,7 @@ export const Compare = ({
         handleMove(e.touches[0].clientX);
       }
     },
-    [handleMove, autoplay]
+    [handleMove, autoplay],
   );
 
   return (
@@ -192,8 +193,13 @@ export const Compare = ({
               transition={{ duration: 0 }}
             >
               <picture>
-                <source srcSet={`${firstImage}.avif`} type="image/avif" />
-                <img alt="first image" src={`${firstImage}.webp`} className={cn('absolute inset-0 z-20 rounded-2xl flex-shrink-0 w-full h-full select-none', firstImageClassName)} draggable={false} />
+                <source srcSet={`${githubPagesBase}${firstImage}.avif`} type="image/avif" />
+                <img
+                  alt="first image"
+                  src={`${githubPagesBase}${firstImage}.webp`}
+                  className={cn('absolute inset-0 z-20 rounded-2xl flex-shrink-0 w-full h-full select-none', firstImageClassName)}
+                  draggable={false}
+                />
               </picture>
             </motion.div>
           ) : null}
@@ -203,8 +209,13 @@ export const Compare = ({
       <AnimatePresence initial={false}>
         {secondImage ? (
           <picture>
-            <source srcSet={`${secondImage}.avif`} type="image/avif" />
-            <img className={cn('absolute top-0 left-0 z-[19]  rounded-2xl w-full h-full select-none', secondImageClassname)} alt="second image" src={`${secondImage}.avif`} draggable={false} />
+            <source srcSet={`${githubPagesBase}${secondImage}.avif`} type="image/avif" />
+            <img
+              className={cn('absolute top-0 left-0 z-[19]  rounded-2xl w-full h-full select-none', secondImageClassname)}
+              alt="second image"
+              src={`${githubPagesBase}${secondImage}.avif`}
+              draggable={false}
+            />
           </picture>
         ) : null}
       </AnimatePresence>

@@ -2,6 +2,7 @@ import { getThemeNames } from '@/colorSchemes';
 import { ReactNode, useMemo } from 'react';
 import { CardStack } from '@Common/CardStack';
 import { Message02Icon, MessageMultiple01Icon, VolumeHighIcon } from 'hugeicons-react';
+import githubPagesBase from '@/assets/CONSTANTS';
 
 export const RankCard = () => {
   const themeNames = getThemeNames().slice(5, 10);
@@ -13,7 +14,7 @@ export const RankCard = () => {
         themeKey: theme,
         content: <RankCardContent key={index} theme={theme} />,
       })),
-    [themeNames]
+    [themeNames],
   );
 
   return <CardStack items={CARDS} speed={5} offset={4} scaleFactor={0.07} containerClass="absolute size-full rounded-4xl xl:rounded-[3rem] flex items-center text-white !p-6" />;
@@ -39,7 +40,7 @@ const ProfileSection = () => (
 
 const Avatar = () => (
   <div className="size-16 xl:size-24 overflow-hidden mask mask-squircle">
-    <img className="object-cover w-full h-full" src="/avatar.avif" alt="User Avatar" />
+    <img className="object-cover w-full h-full" src={`${githubPagesBase}avatar.avif`} alt="User Avatar" />
   </div>
 );
 
