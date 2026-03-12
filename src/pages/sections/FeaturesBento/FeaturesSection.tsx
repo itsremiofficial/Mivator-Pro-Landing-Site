@@ -30,7 +30,7 @@ import CardsUi from './CardsUi';
 export const MivatorFeatures: React.FC = React.memo(() => {
   const themeConfig = useSelector(
     (state: IRootState) => state.themeConfig,
-    (prev, next) => prev.theme === next.theme
+    (prev, next) => prev.theme === next.theme,
   );
 
   const isDark = useMemo(() => themeConfig.theme === 'dark', [themeConfig.theme]);
@@ -66,7 +66,7 @@ export const MivatorFeatures: React.FC = React.memo(() => {
           duration: 0.5,
           stagger: { amount: 0.3 },
         },
-        0
+        0,
       );
     }
 
@@ -89,17 +89,6 @@ export const MivatorFeatures: React.FC = React.memo(() => {
       cleanupFunctions.forEach((cleanup) => cleanup());
     };
   }, [setupTextAnimation]);
-
-  // Memoized dispatch and theme handlers
-  const dispatch = useDispatch(); // @ts-ignore
-  const handleThemeChange = useCallback(
-    (themeKey: ThemeName) => {
-      const isDarkTheme = themeKey !== 'mivatorsilver';
-      dispatch(toggleTheme(isDarkTheme ? 'dark' : 'light'));
-      dispatch(toggleColorScheme(themeKey));
-    },
-    [dispatch]
-  );
 
   // Reusable Cursor Follower creator
   const createCursorFollower = useCallback(
@@ -126,7 +115,7 @@ export const MivatorFeatures: React.FC = React.memo(() => {
         </div>
       </CursorFollower>
     ),
-    [isDark]
+    [isDark],
   );
 
   return (
@@ -134,7 +123,7 @@ export const MivatorFeatures: React.FC = React.memo(() => {
       <div className="w-full mx-auto flex flex-col items-center">
         <div className="max-w-screen-2xl text-center mb-10">
           <h2 className="features_title">Features</h2>
-          <p className="text-light-900 dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Experience the next generation of innovation</p>
+          <p className="text-light-900 dark:text-primary-400/40 max-w-2xl mx-auto text-lg font-sans">Experience the next generation of innovation</p>
         </div>
         <div className="relative feature_container w-full max-w-screen-2xl mx-auto group/bento">
           {createCursorFollower(1, 'feature1 feature-card bg-gradient-to-br flex flex-col justify-between group/commands', <CommandsCount isDark={isDark} />)}
@@ -144,7 +133,7 @@ export const MivatorFeatures: React.FC = React.memo(() => {
           {createCursorFollower(
             5,
             'feature7 feature-card flex items-center justify-center bg-gradient-to-r dark:from-primary-1100 dark:via-primary-900 dark:to-primary-1100 from-primary-400 via-light-100 to-light-400 !p-0 grow',
-            <SecurityIcons />
+            <SecurityIcons />,
           )}
           <div className="feature5 relative">
             <ThreeJSCanvas />

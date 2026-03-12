@@ -5,7 +5,7 @@ const WhyPro = () => {
     <section id="why-pro" className="w-screen h-fit relative section_padding">
       <div className="w-full text-center mb-10 flex flex-col justify-center">
         <h2 className="features_title">Why Pro?</h2>
-        <p className="text-light-900 dark:text-primary-700/40 max-w-2xl mx-auto text-lg">Explore groundbreaking innovation redefined through technology and creativity.</p>
+        <p className="text-light-900 dark:text-primary-400/40 max-w-2xl mx-auto text-lg font-sans">Explore groundbreaking innovation redefined through technology and creativity.</p>
       </div>
       <div className="px-6 lg:px-0 mx-auto max-w-screen-2xl">
         {/* ITEM 01 */}
@@ -1580,10 +1580,14 @@ const WhyPro = () => {
         {/* ITEM 05 */}
         <div className="flex flex-wrap items-center justify-center lg:justify-between py-10 group/whypro gap-8">
           <div className="w-full lg:w-1/2 xl:p-8 flex flex-col items-center lg:items-start">
-            <h2 className="mb-6 
+            <h2
+              className="mb-6 
                 text-4xl md:text-6xl xl:text-7xl 
                 font-extrabold font-syne leading-tight text-center lg:text-left
-                dark:text-primary-700 text-secondary">Your Rules</h2>
+                dark:text-primary-700 text-secondary"
+            >
+              Your Rules
+            </h2>
             <p className="font-sans text-lg dark:text-primary-600/60 text-light-900 leading-relaxed md:max-w-lg text-center lg:text-left">
               No limitations, no cooldowns. Scale your bot without restrictions and let your creativity shine.
             </p>

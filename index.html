@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr" color-scheme class="light">
   <head>
     <meta charset="utf-8" />
@@ -11,10 +11,7 @@
 
     <title>Mivator Pro</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- <link rel="preload" href="/public/fonts/Porlane.woff" as="font" type="font/woff" crossorigin="anonymous" /> -->
+    <link rel="preload" href="/Mivator-Pro-Landing-Site/fonts/Porlane.woff" as="font" type="font/woff" crossorigin="anonymous" />
 
     <!-- SPA redirect script for GitHub Pages -->
     <script type="text/javascript">
@@ -29,11 +26,7 @@
               return s.replace(/~and~/g, '&');
             })
             .join('?');
-          window.history.replaceState(
-            null,
-            null,
-            l.pathname.slice(0, -1) + decoded + l.hash
-          );
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
         }
       })(window.location);
     </script>

@@ -42,7 +42,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           end: 'bottom 50%',
           scrub: true,
         },
-      }
+      },
     );
 
     // Initialize ScrollTrigger for each timeline entry
@@ -60,7 +60,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             end: 'top 70%',
             scrub: true,
           },
-        }
+        },
       );
     });
     circles.forEach((circle) => {
@@ -77,7 +77,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             end: 'top 0%',
             scrub: true,
           },
-        }
+        },
       );
     });
     titles.forEach((title) => {
@@ -94,7 +94,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             end: 'top 20%',
             scrub: true,
           },
-        }
+        },
       );
     });
     subtitles.forEach((title) => {
@@ -111,7 +111,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             end: 'top 20%',
             scrub: true,
           },
-        }
+        },
       );
     });
 
@@ -125,7 +125,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       <div className="max-w-7xl mx-auto py-10 flex items-end justify-center md:justify-between flex-wrap gap-6">
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <h2 className="features_title max-w-4xl">How it Works?</h2>
-          <p className="md:text-base text-light-900 dark:text-primary-700/40 text-lg max-w-sm">Build Your Unique Discord Bot in Just 3 Easy Steps</p>
+          <p className="md:text-base text-light-900 dark:text-primary-400/40 text-lg max-w-sm font-sans">Build Your Unique Discord Bot in Just 3 Easy Steps</p>
         </div>
         <AnimatedButton linkText1="Start Now!" className="btn btn-secondary py-6 px-10" />
       </div>
