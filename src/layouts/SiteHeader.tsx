@@ -42,7 +42,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
             stagger: 0.1,
             ease: 'power2.out',
             delay: 0.5,
-          }
+          },
         );
       } else {
         gsap.to(items, {
@@ -54,7 +54,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
         });
       }
     },
-    [isExpanded]
+    [isExpanded],
   );
 
   const menuItemElements = useMemo(() => {
@@ -81,7 +81,8 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
   }, [isExpanded, animateMenuItems]);
 
   return (
-    <header id='top'
+    <header
+      id="top"
       className="
       relative
       w-screen
@@ -168,7 +169,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ handleScroll }) => {
                     SOCIALS
                   </h4>
                   {/* SOCIAL ICONS */}
-                  <div className="social_icons flex justify-between">
+                  <div className="social_icons flex gap-8">
                     <a href="">
                       <AnimatedTooltip id={1} className="social_icon mask mask-squircle" mains="Discord" Children={<DiscordIcon className="size-full" />} />
                     </a>
